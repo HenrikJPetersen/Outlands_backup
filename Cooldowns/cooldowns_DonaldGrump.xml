@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<cooldowns>
+	<cooldownentry name="hammyOn" defaultcooldown="0" cooldownbartype="Regular" hue="68" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="600" triggertext="You will now attempt to hamstring your opponents." />
+		<trigger triggertype="SysMessage" duration="" triggertext="You refrain from making hamstring attempts" />
+	</cooldownentry>
+	<cooldownentry name="hammyOFF" defaultcooldown="0" cooldownbartype="Regular" hue="33" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="600" triggertext="You refrain from making hamstring attempts" />
+		<trigger triggertype="SysMessage" duration="0" triggertext="You will now attempt to hamstring your opponents." />
+	</cooldownentry>
+	<cooldownentry name="hammyCD" defaultcooldown="0" cooldownbartype="Regular" hue="33" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="502" triggertext="hamstrings your target" />
+		<trigger triggertype="SysMessage" duration="200" triggertext="fail to hamstring" />
+		<trigger triggertype="SysMessage" duration="0" triggertext="You may now attempt to hamstring your" />
+	</cooldownentry>
+	<cooldownentry name="VoidHp" defaultcooldown="0" cooldownbartype="Regular" hue="73" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="60" triggertext="hits Restored (next" />
+	</cooldownentry>
+	<cooldownentry name="VoidStam" defaultcooldown="0" cooldownbartype="Regular" hue="433" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="10" triggertext="Stam restored (next" />
+	</cooldownentry>
+	<cooldownentry name="heal potion" defaultcooldown="0" cooldownbartype="Regular" hue="1001" pauseduringworldsaves="True" hidewheninactive="True" />
+	<cooldownentry name="Hamstrung" defaultcooldown="0" cooldownbartype="Regular" hue="38" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="3" triggertext="You have been hamstrung" />
+		<trigger triggertype="SysMessage" duration="3" triggertext="Their attack hamstrings you" />
+	</cooldownentry>
+	<cooldownentry name="VoidMana" defaultcooldown="0" cooldownbartype="Regular" hue="288" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="60" triggertext="Mana restored" />
+	</cooldownentry>
+	<cooldownentry name="harm" defaultcooldown="0" cooldownbartype="Regular" hue="1001" pauseduringworldsaves="False" hidewheninactive="False" />
+	<cooldownentry name="marrow" defaultcooldown="0" cooldownbartype="Regular" hue="1001" pauseduringworldsaves="False" hidewheninactive="False" />
+	<cooldownentry name="fireball" defaultcooldown="0" cooldownbartype="Regular" hue="1001" pauseduringworldsaves="False" hidewheninactive="False" />
+	<cooldownentry name="lightning" defaultcooldown="0" cooldownbartype="Regular" hue="1001" pauseduringworldsaves="False" hidewheninactive="False" />
+	<cooldownentry name="weaponswing" defaultcooldown="4.8" cooldownbartype="WeaponSwing" hue="33" pauseduringworldsaves="True" hidewheninactive="False" />
+	<cooldownentry name="katana" defaultcooldown="2.1" cooldownbartype="WeaponSwing" hue="53" pauseduringworldsaves="True" hidewheninactive="False" />
+	<cooldownentry name="axe" defaultcooldown="3.1" cooldownbartype="WeaponSwing" hue="43" pauseduringworldsaves="True" hidewheninactive="False" />
+	<cooldownentry name="poisontick" defaultcooldown="0" cooldownbartype="Regular" hue="58" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="10" triggertext="poison damage on" />
+		<trigger triggertype="OverheadMessage" duration="10" triggertext="looks ill" />
+	</cooldownentry>
+	<cooldownentry name="aaa" defaultcooldown="10" cooldownbartype="WeaponSwing" hue="1001" pauseduringworldsaves="False" hidewheninactive="False" />
+	<cooldownentry name="pvp" defaultcooldown="0" cooldownbartype="PvP" hue="1001" pauseduringworldsaves="False" hidewheninactive="False" />
+	<cooldownentry name="Moving" defaultcooldown="0" cooldownbartype="Walk" hue="1001" pauseduringworldsaves="False" hidewheninactive="False" />
+	<cooldownentry name="crim" defaultcooldown="0" cooldownbartype="Criminal" hue="1001" pauseduringworldsaves="False" hidewheninactive="False" />
+</cooldowns>

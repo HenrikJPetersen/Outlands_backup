@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<cooldowns>
+	<cooldownentry name="hammyOn" defaultcooldown="0" cooldownbartype="Regular" hue="68" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="600" triggertext="You will now attempt to hamstring your opponents." />
+		<trigger triggertype="SysMessage" duration="" triggertext="You refrain from making hamstring attempts" />
+	</cooldownentry>
+	<cooldownentry name="hammyOFF" defaultcooldown="0" cooldownbartype="Regular" hue="33" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="600" triggertext="You refrain from making hamstring attempts" />
+		<trigger triggertype="SysMessage" duration="0" triggertext="You will now attempt to hamstring your opponents." />
+	</cooldownentry>
+	<cooldownentry name="hammyCD" defaultcooldown="0" cooldownbartype="Regular" hue="33" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="55" triggertext="hamstrings your target" />
+		<trigger triggertype="SysMessage" duration="15" triggertext="fail to hamstring" />
+		<trigger triggertype="SysMessage" duration="0" triggertext="You may now attempt to hamstring your" />
+	</cooldownentry>
+	<cooldownentry name="VoidHp" defaultcooldown="0" cooldownbartype="Regular" hue="73" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="60" triggertext="hits Restored (next" />
+	</cooldownentry>
+	<cooldownentry name="VoidStam" defaultcooldown="0" cooldownbartype="Regular" hue="433" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="10" triggertext="Stam restored (next" />
+	</cooldownentry>
+	<cooldownentry name="heal potion" defaultcooldown="0" cooldownbartype="Regular" hue="1001" pauseduringworldsaves="True" hidewheninactive="True" />
+	<cooldownentry name="Hamstrung" defaultcooldown="0" cooldownbartype="Regular" hue="38" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="3" triggertext="You have been hamstrung" />
+		<trigger triggertype="SysMessage" duration="3" triggertext="Their attack hamstrings you" />
+	</cooldownentry>
+	<cooldownentry name="VoidMana" defaultcooldown="0" cooldownbartype="Regular" hue="288" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="60" triggertext="Mana restored" />
+	</cooldownentry>
+	<cooldownentry name="Rope" defaultcooldown="0" cooldownbartype="Regular" hue="33" pauseduringworldsaves="False" hidewheninactive="False">
+		<trigger triggertype="SysMessage" duration="15" triggertext="hindered" />
+	</cooldownentry>
+	<cooldownentry name="hammy" defaultcooldown="0" cooldownbartype="Regular" hue="68" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="30" triggertext="attack hamstrings your target" />
+		<trigger triggertype="SysMessage" duration="0" triggertext="" />
+	</cooldownentry>
+	<cooldownentry name="hammyFail" defaultcooldown="0" cooldownbartype="Regular" hue="33" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="SysMessage" duration="15" triggertext="fail to hamstring" />
+		<trigger triggertype="SysMessage" duration="0" triggertext="You will now attempt to hamstring your" />
+	</cooldownentry>
+	<cooldownentry name="CRIMHEAL" defaultcooldown="0" cooldownbartype="Regular" hue="38" pauseduringworldsaves="True" hidewheninactive="True">
+		<trigger triggertype="OverheadMessage" duration="120" triggertext="OccultusNeco" />
+		<trigger triggertype="OverheadMessage" duration="120" triggertext="Mixocoati" />
+		<trigger triggertype="OverheadMessage" duration="120" triggertext="Yoshiro" />
+	</cooldownentry>
+	<cooldownentry name="pvp" defaultcooldown="0" cooldownbartype="PvP" hue="33" pauseduringworldsaves="False" hidewheninactive="False" />
+	<cooldownentry name="crimtimer" defaultcooldown="0" cooldownbartype="Criminal" hue="1001" pauseduringworldsaves="False" hidewheninactive="False" />
+	<cooldownentry name="swingtimer" defaultcooldown="4" cooldownbartype="WeaponSwing" hue="88" pauseduringworldsaves="False" hidewheninactive="False" />
+</cooldowns>
