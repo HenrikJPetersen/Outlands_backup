@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<infos version="1">
+	<infobar>
+		<info text="" var="0" hue="438" />
+		<info text="Mana" var="1" hue="493" />
+		<info text="Stam" var="2" hue="558" />
+		<info text="Weight" var="3" hue="978" />
+		<info text="CrimTimer" var="10" hue="953" />
+		<info text="Pets:" var="4" hue="953" />
+	</infobar>
+	<infobar>
+		<info text="HP" var="0" hue="438" />
+		<info text="M" var="1" hue="493" />
+	</infobar>
+</infos>
