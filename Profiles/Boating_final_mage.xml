@@ -1,0 +1,573 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<profile>
+	<property name="DisplaySkillChanges" type="System.Boolean">False</property>
+	<property name="TitleBarText" type="System.String">{char}      ☻☻  HP: {hp} - MANA: {mana} - STAM: {stam}    ☻☻    Weight: {weight}/{maxweight}    ☻☻    Heal: {heal} Cure: {cure} Refresh: {refresh}    ☻☻</property>
+	<property name="TitleBarDisplay" type="System.Boolean">True</property>
+	<property name="AutoSearch" type="System.Boolean">False</property>
+	<property name="NoSearchPouches" type="System.Boolean">True</property>
+	<property name="CounterWarnAmount" type="System.Int32">5</property>
+	<property name="CounterWarn" type="System.Boolean">True</property>
+	<property name="ObjectDelay" type="System.Int32">600</property>
+	<property name="ObjectDelayEnabled" type="System.Boolean">True</property>
+	<property name="AlwaysOnTop" type="System.Boolean">False</property>
+	<property name="SortCounters" type="System.Boolean">True</property>
+	<property name="QueueActions" type="System.Boolean">False</property>
+	<property name="QueueTargets" type="System.Boolean">False</property>
+	<property name="WindowX" type="System.Int32">286</property>
+	<property name="WindowY" type="System.Int32">500</property>
+	<property name="CountStealthSteps" type="System.Boolean">True</property>
+	<property name="SysColor" type="System.Int32">23</property>
+	<property name="WarningColor" type="System.Int32">37</property>
+	<property name="ExemptColor" type="System.Int32">23</property>
+	<property name="Opacity" type="System.Int32">100</property>
+	<property name="BlockDismount" type="System.Boolean">False</property>
+	<property name="CapFullScreen" type="System.Boolean">False</property>
+	<property name="CapPath" type="System.String">C:\Users\Henp\Pictures\RazorScreenShots</property>
+	<property name="CapTimeStamp" type="System.Boolean">True</property>
+	<property name="ImageFormat" type="System.String">jpg</property>
+	<property name="UndressConflicts" type="System.Boolean">True</property>
+	<property name="Systray" type="System.Boolean">False</property>
+	<property name="RazorWidth" type="System.Int32">913</property>
+	<property name="RazorHeight" type="System.Int32">411</property>
+	<property name="SellAgentMax" type="System.Int32">99</property>
+	<property name="SkillListCol" type="System.Int32">1</property>
+	<property name="SkillListAsc" type="System.Boolean">True</property>
+	<property name="AutoStack" type="System.Boolean">False</property>
+	<property name="ActionStatusMsg" type="System.Boolean">True</property>
+	<property name="RangeCheckLT" type="System.Boolean">True</property>
+	<property name="LTRange" type="System.Int32">12</property>
+	<property name="FilterSnoopMsg" type="System.Boolean">False</property>
+	<property name="SmartLastTarget" type="System.Boolean">True</property>
+	<property name="LastTargTextFlags" type="System.Boolean">True</property>
+	<property name="AutoFriend" type="System.Boolean">False</property>
+	<property name="MessageLevel" type="System.Int32">0</property>
+	<property name="ForceIP" type="System.String" />
+	<property name="ForcePort" type="System.Int32">0</property>
+	<property name="BlockHealPoison" type="System.Boolean">False</property>
+	<property name="MapX" type="System.Int32">200</property>
+	<property name="MapY" type="System.Int32">200</property>
+	<property name="MapW" type="System.Int32">200</property>
+	<property name="MapH" type="System.Int32">200</property>
+	<property name="ShowPartyStats" type="System.Boolean">False</property>
+	<property name="PartyStatFmt" type="System.String">[{0}% / {1}%]</property>
+	<property name="HotKeyStop" type="System.Boolean">False</property>
+	<property name="DiffTargetByType" type="System.Boolean">False</property>
+	<property name="StepThroughMacro" type="System.Boolean">False</property>
+	<property name="ShowTargetSelfLastClearOverhead" type="System.Boolean">True</property>
+	<property name="ShowOverheadMessages" type="System.Boolean">True</property>
+	<property name="OverheadFormat" type="System.String">{msg}</property>
+	<property name="OverheadStyle" type="System.Int32">1</property>
+	<property name="LightLevel" type="System.Int32">31</property>
+	<property name="LogSkillChanges" type="System.Boolean">False</property>
+	<property name="StealthOverhead" type="System.Boolean">False</property>
+	<property name="ShowBuffDebuffOverhead" type="System.Boolean">True</property>
+	<property name="BuffDebuffFormat" type="System.String">[{action}{name} ({duration}s)]</property>
+	<property name="ShowAttackTargetOverhead" type="System.Boolean">True</property>
+	<property name="RangeCheckTargetByType" type="System.Boolean">False</property>
+	<property name="RangeCheckDoubleClick" type="System.Boolean">False</property>
+	<property name="ShowContainerLabels" type="System.Boolean">False</property>
+	<property name="ContainerLabelFormat" type="System.String">[{label}] ({type})</property>
+	<property name="ContainerLabelColor" type="System.Int32">88</property>
+	<property name="ContainerLabelStyle" type="System.Int32">1</property>
+	<property name="Season" type="System.Int32">5</property>
+	<property name="BlockTradeRequests" type="System.Boolean">False</property>
+	<property name="BlockPartyInvites" type="System.Boolean">False</property>
+	<property name="AutoAcceptParty" type="System.Boolean">False</property>
+	<property name="MaxLightLevel" type="System.Int32">31</property>
+	<property name="MinLightLevel" type="System.Int32">0</property>
+	<property name="MinMaxLightLevelEnabled" type="System.Boolean">False</property>
+	<property name="ShowStaticWalls" type="System.Boolean">False</property>
+	<property name="ShowStaticWallLabels" type="System.Boolean">False</property>
+	<property name="ShowTextTargetIndicator" type="System.Boolean">True</property>
+	<property name="ShowAttackTargetNewOnly" type="System.Boolean">True</property>
+	<property name="FilterDragonGraphics" type="System.Boolean">True</property>
+	<property name="FilterDrakeGraphics" type="System.Boolean">True</property>
+	<property name="DragonGraphic" type="System.Int32">317</property>
+	<property name="DrakeGraphic" type="System.Int32">317</property>
+	<property name="ShowInRazorTitleBar" type="System.Boolean">False</property>
+	<property name="RazorTitleBarText" type="System.String">{name} on {account} ({profile} - {shard}) - Razor v{version}</property>
+	<property name="EnableUOAAPI" type="System.Boolean">True</property>
+	<property name="TargetIndicatorFormat" type="System.String">* Target *</property>
+	<property name="NextPrevTargetIgnoresFriends" type="System.Boolean">False</property>
+	<property name="StealthStepsFormat" type="System.String">Steps: {step}</property>
+	<property name="ShowFriendOverhead" type="System.Boolean">False</property>
+	<property name="DisplaySkillChangesOverhead" type="System.Boolean">False</property>
+	<property name="GrabHotBag" type="System.String">1779393225</property>
+	<property name="MacroActionDelay" type="System.Boolean">False</property>
+	<property name="DisableMacroPlayFinish" type="System.Boolean">False</property>
+	<property name="ShowBandageTimer" type="System.Boolean">False</property>
+	<property name="ShowBandageTimerFormat" type="System.String">Bandage: {count}s</property>
+	<property name="ShowBandageTimerLocation" type="System.Int32">0</property>
+	<property name="OnlyShowBandageTimerEvery" type="System.Boolean">False</property>
+	<property name="OnlyShowBandageTimerSeconds" type="System.Int32">1</property>
+	<property name="ShowBandageTimerHue" type="System.Int32">88</property>
+	<property name="TargetIndicatorHue" type="System.Int32">10</property>
+	<property name="FilterSystemMessages" type="System.Boolean">False</property>
+	<property name="FilterRazorMessages" type="System.Boolean">False</property>
+	<property name="FilterDelay" type="System.Double">1</property>
+	<property name="FilterOverheadMessages" type="System.Boolean">False</property>
+	<property name="OnlyNextPrevBeneficial" type="System.Boolean">False</property>
+	<property name="FriendlyBeneficialOnly" type="System.Boolean">False</property>
+	<property name="NonFriendlyHarmfulOnly" type="System.Boolean">False</property>
+	<property name="ShowBandageStart" type="System.Boolean">False</property>
+	<property name="BandageStartMessage" type="System.String">Bandage: Starting</property>
+	<property name="ShowBandageEnd" type="System.Boolean">False</property>
+	<property name="BandageEndMessage" type="System.String">Bandage: Ending</property>
+	<property name="BuffDebuffSeconds" type="System.Int32">20</property>
+	<property name="BuffHue" type="System.Int32">88</property>
+	<property name="DebuffHue" type="System.Int32">338</property>
+	<property name="DisplayBuffDebuffEvery" type="System.Boolean">False</property>
+	<property name="BuffDebuffFilter" type="System.String">Account aggresion,Account Aggression Restriction,</property>
+	<property name="BuffDebuffEveryXSeconds" type="System.Boolean">False</property>
+	<property name="CaptureOthersDeathDelay" type="System.Double">0.5</property>
+	<property name="CaptureOwnDeathDelay" type="System.Double">0.5</property>
+	<property name="CaptureOthersDeath" type="System.Boolean">False</property>
+	<property name="CaptureOwnDeath" type="System.Boolean">False</property>
+	<property name="TargetFilterEnabled" type="System.Boolean">False</property>
+	<property name="FilterDaemonGraphics" type="System.Boolean">False</property>
+	<property name="DaemonGraphic" type="System.Int32">0</property>
+	<property name="SoundFilterEnabled" type="System.Boolean">True</property>
+	<property name="ShowFilteredSound" type="System.Boolean">False</property>
+	<property name="ShowPlayingSoundInfo" type="System.Boolean">False</property>
+	<property name="ShowMusicInfo" type="System.Boolean">False</property>
+	<property name="AutoSaveScript" type="System.Boolean">True</property>
+	<property name="AutoSaveScriptPlay" type="System.Boolean">True</property>
+	<property name="HighlightFriend" type="System.Boolean">False</property>
+	<property name="ScriptTargetTypeRange" type="System.Boolean">False</property>
+	<property name="ScriptDClickTypeRange" type="System.Boolean">False</property>
+	<property name="ScriptFindTypeRange" type="System.Boolean">False</property>
+	<property name="ScriptDisablePlayFinish" type="System.Boolean">False</property>
+	<property name="ShowPartyFriendOverhead" type="System.Boolean">False</property>
+	<property name="EnableTextFilter" type="System.Boolean">True</property>
+	<property name="DisableScriptTooltips" type="System.Boolean">False</property>
+	<filters />
+	<counters>
+		<counter name="Bandages" enabled="True" image="True" />
+		<counter name="Cure Potions" enabled="True" image="True" />
+		<counter name="Heal Potions" enabled="True" image="True" />
+		<counter name="Arrows" enabled="True" image="True" />
+		<counter name="Agility Potions" enabled="True" image="True" />
+		<counter name="Total Refresh Potion" enabled="True" image="True" />
+		<counter name="Strength Potion" enabled="True" image="True" />
+	</counters>
+	<agents>
+		<Buy-1 enabled="True">
+			<item id="25758" amount="1500" />
+		</Buy-1>
+		<Buy-2 enabled="False" />
+		<Buy-3 enabled="False" />
+		<Buy-4 enabled="False" />
+		<Buy-5 enabled="False" />
+		<Buy-6 enabled="False" />
+		<Buy-7 enabled="False" />
+		<Buy-8 enabled="False" />
+		<Buy-9 enabled="False" />
+		<Buy-10 enabled="False" />
+		<IgnoreList enabled="False" />
+		<Organizer-1 hotbag="1392775347">
+			<item id="3985" />
+			<item id="3827" />
+			<item id="22336" />
+			<item id="5356" />
+			<item id="3836" />
+			<item id="3712" />
+			<item id="8826" />
+			<item id="29348" />
+			<item id="576" />
+			<item id="29030" />
+			<item id="5981" />
+			<item id="4248" />
+			<item id="29833" />
+			<item id="29036" />
+			<item id="24434" />
+			<item id="17083" />
+			<item id="51480" />
+			<item id="45285" />
+			<item id="48261" />
+			<item id="51098" />
+			<item id="51443" />
+			<item id="51484" />
+			<item id="51422" />
+			<item id="17087" />
+			<item id="5901" />
+			<item id="5899" />
+			<item id="42517" />
+			<item id="51426" />
+			<item id="51483" />
+			<item id="23997" />
+			<item id="5903" />
+			<item id="3648" />
+			<item id="29025" />
+			<item id="3843" />
+			<item id="15296" />
+			<item id="5363" />
+			<item id="45315" />
+			<item id="19253" />
+			<item id="3708" />
+			<item id="3650" />
+			<item id="25750" />
+		</Organizer-1>
+		<Organizer-2 hotbag="1482898899">
+			<item id="24434" />
+			<item id="17087" />
+			<item id="22336" />
+			<item id="576" />
+			<item id="5356" />
+			<item id="8826" />
+			<item id="3985" />
+			<item id="5981" />
+			<item id="29025" />
+			<item id="29036" />
+			<item id="3843" />
+			<item id="4248" />
+			<item id="3836" />
+			<item id="51443" />
+			<item id="42517" />
+			<item id="51447" />
+			<item id="51426" />
+			<item id="51483" />
+			<item id="3712" />
+			<item id="51422" />
+			<item id="5903" />
+			<item id="3648" />
+			<item id="15296" />
+			<item id="45315" />
+			<item id="19251" />
+			<item id="48261" />
+			<item id="3708" />
+			<item id="29833" />
+			<item id="3650" />
+		</Organizer-2>
+		<Organizer-3 hotbag="1255183119">
+			<item id="2539" />
+		</Organizer-3>
+		<Organizer-4 hotbag="0" />
+		<Organizer-5 hotbag="0" />
+		<Organizer-6 hotbag="0" />
+		<Organizer-7 hotbag="0" />
+		<Organizer-8 hotbag="0" />
+		<Organizer-9 hotbag="1120796266">
+			<item id="3821" />
+			<item id="2539" />
+			<item id="3891" />
+		</Organizer-9>
+		<Organizer-10 hotbag="1140959720">
+			<item id="7127" />
+		</Organizer-10>
+		<Organizer-11 hotbag="1156159701">
+			<item id="5356" />
+		</Organizer-11>
+		<Organizer-12 hotbag="0" />
+		<Organizer-13 hotbag="0" />
+		<Organizer-14 hotbag="0" />
+		<Organizer-15 hotbag="0" />
+		<Organizer-16 hotbag="0" />
+		<Organizer-17 hotbag="1640244549">
+			<item id="5365" />
+		</Organizer-17>
+		<Organizer-18 hotbag="0" />
+		<Organizer-19 hotbag="1083638620">
+			<item id="7031" />
+			<item id="3763" />
+			<item id="5103" />
+			<item id="5125" />
+			<item id="7177" />
+			<item id="7035" />
+			<item id="3917" />
+			<item id="5143" />
+			<item id="5204" />
+			<item id="7033" />
+			<item id="5059" />
+			<item id="5105" />
+			<item id="5078" />
+			<item id="5179" />
+			<item id="5042" />
+			<item id="5144" />
+			<item id="5187" />
+			<item id="10245" />
+			<item id="3742" />
+			<item id="5117" />
+			<item id="5063" />
+			<item id="22187" />
+			<item id="5056" />
+			<item id="3740" />
+			<item id="3937" />
+			<item id="3909" />
+			<item id="5207" />
+			<item id="5085" />
+			<item id="5044" />
+			<item id="5121" />
+			<item id="3762" />
+			<item id="5177" />
+			<item id="3938" />
+			<item id="5123" />
+			<item id="5070" />
+			<item id="7179" />
+			<item id="3719" />
+			<item id="7181" />
+			<item id="5119" />
+			<item id="7029" />
+			<item id="5060" />
+			<item id="7034" />
+			<item id="7610" />
+			<item id="5101" />
+			<item id="3721" />
+			<item id="3920" />
+			<item id="5127" />
+			<item id="5040" />
+			<item id="5061" />
+			<item id="5131" />
+			<item id="7169" />
+			<item id="7170" />
+			<item id="4225" />
+			<item id="5075" />
+			<item id="7026" />
+			<item id="5138" />
+			<item id="5074" />
+			<item id="5090" />
+			<item id="5106" />
+			<item id="5049" />
+			<item id="7027" />
+			<item id="3913" />
+			<item id="9917" />
+			<item id="5139" />
+			<item id="5146" />
+			<item id="5203" />
+			<item id="5135" />
+			<item id="3713" />
+			<item id="7175" />
+			<item id="5185" />
+			<item id="3934" />
+			<item id="5205" />
+			<item id="5089" />
+			<item id="7173" />
+			<item id="3911" />
+			<item id="3915" />
+			<item id="5076" />
+			<item id="5132" />
+			<item id="5182" />
+			<item id="5142" />
+			<item id="5112" />
+			<item id="5129" />
+			<item id="5201" />
+			<item id="5046" />
+			<item id="3568" />
+			<item id="5115" />
+			<item id="3932" />
+		</Organizer-19>
+		<Organizer-20 hotbag="0">
+			<item id="5356" />
+			<item id="3985" />
+			<item id="8826" />
+			<item id="22336" />
+			<item id="24434" />
+			<item id="3836" />
+			<item id="3827" />
+			<item id="4225" />
+			<item id="45315" />
+			<item id="5901" />
+			<item id="5903" />
+			<item id="51098" />
+			<item id="43166" />
+			<item id="4248" />
+			<item id="27611" />
+		</Organizer-20>
+		<Restock-1 hotbag="1334461435" />
+		<Restock-2 hotbag="1269430779" />
+		<Restock-3 hotbag="0" />
+		<Restock-4 hotbag="0" />
+		<Restock-5 hotbag="0" />
+		<Restock-6 hotbag="0" />
+		<Restock-7 hotbag="0" />
+		<Restock-8 hotbag="0" />
+		<Restock-9 hotbag="0" />
+		<Restock-10 hotbag="0" />
+		<Scavenger enabled="True">
+			<item id="29833" />
+		</Scavenger>
+		<AutoSearchExemptions />
+		<Sell enabled="False" />
+		<UseOnce />
+	</agents>
+	<dresslists>
+		<list name="fishing">
+			<item serial="1152801976" />
+			<item serial="1133261939" />
+			<item serial="1386947841" />
+			<item id="3520" />
+		</list>
+		<list name="dress">
+			<item serial="1248009512" />
+		</list>
+		<list name="chain">
+			<item id="3736" />
+		</list>
+		<list name="hat">
+			<item serial="1078362423" />
+		</list>
+	</dresslists>
+	<hotkeys>
+		<key mod="1" key="81" send="False">L:3002030</key>
+		<key mod="2" key="87" send="False">L:3002034</key>
+		<key mod="1" key="87" send="False">L:3002047</key>
+		<key mod="1" key="65" send="False">L:3002054</key>
+		<key mod="0" key="71" send="False">L:3002056</key>
+		<key mod="0" key="112" send="False">L:1391</key>
+		<key mod="2" key="32" send="False">L:1994</key>
+		<key mod="0" key="-2" send="False">L:1955</key>
+		<key mod="0" key="123" send="False">L:1311</key>
+		<key mod="1" key="32" send="False">L:2101</key>
+		<key mod="3" key="102" send="False">Play Script: dumpLootToHatch</key>
+		<key mod="4" key="-5" send="False">Play Script: Boating\AllKillWater</key>
+		<key mod="2" key="220" send="False">Play Script: Boating\disarmbombs</key>
+		<key mod="0" key="74" send="False">Play Script: Boating\glassandcure</key>
+		<key mod="3" key="99" send="False">Play Script: Boating\LootHold</key>
+		<key mod="1" key="72" send="False">Play Script: Boating\openShipHp</key>
+		<key mod="0" key="75" send="False">Play Script: Boating\SpyglassSingleUse</key>
+		<key mod="0" key="32" send="False">Play Script: Boating\testbomboverhead</key>
+		<key mod="1" key="96" send="False">Play Script: BoatingNew\BoardingRope</key>
+		<key mod="2" key="96" send="False">Play Script: BoatingNew\EmbarkNew</key>
+		<key mod="1" key="70" send="False">Play Script: Magery\Spells\cast_Aoe</key>
+		<key mod="1" key="220" send="False">Play Script: Magery\Spells\Cast_Curse</key>
+		<key mod="0" key="113" send="False">Play Script: Magery\Spells\Cast_Flamestrike</key>
+		<key mod="1" key="88" send="False">Play Script: Magery\Spells\Cast_ManaDrain</key>
+		<key mod="1" key="51" send="False">Play Script: Necromancer\NecroAbilities\EvilOmen</key>
+		<key mod="1" key="50" send="False">Play Script: Necromancer\NecroAbilities\PainSpike</key>
+		<key mod="1" key="49" send="False">Play Script: Necromancer\NecroAbilities\PoisonStrike</key>
+		<key mod="1" key="52" send="False">Play Script: Necromancer\NecroAbilities\Strangle</key>
+		<key mod="3" key="109" send="False">Play Script: Necromancer\PetHandling\All_Release</key>
+		<key mod="1" key="109" send="False">Play Script: Necromancer\PetHandling\releaseOne</key>
+		<key mod="3" key="98" send="False">Play Script: Necromancer\PetHandling\SummonEarthEle</key>
+		<key mod="3" key="189" send="False">Play Script: Necromancer\PetHandling\SummonPets_Boating</key>
+		<key mod="2" key="-4" send="False">Play Script: Potions\UseCurePotion</key>
+		<key mod="1" key="-4" send="False">Play Script: Potions\UseHealPotion</key>
+		<key mod="4" key="-4" send="False">Play Script: Potions\UseStrenghtPotion</key>
+		<key mod="3" key="81" send="False">Play Script: PVP\interruptscript</key>
+		<key mod="2" key="113" send="False">Play Script: Skills\LumberShelter</key>
+		<key mod="1" key="69" send="False">Play Script: Tamer\Herding</key>
+		<key mod="0" key="220" send="False">Play Script: Targeting\LastTarget</key>
+		<key mod="4" key="-2" send="False">Play Script: Targeting\TargetNextGreyMonster</key>
+		<key mod="4" key="-1" send="False">Play Script: Targeting\TargetPrevGreyMonster</key>
+		<key mod="1" key="68" send="False">Play Script: Targeting\TargetSelf</key>
+		<key mod="2" key="79" send="False">Play Script: Utility\AddRegsToSatchel</key>
+		<key mod="0" key="116" send="False">Play Script: Utility\Cast_RecallToLog</key>
+		<key mod="1" key="112" send="False">Play Script: Utility\Cast_TelePort_Rope</key>
+		<key mod="2" key="71" send="False">Play Script: Utility\dexerscript</key>
+		<key mod="4" key="109" send="False">Play Script: Utility\Eject</key>
+		<key mod="2" key="109" send="False">Play Script: Utility\EnterRentalRoom</key>
+		<key mod="2" key="112" send="False">Play Script: Utility\Forensics</key>
+		<key mod="2" key="121" send="False">Play Script: Utility\grabitem</key>
+		<key mod="2" key="122" send="False">Play Script: Utility\lockdown</key>
+		<key mod="2" key="90" send="False">Play Script: Utility\specialfishingnet</key>
+		<key mod="2" key="107" send="False">Play Script: Utility\Unload_Gold</key>
+		<key mod="1" key="71" send="False">Play Script: Utility\UseGate</key>
+		<key mod="0" key="-4" send="False">Play Script: Utility\UseMushroom</key>
+		<key mod="1" key="113" send="False">L:1372</key>
+		<key mod="0" key="89" send="False">L:1030</key>
+		<key mod="0" key="53" send="False">L:1032</key>
+		<key mod="1" key="84" send="True">L:2035</key>
+		<key mod="3" key="84" send="False">L:2036</key>
+		<key mod="0" key="120" send="False">L:1044092</key>
+		<key mod="1" key="77" send="False">L:1044106</key>
+		<key mod="1" key="13" send="False">Organizer Agent-01</key>
+	</hotkeys>
+	<overheadmessages>
+		<overheadmessage searchtext="you generate mana" message="☻☻ REFUND ☻☻" hue="53" />
+		<overheadmessage searchtext="poison upgraded to deadly" message="■■ DEADLY ■■" hue="2263" />
+		<overheadmessage searchtext="poison upgraded to greater" message="■■ GREATER ■■" hue="0" />
+		<overheadmessage searchtext="you must have a ship repair kit in your backpack" message="■  REPAIR KITS  ■" hue="33" />
+		<overheadmessage searchtext="You cannot move!" message="■■■ PARALYZED ■■■" hue="33" />
+		<overheadmessage searchtext="enhance your poison spell with" message="■■ MINDROT ■■" hue="2263" />
+		<overheadmessage searchtext="Poison upgraded to lethal" message="■■ LETHAL ■■" hue="2263" />
+		<overheadmessage searchtext="You charge your spell with" message="■■ CHARGED ■■" hue="53" />
+		<overheadmessage searchtext="your concentration is disturbed" message="■■  DISTURBED  ■■" hue="2263" />
+		<overheadmessage searchtext="you may only attempt to board a ship when either its sails or guns" message="■■  CANT BOARD YET  ■■" hue="33" />
+		<overheadmessage searchtext="You blast the unprotected target, dealing significant damage!" message="&lt;&lt; ARCANE BLAST &gt;&gt;" hue="23" />
+	</overheadmessages>
+	<containerlabels />
+	<macrovariables />
+	<scriptvariables>
+		<scriptvariable serial="0x0" name="globalcooldown" />
+		<scriptvariable serial="0x96" name="globalwait" />
+		<scriptvariable serial="0x0" name="fish" />
+		<scriptvariable serial="0x4206DCD1" name="npchatch" />
+		<scriptvariable serial="0x49F20DFF" name="stockpile" />
+		<scriptvariable serial="0x4097035C" name="recycler" />
+		<scriptvariable serial="0x49F5032A" name="shelf" />
+		<scriptvariable serial="0xAFFE7" name="myTarget" />
+		<scriptvariable serial="0xFFFFFFFF" name="myTargetLabel" />
+		<scriptvariable serial="0x41862552" name="shiptome" />
+		<scriptvariable serial="0x4CB8C409" name="lootcrate" />
+		<scriptvariable serial="0x10EE37" name="dockmaster" />
+		<scriptvariable serial="0x455C6C" name="pettodismiss" />
+		<scriptvariable serial="0x490817DA" name="badbag" />
+		<scriptvariable serial="0x490817DB" name="goodbag" />
+		<scriptvariable serial="0x4F635" name="pet1" />
+		<scriptvariable serial="0x4CA57" name="pet2" />
+		<scriptvariable serial="0x630C1" name="pet3" />
+		<scriptvariable serial="0x4C36A" name="pet4" />
+		<scriptvariable serial="0x33B41" name="pet5" />
+		<scriptvariable serial="0x35771A" name="myKillTarget" />
+		<scriptvariable serial="0x0" name="currencychecker" />
+		<scriptvariable serial="0x0" name="checkLastSeason" />
+		<scriptvariable serial="0x0" name="checkLifeTime" />
+		<scriptvariable serial="0x4E8D9" name="_hp_bar_to_open" />
+		<scriptvariable serial="0x0" name="annouceplayerboats" />
+		<scriptvariable serial="0x347334" name="storage" />
+		<scriptvariable serial="0x8F726" name="killtargetherding" />
+		<scriptvariable serial="0x4294E7F3" name="mytillerm" />
+		<scriptvariable serial="0x2" name="repairHullOrder" />
+		<scriptvariable serial="0x1" name="repairSailsOrder" />
+		<scriptvariable serial="0x3" name="repairGunsOrder" />
+		<scriptvariable serial="0x440149E6" name="tomechest" />
+		<scriptvariable serial="0x0" name="casttwocl" />
+		<scriptvariable serial="0xFFFFFFFF" name="targetsearch" />
+		<scriptvariable serial="0xFFFFFFFF" name="mykostarget" />
+		<scriptvariable serial="0x4000BA1B" name="salvage" />
+		<scriptvariable serial="0x40226C86" name="poon" />
+		<scriptvariable serial="0x45BD6A8A" name="weapon" />
+		<scriptvariable serial="0x41AC4901" name="weapontopoison" />
+		<scriptvariable serial="0xFFFFFFFF" name="mylabel" />
+		<scriptvariable serial="0x40D040FF" name="masterchest" />
+		<scriptvariable serial="0x406A5DAC" name="expertchest" />
+		<scriptvariable serial="0x5C7EBC9B" name="chesttosort" />
+		<scriptvariable serial="0x406A5DAB" name="vetchest" />
+		<scriptvariable serial="0x0" name="myPreviousKillTarget" />
+		<scriptvariable serial="0x1" name="autospy" />
+		<scriptvariable serial="0x36F47" name="judith" />
+		<scriptvariable serial="0x36F45" name="angeni" />
+		<scriptvariable serial="0x36F43" name="crew_six" />
+		<scriptvariable serial="0x36F3F" name="crew_five" />
+		<scriptvariable serial="0x36F46" name="crew_four" />
+		<scriptvariable serial="0x36F48" name="crew_three" />
+		<scriptvariable serial="0x36F45" name="crew_two" />
+		<scriptvariable serial="0x36F47" name="crew_one" />
+		<scriptvariable serial="0x0" name="glassSwap" />
+		<scriptvariable serial="0x469ABD82" name="boathp" />
+		<scriptvariable serial="0x469ABD51" name="boattillerman" />
+		<scriptvariable serial="0xFCD2E" name="killtarget" />
+		<scriptvariable serial="0xFFFFFFFF" name="Unstack" />
+		<scriptvariable serial="0xFFFFFFFF" name="Sort" />
+		<scriptvariable serial="0x44637FE8" name="Distro" />
+	</scriptvariables>
+	<friends>
+		<group name="friend" enabled="True" overheadformat="[Friend]" overheadhue="63" overheadenabled="False">
+			<friend name="Donald Grump" serial="0x8A594" />
+			<friend name="Skipper Skraek" serial="0x1AE082" />
+		</group>
+	</friends>
+	<textfilters>
+		<filter text="*begins to spasm uncontrollably*" sysmessages="False" overhead="True" speech="True" ignoreinscripts="True" />
+		<filter text="begins to spasm uncontrollably" sysmessages="False" overhead="True" speech="True" ignoreinscripts="True" />
+		<filter text="stumbles around in confusion and pain" sysmessages="False" overhead="True" speech="True" ignoreinscripts="True" />
+		<filter text="*stumbles around in confusion and pain*" sysmessages="False" overhead="True" speech="True" ignoreinscripts="True" />
+		<filter text="wracked with extreme pain" sysmessages="False" overhead="True" speech="True" ignoreinscripts="True" />
+		<filter text="*wracked with extreme pain*" sysmessages="False" overhead="True" speech="True" ignoreinscripts="True" />
+		<filter text="I cannot gate travel" sysmessages="False" overhead="True" speech="True" ignoreinscripts="True" />
+	</textfilters>
+	<targetfilters />
+	<soundfilters>
+		<soundfilter name="sword7.wav" serial="0x23C" />
+		<soundfilter name="blunt01.wav" serial="0x233" />
+	</soundfilters>
+</profile>
