@@ -1,0 +1,24 @@
+if lhandempty
+    if findtype 'fishing pole' backpack
+    dress fishing
+    pause 500
+    else
+        overhead 'out of poles'
+        break
+    endif
+endif
+
+
+clearsysmsg
+hotkey 'Use item in hand'
+sysmsg  'Fishing' 2263
+while not insysmsg 'skillgain'
+    pause 500
+    if insysmsg 'You do not see any harvestable resources nearb'
+        overhead 'YOU NEED TO MOVE' 33
+        pause 2000
+        overhead 'YOU NEED TO MOVE' 33
+        stop
+    endif
+endwhile
+replay

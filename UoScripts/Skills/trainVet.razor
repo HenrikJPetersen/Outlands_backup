@@ -1,0 +1,24 @@
+if skill 'veterinary' = 90
+    for 3 
+        say 'all follow me'
+    endfor
+    stop
+endif
+if not bandaging
+    if findtype '3617' backpack as aids
+        dclick aids
+        wft
+        targettype 'TordenNaeven'
+    endif
+    pause 250
+    if insysmsg 'that being is not damaged'
+        say 'megacb kill'
+        wft
+        targettype 'TordenNaeven'
+        warmode 'off'
+        warmode 'on'
+        warmode 'off'
+    endif
+endif
+pause 500
+replay

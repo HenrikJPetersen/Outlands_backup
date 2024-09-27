@@ -1,0 +1,23 @@
+if hp < 30
+    if ingump '12/12' 1387930325 or ingump '11/12' 1387930325 or ingump '10/12' 1387930325 or ingump '9/12' 1387930325 or ingump '8/12' 1387930325 or ingump '7/12' 1387930325 or ingump '6/12' 1387930325 or ingump '5/12' 1387930325 
+        sysmsg '»» HOLYLIGHT ««' 24
+        overhead '»» HOLYLIGHT ««' 2263
+        yell '[holylight'
+        cooldown holylight 30000
+    else  
+        sysmsg  'Not enough runes!!!' 33
+    endif
+endif
+
+replay
+
+@setvar! holylight_hpcheck 120
+if not cooldown 'holylight' and hp < holylight_hpcheck
+    if ingump '12/12' 1387930325 or ingump '11/12' 1387930325 or ingump '10/12' 1387930325 or ingump '9/12' 1387930325 or ingump '8/12' 1387930325 or ingump '7/12' 1387930325 or ingump '6/12' 1387930325 or ingump '5/12' 1387930325 
+        yell '[HolyLight'
+        cooldown holylight 30000
+    pause 300
+    else 
+        sysmsg 'Not enough runes for holylight'
+    endif
+endif

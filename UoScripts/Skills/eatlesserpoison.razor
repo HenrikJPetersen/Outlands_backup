@@ -1,0 +1,33 @@
+if counttype '3850' backpack > 0
+    dclicktype '3850'
+    pause 1000
+endif
+if poisoned and hp < 50
+    potion 'cure'
+    pause 500
+    cast 'Greater heal'
+    wft 5000
+    target self    
+
+endif
+
+    
+
+    
+
+pause 250
+if counttype '3847' backpack < 5 
+    if findtype 'storage shelf' ground -1 -1 3 as shelf
+        @menu shelf 1
+    endif
+    pause 250
+endif
+if counttype '3854' backpack > 20
+    if findtype '23034' ground -1 -1 3 as spile
+        @menu spile 0
+        wft 500
+        target self
+    endif
+endif
+replay
+    

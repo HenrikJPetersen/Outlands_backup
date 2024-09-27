@@ -1,0 +1,126 @@
+if not varexist escaperunebooklumber
+    setvar escaperunebooklumber
+endif
+clearsysmsg 
+
+
+if diffweight <= 30
+    organizer 8
+    while queued
+        overhead 'Moving ore...'
+        wait 500
+    endwhile
+    if diffweight <= 30
+        overhead "Too heavy still.. check organizer agent 1" 34
+        replay
+    endif
+endif
+while insysmsg 'now tracking'
+    if not position 922 3021
+        if not gumpexists 1551740969
+            if findtype '8901' backpack as rbook
+                dclick rbook
+            endif
+            waitforgump 1551740969
+            //pause 300
+            if gumpexists 1551740969
+                gumpresponse 2
+            endif
+        else
+            gumpresponse 2 1551740969
+        endif
+    else
+    endif
+    for 3
+        overhead '-P-K--P-K--P-K--' 33
+    endfor
+endwhile
+
+if rhandempty ?? 0 
+    if findtype "pickaxe" backpack
+        dclicktype 'pickaxe' backpack
+        wait 200
+    endif
+endif            
+if rhandempty ?? 0 
+    overhead "No more pickaxes!" 34
+    replay
+endif
+wait 500
+overhead 'Mining' 0
+hotkey 'Use item in hand'
+wft 1000
+hotkey 'Target Self'
+for 95
+    wait 100
+    if insysmsg 'world is saving'
+        for 30
+            overhead 'Waiting for world save...'
+            wait 1000
+            if insysmsg 'save complete'
+                overhead 'Save complete - continue on!' 88
+                clearsysmsg 
+                wait 250
+                replay
+            elseif insysmsg "now tracking"
+                overhead 'RED ALERT!! ' 33
+                pause 1000
+                dclick escaperunebooklumber
+                pause 1500
+                gumpresponse 2
+                replay
+            endif
+        endfor
+    elseif insysmsg "now tracking"
+            while insysmsg "now tracking"
+                pause 1000
+                dclick escaperunebooklumber
+                pause 1500
+                gumpresponse 2
+                replay
+            endwhile
+    elseif rhandempty ?? 0 
+        overhead "Broke axe" 34
+        replay
+    elseif insysmsg 'You do not see any'
+        overhead 'Move to next spot' 88
+        wait 250
+        replay
+    elseif insysmsg "travel"
+        overhead 'Waiting for travel...'
+        wait 1000
+        replay
+    else
+        if insysmsg "any harvestable" or insysmsg "jase_lumber_actions"
+            // No Ore
+            overhead 'Move to next spot' 88
+            replay
+        elseif insysmsg "skillgain" or insysmsg "harvesting is not allowed"
+            // Gained skill
+            replay
+        elseif insysmsg "world is saving" or insysmsg 'World save complete'
+            // World Save
+            replay
+            elseif insysmsg "You loosen some rocks"
+            // Failed
+            replay
+            elseif insysmsg "You dig"
+            // Success
+            replay
+        elseif insysmsg "You must wait"
+            // Wait message
+            overhead 'You must wait..' 34
+            wait 500
+            replay
+        endif
+    endif
+endfor
+
+if insysmsg "You must wait"
+    // Wait message
+    overhead 'You must wait..' 34
+    wait 500
+    replay
+endif
+
+overhead 'Captcha break!' 34

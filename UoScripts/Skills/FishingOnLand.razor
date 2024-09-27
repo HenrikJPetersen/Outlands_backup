@@ -1,0 +1,60 @@
+if skill 'fishing' = 120
+    stop
+endif
+
+
+if not timerexists fishtimer
+    createtimer fishtimer
+    settimer fishtimer 0
+endif
+if lhandempty
+    if findtype 'fishing pole' backpack as pole
+    dress fishing
+    else
+        overhead 'out of poles'
+        break
+    endif
+endif
+clearsysmsg
+hotkey 'Use item in hand'
+settimer fishtimer 0
+overhead 'FISHING IS ON' 2263
+for 90
+    pause 110
+    if insysmsg 'world is saving'
+        for 30
+            overhead 'Waiting for world save...'
+            pause 1000
+            if insysmsg 'save complete'
+                overhead 'Save complete - continue on!' 2263
+                clearsysmsg 
+                pause 250
+                replay
+            endif
+        endfor
+    elseif insysmsg "travel"
+        overhead 'Waiting for travel...'
+        pause 5000
+        replay
+    else
+        if insysmsg "any harvestable"
+            overhead 'You need to move no more ressources' 2263
+            pause 5000
+            replay
+        elseif insysmsg "skillgain"
+            replay
+        elseif insysmsg "You fish a while"
+            // Failed
+            replay
+        elseif insysmsg "you catch"
+            // Success
+            replay
+        elseif insysmsg "You must wait"
+            overhead 'You must wait..' 2263
+            pause 500
+            replay
+        elseif timer fishtimer > 9000
+            replay
+        endif
+    endif
+endfor

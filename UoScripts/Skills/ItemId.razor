@@ -1,0 +1,14 @@
+skill 'itemidentification'
+waitfortarget 500
+target 0x6017BD27
+pause 1500
+skill 'itemidentification'
+waitfortarget 500
+target 0x5B8D2EC4
+pause 1500
+if skill 'meditation' = 0
+    setskill 'meditation' 'lock'
+    pause 250
+    setskill 'magery' 'down'
+endif
+replay

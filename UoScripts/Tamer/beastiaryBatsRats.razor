@@ -1,0 +1,143 @@
+Outlands Bestiary Trainer
+
+Attack
+
+20 / 20
+
+Utility
+
+20 / 20
+
+Tank
+
+0 / 20
+
+Razor Script
+
+if findtype "taming bestiary" backpack as book
+   dclick book
+wait 200
+
+while not ingump 'Ambush' 1353229584
+    gumpresponse 3
+    pause 250
+    waitforgump 1353229584 2000
+    while not ingump '1/3' 1353229584
+       gumpresponse 10 1353229584
+       pause 250
+       waitforgump 1353229584 2000
+     endwhile
+endwhile
+
+gumpresponse 12
+waitforgump 1353229584
+gumpresponse 12
+waitforgump 1353229584
+
+gumpresponse 201
+waitforgump 1353229584
+
+gumpresponse 202
+waitforgump 1353229584
+
+while not ingump '2/3' 1353229584
+    gumpresponse 11 1353229584
+    pause 250
+    waitforgump 1353229584 2000
+endwhile
+
+gumpresponse 200
+waitforgump 1353229584
+gumpresponse 200
+waitforgump 1353229584
+gumpresponse 200
+waitforgump 1353229584
+
+gumpresponse 202
+waitforgump 1353229584
+gumpresponse 202
+waitforgump 1353229584
+gumpresponse 202
+waitforgump 1353229584
+
+while not ingump '3/3' 1353229584
+    gumpresponse 11 1353229584
+    pause 250
+    waitforgump 1353229584 2000
+endwhile
+
+gumpresponse 202
+waitforgump 1353229584
+gumpresponse 202
+waitforgump 1353229584
+
+gumpresponse 203
+waitforgump 1353229584
+gumpresponse 203
+waitforgump 1353229584
+
+while not ingump 'Beast Sting' 1353229584
+    gumpresponse 4
+    pause 250
+    waitforgump 1353229584 2000
+    while not ingump '1/3' 1353229584
+        gumpresponse 10 1353229584
+        pause 250
+        waitforgump 1353229584 2000
+    endwhile
+endwhile
+
+gumpresponse 12
+waitforgump 1353229584
+gumpresponse 12
+waitforgump 1353229584
+
+gumpresponse 200
+waitforgump 1353229584
+gumpresponse 200
+waitforgump 1353229584
+
+gumpresponse 201
+waitforgump 1353229584
+gumpresponse 201
+waitforgump 1353229584
+
+gumpresponse 203
+waitforgump 1353229584
+gumpresponse 203
+waitforgump 1353229584
+gumpresponse 203
+waitforgump 1353229584
+
+while not ingump '2/3' 1353229584
+    gumpresponse 11 1353229584
+    pause 250
+    waitforgump 1353229584 2000
+endwhile
+
+gumpresponse 201
+waitforgump 1353229584
+gumpresponse 201
+waitforgump 1353229584
+
+gumpresponse 203
+waitforgump 1353229584
+
+while not ingump '3/3' 1353229584
+    gumpresponse 11 1353229584
+    pause 250
+    waitforgump 1353229584 2000
+endwhile
+
+gumpresponse 200
+waitforgump 1353229584
+
+gumpresponse 201
+waitforgump 1353229584
+
+gumpresponse 202
+waitforgump 1353229584
+
+gumpresponse 203
+waitforgump 1353229584
+

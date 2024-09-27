@@ -1,0 +1,189 @@
+if not bandaging and hits < maxhits
+    while targetexists 
+    endwhile
+    hotkey 'Bandage self'
+    wait 500
+endif
+
+## Healpot handler pvp
+if autohealpotpvp = 1
+    getlabel backpack clientsync
+    if not bandaging and hp < 40
+    clearsysmsg 
+        if findtype 'Yellow Potion' backpack
+            if not cooldown healpot
+                potion 'heal'
+                cooldown healpot 10000
+                pause minimumWaitForPing
+            else 
+                overhead 'coooldown healpot'
+            endif
+            if insysmsg 'You are already at full health.'
+                cooldown healpot 0
+            endif
+        else
+            sysmsg 'OUT OF HEAL POTS' 33
+            @setvar! autohealpot 0
+        endif
+    endif
+    getlabel backpack clientsync
+    if cooldown bandage > 4 and hp < 35
+        clearsysmsg 
+        if findtype 'Yellow Potion' backpack
+            if not cooldown healpot
+                potion 'heal'
+                cooldown healpot 10000
+                pause minimumWaitForPing
+            else 
+                overhead 'coooldown healpot'
+            endif
+            if insysmsg 'You are already at full health.'
+                cooldown healpot 0
+            endif
+        else
+            sysmsg 'OUT OF HEAL POTS' 33
+            @setvar! autohealpot 0
+        endif
+    endif
+endif
+## Healpot handler pvp END
+
+## Cure handler pvp
+if autocurepvp = 1
+    getlabel backpack clientsync
+    if poisoned and diffhits > 40 and cooldown 'bandage' > 4
+        if findtype 'Orange potion' backpack
+            potion 'cure'
+        else
+            sysmsg 'OUT OF CURE POTS' 33
+            @setvar! autocure 0
+        endif
+    endif
+    getlabel backpack clientsync
+    if poisoned and hp < 40
+        if findtype 'Orange potion' backpack
+            potion 'cure'
+        else
+            sysmsg 'OUT OF CURE POTS' 33
+            @setvar! autocure 0
+        endif
+    endif
+endif
+## Cure handler pvp END
+
+## STR buff pvp
+
+    if findtype 'White potion' backpack
+        if findtype '3849' backpack
+            potion 'Strength'
+            pause minimumWaitForPing
+        else
+            overhead 'NO MORE STR POTS' 33
+        endif
+    else
+    endif
+
+
+if not findbuff 'Strength'
+    if findtype 'White potion' backpack
+        if findtype '3849' backpack
+            potion 'Strength'
+            pause minimumWaitForPing
+        else
+            overhead 'NO MORE STR POTS' 33
+        endif
+    else
+    endif
+endif
+## STR buff pvp END
+
+## Para handler
+if paralyzed 
+    if findtype 'pouch' backpack 38
+        say '[Pouch'
+        pause minimumWaitForPing
+    else
+        overhead 'out of trapped pouches'
+    endif
+endif
+
+if showshipbombs = 1
+    if findtype '5188' ground -1 -1 10 as sbomb
+        if timer preventspamtimer > 3000
+            settimer preventspamtimer 0
+            for 1
+                overhead "↓↓ SHIP B898OMB ↓↓" 2263 sbomb
+                overhead "↓↓ SHIP BOMB ↓↓" 33 sbomb
+            endfor
+        endif
+    endif
+endif
+## Spyglass
+getlabel backpack clientsync
+## Ignore the exceptional - and only use the normal - but keep the exceptional range..
+    
+if not queued and not targetexists and not cooldown spyglass 
+# Closegump for more smooth spyglass
+    if gumpexists 2890020940
+        gumpclose 2890020940
+        pause 25
+    endif
+    while targetexists 
+        sysmsg 'Target cursor up'
+        wait 500
+    endwhile
+    sysmsg '> Running spyglass !!' 44
+    //Valorite
+    if findtype '5365' backpack 1763 as glass
+        while targetexists 
+        endwhile
+        dclick glass
+        wft 500
+        target 'self'
+        waitforgump 2890020940
+    //Agapite
+    elseif findtype '5365' backpack 2425 as glass
+        while targetexists 
+        endwhile
+        dclick glass
+        wft 500
+        target 'self'
+        waitforgump 2890020940
+    elseif findtype '5365' backpack as glass
+        while targetexists 
+        endwhile
+        dclick glass
+        wft 500
+        target 'self'
+        waitforgump 2890020940
+    elseif not findtype '5365' backpack
+        sysmsg 'No more spyglass in backpack' 33
+        cooldown spyglass 1000000
+    endif
+    if skill 'cartography' => 80 and not cooldown pvp
+        if ingump '152' 2890020940
+            for 2
+                sysmsg 'Missing Cartography buff...' 33
+            endfor
+            if warmode 
+            else
+                if findtype '2726' backpack as explopack
+                    sysmsg 'Getting cartography buff'
+                    dclick explopack
+                endif
+            endif
+        endif
+    endif
+    if ingump 'Search for ships' 2890020940
+        gumpresponse 4 2890020940
+        cooldown spyglass 8000
+    endif 
+    pause minimumWaitForPing
+    while ingump "Next" 2890020940
+        if ingump "Next" 2890020940
+            pause 500
+            gumpresponse 3 2890020940
+        endif
+    endwhile
+endif
+replay

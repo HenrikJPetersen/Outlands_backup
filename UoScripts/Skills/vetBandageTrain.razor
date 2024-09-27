@@ -1,0 +1,21 @@
+if skill 'veterinary' = 60 
+    stop
+endif
+
+if counttype '3617' < 10
+    if findtype 'storage shelf' ground 0 0 2 as shelf
+        @menu shelf 1
+        pause 150
+    endif
+endif
+
+if not bandaging
+    if findtype '3617' backpack as aids
+        dclick aids
+        wft 500
+        targettype 'a fortress beetle'
+    endif
+endif
+pause 250
+
+replay

@@ -1,0 +1,27 @@
+if skill 'hiding' < 100
+    overhead 'HIDING'
+    skill 'hiding'
+    pause 11000
+    replay
+endif
+
+dclick 0x417422A2
+waitforgump 167090027 1500
+gumpresponse 125
+stop
+
+if not hidden
+    overhead 'Hiding for stealth'
+    useskill "hiding"
+    pause 11000
+endif
+
+while hidden
+    useskill "stealth"
+    pause 11000
+endwhile
+
+
+
+
+

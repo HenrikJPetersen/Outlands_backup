@@ -1,0 +1,9 @@
+if findtype 'bank deposit safe' ground 0 0 2 as safe
+    overhead 'found safe'
+    if findtype '3821' backpack as item
+        overhead 'found gold'
+        lift item 60000
+        pause 300
+        drop safe
+    endif
+endif

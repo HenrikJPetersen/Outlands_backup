@@ -1,0 +1,42 @@
+clearsysmsg 
+if skill 'poisoning' = 120
+    stop
+endif
+if weight > maxweight 
+    @menu shelf 0 
+    wft 500
+    target self
+    pause 2000
+    @menu shelf 1
+endif
+if findtype '3850' backpack as pppp
+    getlabel pppp mypppp 
+    if 'deadly' in mypppp
+        overhead 'found a potion'
+    else
+        @menu shelf 1
+    endif
+else
+     @menu shelf 1
+endif
+pause 250
+while poisoned 
+    if findtype '3847' backpack
+        potion 'cure'
+        pause 250
+    else
+        @menu shelf 1
+    endif
+endwhile
+if not varexist weapontopoison
+    @setvar weapontopoison
+    wft 500
+    target weapontopoison
+endif
+@menu weapontopoison 0
+
+while not insysmsg 'poisoning skill'
+
+endwhile
+pause 2200
+replay

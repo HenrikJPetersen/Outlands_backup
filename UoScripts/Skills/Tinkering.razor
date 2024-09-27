@@ -1,0 +1,122 @@
+if not varexist rbook
+    @setvar rbook
+endif
+if not varexist vendor
+    @setvar vendor 0
+endif
+if not varexist terranvendor
+    @setvar terranvendor
+endif
+if not gumpexists 453554062
+    say '[Craftingqueue'
+    waitforgump 453554062
+    if ingump 'Begin crafting' 453554062
+        gumpresponse 7 453554062
+    endif
+elseif position 920 3019 and gumpexists 453554062
+     if ingump 'Begin crafting'
+        gumpresponse 7 453554062
+    endif
+endif
+if find backpack as bla
+    getlabel bla mybla
+    if '120 items' in mybla
+        overhead mybla
+        sysmsg 'too much shit in backpack'
+        stop
+    endif    
+endif
+
+if findtype 'pouch' backpack as pp
+    getlabel pp desc
+    
+    if "95 items" in desc
+        overhead 'Reaching baglimit - initiate vendor sell routine'
+        @setvar! vendor 1
+    elseif "96 items" in desc
+        overhead 'Reaching baglimit - initiate vendor sell routine'
+        @setvar! vendor 1
+        elseif "97 items" in desc
+        overhead 'Reaching baglimit - initiate vendor sell routine'
+        @setvar! vendor 1
+        elseif "98 items" in desc
+        overhead 'Reaching baglimit - initiate vendor sell routine'
+        @setvar! vendor 1
+    elseif "99 items" in desc
+        overhead 'Reaching baglimit - initiate vendor sell routine'
+        @setvar! vendor 1
+    endif
+endif
+pause 500
+if vendor = 1
+    if ingump 'Stop crafting' 453554062
+        gumpresponse 7 453554062
+    endif
+    @setvar! vendor 0
+    overhead 'We are selling'
+    dclick rbook
+    waitforgump 1551740969 500
+    gumpresponse 38 1551740969
+    while not position 750 1518
+        pause 150
+    endwhile
+    if position 750 1518
+        while findtype 'necklace' backpack
+            @menu terranvendor 2
+            pause 750
+        endwhile
+    endif
+    dclick rbook
+    waitforgump 1551740969
+    gumpresponse 44 1551740969
+    while not position 920 3019
+        pause 150
+    endwhile
+    if position 920 3019
+        overhead 'WE HOME'
+        if findtype 'storage shelf' ground -1 -1 2 as sheeeeeelf
+            @menu sheeeeeelf 1
+        endif
+    endif
+endif
+
+// 750 1518
+if position 920 3019
+    if findtype '3821' backpack as money
+        if findtype 'bank deposit safe' ground -1 -1 2 as safeee
+            hotkey 'Set Grab Item HotBag'
+            wft 500
+            target safeee
+            pause 150
+            hotkey 'Grab Item'
+            wft 500
+            target money
+        endif
+    endif
+else
+    stop
+endif
+pause 1000
+replay
+
+
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,33 @@
+if findtype 'spellbook' backpack 2897 as magicbook
+    setvar spellbook magicbook
+endif
+if skill 'Mace Fighting' > 79
+    if findtype 'club'backpack as weap
+    @setvar weapon weap
+    endif
+
+elseif skill 'archery' > 79
+    if findtype 'bow'backpack as weap
+        @setvar weapon weap
+    endif
+endif
+if rhandempty
+    dclick spellbook
+    break
+endif
+if findlayer 'self' 'righthand' as 'LH'
+    getlabel 'LH' 'label'
+    if 'eminently' in 'label'
+        overhead '■■ ON: weapon ■■' 88
+        dclick weapon
+        break       
+    endif
+endif
+#if findlayer 'self' 'righthand' as 'LH'
+#    pause 150
+#    getlabel 'LH' 'label'
+#    if 'bow' in 'label' or 'club' in 'label'
+#        overhead '■■ ON: Spellbook ■■' 88
+#        dclick spellbook
+#    endif
+#endif  

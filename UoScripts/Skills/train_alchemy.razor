@@ -1,0 +1,19 @@
+if findtype 'black potion' backpack as pooot
+    dclick pooot
+    pause 600
+else
+    sysmsg 'Did not find any pots to chuck' 2263
+    pause 9000
+endif
+pause 250
+if counttype 'empty bottle%s%' backpack > 10
+    sysmsg 'Found bottles'
+    if findtype 'resource container' ground 0 0 1 as spile
+        @menu spile 0
+        wft 500
+        target self
+    endif
+    pause 250
+endif
+
+replay

@@ -1,0 +1,48 @@
+## Take a fortress beetle and use all guard me, when the mob is on your bettle - you say all follow me...
+## I like to use the skeletal knight - as it takes a long time to kill with training weapons..
+## Free weapon skill in shelter dungeon :)
+if not timerexists spamtimer
+    createtimer spamtimer
+    settimer spamtimer 0
+endif
+if hp < 90
+    say '[VetSupplies'
+    for 3
+        say 'All guard me'
+        pause 100
+    endfor
+endif
+pause 250
+if hp < 50
+    potion 'yellow'
+endif
+pause 250
+if hp = 100 and timer spamtimer > 10000
+    say 'All follow me'
+    settimer spamtimer 0
+endif
+pause 500
+if skill 'wrestling' = 80
+    say 'All guard me'
+    stop
+elseif skill 'macing' = 80
+    for 3
+        say 'All guard me'
+        pause 100
+    endfor
+    stop
+elseif skill 'swords' = 80
+    for 3
+        say 'All guard me'
+        pause 100
+    endfor
+    stop
+elseif skill 'archery' = 80
+    for 3
+        say 'All guard me'
+        pause 100
+    endfor
+    stop
+endif
+pause 250
+replay

@@ -1,0 +1,11 @@
+if not bandaging
+    dclicktype '3617'
+    waitfortarget 500
+    if findtype 'tanka' ground 0 0 6 as tankpet
+        target tankpet
+    else
+        overhead 'cannot find your tankpet'
+    endif
+endif
+pause 2500
+replay

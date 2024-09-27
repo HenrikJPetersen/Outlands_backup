@@ -1,0 +1,58 @@
+if not varexist spamprevention
+    setvar spamprevention 5000
+endif
+if not timerexists spamtimer
+    createtimer spamtimer
+    settimer spamtimer 0
+endif
+ 
+if not ingump 'Cleared of Traps' 736038070 and gumpexists 736038070
+    clearsysmsg 
+    overhead 'Attempting to remove trap'
+    while ingump 'Remove trap' 736038070
+        clearsysmsg 
+        gumpresponse 7
+        while not insysmsg 'You have successfully cleared'
+            if insysmsg 'you make some progress towards'
+                overhead 'Found progress' 2263
+                replay
+            endif
+            if insysmsg 'you fail to make any progress towards'
+                overhead 'Found fail' 2263
+                replay
+            endif
+        endwhile
+        pause 250
+    endwhile
+elseif ingump 'Cleared of Traps' 736038070 and gumpexists 736038070
+    //Do picking
+    
+endif
+if ingump 'Cleared of Traps' 736038070
+    overhead 'Attempting to picklock chest: {{chest}}'
+   while gumpexists 736038070
+        clearsysmsg 
+        gumpresponse 4
+        pause 300
+        while not insysmsg 'you fail to make any progress on the lock'
+            if insysmsg 'you fail to make any progress on the lock'
+                overhead 'Found fail' 2263
+                replay
+            endif
+            if insysmsg 'You make some progress on the lock'
+                overhead 'We found progress' 2263
+                replay
+            endif
+            if insysmsg 'You successfully pick the lock.'
+                overhead 'We doooone loot bonanza' 2263
+                replay
+            endif
+            pause 300
+        endwhile
+    endwhile
+    else
+    endif
+elseif not gumpexists 736038070
+    overhead 'LOOTBONANZA'
+endif
+replay

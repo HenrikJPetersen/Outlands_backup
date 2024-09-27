@@ -1,0 +1,57 @@
+if not varexist ownshipbar
+    sysmsg '> SET SHIPBAR'
+    setvar ownshipbar
+else
+    if findtype ownshipbar ground 150 0 20
+        sysmsg 'COULD NOT FIND YOUR SHIPBAR'
+        setvar ownshipbar
+    else
+        sysmsg 'own shipbar disabled'
+    endif 
+endif
+
+if findtype 'status bar' ground 150 0 20 as shiphp
+    dclick shiphp
+    sysmsg 'found statusbar id'
+endif
+   
+if findtype '16385' ground 2076 0 20 as ship
+    overhead 'here: 16385/2076' 33 ship
+    targettype '16385' ground 2076 0 20
+elseif findtype '16393' ground 2845 0 20 as ship
+    overhead 'here: 16393/2845' 33 ship
+    targettype '16393' ground 2845 0 20 
+elseif findtype '16389' ground 2738 0 20 as ship
+    overhead 'here: 16389/2738' 33 ship
+    targettype '16389' ground 2738 0 20 
+elseif findtype '16394' ground 2937 0 20 as ship
+    overhead 'here: 16394/2937' 33 ship
+    targettype '16394' ground 2937 0 20 
+// Medium Oss ship
+elseif findtype '16392' ground 2840 0 20 as ship
+    say '[Firecannons'
+    wft 1000
+    overhead 'here: 16394/2937' 33 ship
+    targettype '16392' ground 2840 0 20 
+//SMall ghost ship    
+elseif findtype '16385' ground 2955 0 20 as ship
+     say '[Firecannons'
+    wft 1000
+    overhead 'here: 16394/2937' 33 ship
+    targettype '16385' ground 2955 0 20 
+else
+    sysmsg 'Could not find shiptype'
+    say '>info'
+    stop
+    
+endif
+
+
+
+
+#say '[Firecannons'
+#wft 500
+#if findtype 'status bar' ground 150 0 20 as shiphh
+#    target shiphh
+#endif
+#

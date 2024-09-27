@@ -1,0 +1,17 @@
+clearsysmsg 
+hotkey 'Next grey player target' 
+pause 25
+if not insysmsg 'No one matching that was found on your screen'
+    @setvar! mytarget lasttarget 
+    overhead '▼▼ HERE ▼▼' 2263 mytarget
+    break
+endif  
+clearsysmsg 
+hotkey 'Next murderer player target' 
+pause 25
+if not insysmsg 'No one matching that was found on your screen'
+    @setvar! mytarget lasttarget 
+    overhead '▼▼ HERE ▼▼' 2263 mytarget
+    break
+endif
+clearsysmsg 

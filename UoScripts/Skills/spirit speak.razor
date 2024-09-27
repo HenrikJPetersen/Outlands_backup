@@ -1,0 +1,13 @@
+if skill 'necromancy' < 120
+        cast 'create food'
+        while not insysmsg 'Necromancy'
+        endwhile
+    if findtype 'storage shelf' ground 0 0 2 as sshelf
+        @menu sshelf 0
+        wft
+        target self
+        pause 1000
+        @menu sshelf 1
+    endif
+replay
+endif

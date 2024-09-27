@@ -1,0 +1,26 @@
+if not timerexists stealthtimer
+    createtimer stealthtimer
+    settimer stealthtimer 11000
+endif
+if not timerexists stealtimer
+    createtimer stealtimer
+    settimer stealtimer 5300
+endif
+if findtype 'pickpocket dip' ground 0 0 2 as dip
+    @setvar! ppdip dip
+else
+    overhead 'Cant find pickpocket dip'
+endif
+while skill 'stealing' < 100 or skill 'stealth' < 120
+    if timer stealtimer > 5300
+        dclick ppdip
+        settimer stealtimer 0
+    endif
+    if not hidden 
+        skill 'hiding'
+    elseif hidden and timer stealthtimer > 11000
+        skill 'stealth'
+        settimer stealthtimer 0
+    endif
+endwhile
+overhead 'stopped'

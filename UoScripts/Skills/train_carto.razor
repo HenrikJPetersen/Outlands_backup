@@ -1,0 +1,27 @@
+#if counttype '5356' backpack > 5
+#    hotkey 'Clear Drag/Drop Queue'
+#    hotkey 'Organizer Agent-10'
+#    while queued
+#        sysmsg 'Its a queue'
+#        pause 1500
+#    endwhile
+#else
+#    if counttype '5356' backpack < 30
+#        overhead 'true'
+#    else
+#        overhead 'false'
+#    endif
+#        
+#    
+#endif
+#pause 10000
+#replay
+cooldown pvp 0
+while findtype '5356' backpack as maap
+    hotkey 'Grab item'
+    wft 600
+    target maap
+endwhile
+pause 10000
+replay
+    

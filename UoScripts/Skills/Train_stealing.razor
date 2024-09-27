@@ -1,0 +1,28 @@
+if not varexist 'packanimal'
+    overhead 'Select the pack animal to steal from'
+    setvar 'packanimal'
+endif
+if not timerexists spamprevent
+    createtimer  spamprevent
+    settimer spamprevent 0
+endif
+
+while skill 'stealing' < 100
+    while findtype 3854 'packanimal'
+        overhead 'Stealing'
+        skill 'stealing'
+        wft 5000
+        targettype 3854 'packanimal'
+        wait 11000
+    endwhile
+    organizer 20
+    wait 500
+    if timer spamprevent > 30000
+        say 'all follow me'
+        settimer spamprevent 0
+    endif
+    dclick 0x4E9382A2
+    pause 500    
+endwhile
+overhead 'stopped'
+

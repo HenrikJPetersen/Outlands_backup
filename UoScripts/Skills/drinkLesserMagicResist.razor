@@ -1,0 +1,19 @@
+if counttype '3846' > 20
+    while counttype '3846' > 0
+        dclicktype '3846'
+        pause 600
+    endwhile
+else
+    dclicktype '6464'
+    pause 400
+    if insysmsg 'the keg is empty'
+        sysmsg '>>> Stopping' 44
+        stop
+    endif
+endif
+#if counttype '3854' > 10
+#    @menu stockpile 0
+#    wft 1200
+#    target self
+#endif
+replay

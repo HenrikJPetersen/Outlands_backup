@@ -1,0 +1,112 @@
+clearsysmsg 
+if not timerexists preventspamtimer
+    createtimer preventspamtimer
+    settimer preventspamtimer 0
+endif
+if not varexist  cdspam
+    setvar cdspam 5000
+endif 
+if not varexist itemLabel
+    @setvar! itemLabel 0
+endif
+
+if findtype 'metal chest' ground any any 2 as metalChest
+    setvar! chest metalChest
+elseif findtype 'wooden chest' ground any any 2 as woodenChest
+    setvar! chest woodenChest
+elseif findtype 'bag' ground any any 2 as woodenChest
+    setvar! chest woodenChest
+elseif findtype '3712' ground any any 2 as testChest
+    setvar! chest testChest
+endif
+dclick chest
+clearsysmsg
+
+if insysmsg 'the world is saving'
+    while not insysmsg 'world save complete'
+    pause 1000
+        overhead 'Waiting for world save'
+    endwhile
+endif       
+pause 500
+
+if not ingump 'Cleared of Traps'
+    while ingump 'Remove Trap' any
+        if skill 'hiding' > 50
+            if not hidden
+                skill 'hiding'
+            endif
+        endif
+        gumpresponse 7
+        clearsysmsg 
+        pause 500
+        while not insysmsg 'you fail to make any progress towards' 
+        
+            if insysmsg 'you make some progress towards'
+                replay
+            endif
+            if insysmsg 'You have successfully cleared'
+                replay
+            endif
+            if timer preventspamtimer >= cdspam
+            overhead 'Still removing traps'
+                settimer preventspamtimer 0
+            endif
+            pause 250
+        endwhile
+    endwhile
+else
+    overhead 'Cleared of traps!!'
+endif
+
+clearsysmsg
+if ingump 'Pick Lock' any
+while ingump 'Pick Lock' any
+    
+    if skill 'hiding' > 50
+        if not hidden
+            skill 'hiding'
+        endif
+    endif
+    gumpresponse 4
+    clearsysmsg 
+    pause 500
+    while not insysmsg 'you fail to make any progress on the lock'
+        if insysmsg 'you make some progress on the lock'
+            ##DEBUG
+            //overhead 'YAY progress' 33
+            replay
+        elseif insysmsg 'successfully pick the lock'
+            overhead 'Yay its open - loot bonanza is on!'
+            replay
+        endif
+        if ingump 'Cleared of traps' any
+            replay
+        endif
+        if timer preventspamtimer >= cdspam
+            overhead 'Still picklocking'
+            settimer preventspamtimer 0
+        endif
+        pause 250
+    endwhile
+endwhile
+endif
+
+//Start looting 
+// Add the looting to the same script.
+pause 250
+while find chest ground -1 -1 2 and findtype 5356|24434|43206|29363|43166|22336|29348|17087|3985|8826|3827|29030|3836|5981|4248|5359|3839|3838|3843|2597|29036|48407|3834|3865|3859|3885|3856|3878|3877|3873|3861|3862|576|5123|7177|7027|3920|5131|5179|5075|3980|5060|5076|5042|10245|3938|3913|7169|3909|5063|5089|3981|7170|7033|3976|3762|5040|5103|5117|7181|7029|3568|6264|3742|5139|6263|7026|5125|3740|5121|3973|3974|5204|5105|5185|5078|5115|7175|5059|7034|3713|3915|5112|5070|5049|5119|5205|5046|3962|3934|7035|3911|7179|5106|5143|3573|3719|5177|7610|5181|3917|5132|3963|7031|5207|5056|5085|3763|5129|5187|3721|3972|5138|3570|5101|5061|5074|5142|5182|5146|6265|5090|5203|5044|5144|3932|5201|5127|3572|7173|5135|3937|3571|22326|27611|9917|3821|5356|8455|5362|45315|8454|22187|5901|7163|3617|3903|12686|7981|7982|7983|7984|7985|7986|7987|7988|7989|7990|7991|7992|7993|7994|7995|7996|7997|7998|7999|8000|8001|8002|8003|8004|8005|8006|8007|8008|8009|8010|8011|8012|8013|8014|8015|8016|8017|8018|8019|8020|8021|8022|8023|8024|8025|8026|8027|8028|8029|8030|8031|8032|8033|8034|8035|8036|8037|8038|8039|8040|8041|8042|8033|8044 chest as item
+    getlabel item itemLabel
+    overhead itemLabel
+    hotkey 'Grab item'
+    pause 50
+    target item
+    while queued
+        wait 50
+    endwhile
+endwhile  
+if skill 'hiding' > 50
+    if not hidden
+        skill 'hiding'
+    endif
+endif

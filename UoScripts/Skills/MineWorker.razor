@@ -1,0 +1,62 @@
+clearsysmsg 
+if findtype '8901' backpack
+    
+else
+    overhead 'Please make sure you have a runebook!'
+    break
+endif
+if insysmsg 'now tracking'
+    overhead '--PK--PK--PK--PK--' 33
+endif
+if diffweight <= 30
+    organizer 8
+    while queued 
+        overhead 'Moving ore'
+        pause 1100
+    endwhile
+endif
+while insysmsg 'now tracking'
+    if paralyzed  
+        say '[pouch'
+        pause 500
+        if hp < maxhits
+            dclicktype 'yellow potion'
+        endif
+    endif
+    pause 500
+    dclicktype '8901' backpack
+    pause 1500
+    gumpresponse 2
+    pause 2200
+endwhile
+
+if rhandempty ?? 0
+    if findtype 'pickaxe' backpack
+        dclicktype 'pickaxe' backpack
+        pause 200
+    else
+        overhead 'Out of pickaxes'
+        pause 500
+        dclicktype '8901' backpack
+        pause 1500
+        gumpresponse 2
+        pause 2200
+        break
+    endif
+endif
+pause 500
+hotkey 'Use item in hand'
+wft 1000
+hotkey 'target self'
+pause 250 
+if insysmsg 'harvestable'
+    overhead 'move spot' 2263
+    sysmsg 'move spot' 2263
+    pause 1500
+endif
+if insysmsg 'Mining skillgain'
+    pause 100
+    replay
+endif
+clearsysmsg 
+replay

@@ -1,0 +1,73 @@
+if skill 'necromancy' >79
+    say '[Mindrot'
+    pause 150
+    if insysmsg 'you must wait another'
+        overhead '▼▼ Mindrot CD ▼▼' 33
+    elseif insysmsg 'Unholy symbols'
+        overhead '▲▲ MINDROT ▲▲' 2263
+        cooldown mindrot 29500
+    endif
+    break
+elseif skill 'herding' > 99 and skill 'magery' < 90
+    if not timerexists vetTimer
+        createtimer vetTimer
+        settimer vetTimer 7000
+    elseif timerexists vetTimer
+        settimer vetTimer 7000
+    endif
+    if findtype '3713' backpack as crook
+        getlabel crook mycrook
+        if 'activated' in mycrook
+            
+        else
+            dclick crook
+        endif
+    else
+        overhead 'NO CROOK'
+    endif
+    if findtype '3922' backpack as skinnerknife
+        dclick skinnerknife
+    else
+        sysmsg '> CANNOT SET LAST TARGET'
+        stop
+    endif
+    while not targetexists     
+    endwhile
+    while targetexists     
+    endwhile
+    
+    pause 50
+    getlabel lasttarget targLabel
+    pause 50
+    if noto lasttarget = 'innocent' or noto lasttarget = 'friend' or noto lasttarget = 'invulnerable'
+        if insysmsg 'getlabel - Skipped getting label because serial is a player'
+            overhead '>PLAYER TARGET<' 33 
+        else
+            overhead '☻☻ {{targLabel}} ☻☻' 33
+        endif
+    elseif noto lasttarget = criminal or noto lasttarget = hostile or noto lasttarget = murderer
+        overhead '↓↓ {{targLabel}} ↓↓'  2263 lasttarget
+        overhead 'Attacking last target' 33
+        attack lasttarget 
+    endif
+    script 'vetDexerScript'
+elseif skill 'magery' > 90
+    if findtype '3713' backpack as crook
+        dclick crook
+    else
+        overhead 'No crook'
+    endif
+    while not targetexists 
+    endwhile
+    while targetexists 
+    endwhile
+    sysmsg '>> Returning to mage vet script' 44
+    script 'vetMageScript'
+elseif skill 'discordance' = 80
+    break
+elseif skill 'stealth' > 100
+    if findtype '52149' backpack as sbomb
+        dclick sbomb
+        cooldown smokebombs 60000
+    endif
+endif

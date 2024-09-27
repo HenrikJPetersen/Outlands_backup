@@ -1,0 +1,123 @@
+@setvar! autocast_magicreflect 0
+@setvar! autocast_pets 0
+@setvar! stop_if_not_tracking 0
+
+@setvar! move_to_boombox 1
+## Set which organiser is moving boards to boombox
+@setvar! organisernumber 10
+
+
+
+
+if lhandempty ?? 0 
+    if findtype "hatchet" backpack
+        dclicktype 'hatchet' backpack
+        wait 200
+    else
+        overhead "No more hatchets!" 34
+        script 'lumberrecall'
+    endif
+endif
+if insysmsg "now tracking"
+    if name == "Lumber Lone"
+        if findtype '29103' backpack as rtome
+            overhead 'Found tome'
+            dclick rtome
+            waitforgump 167090027
+            gumpresponse 100
+            pause 250
+        endif
+    endif
+endif
+if autocast_magicreflect = 1
+    if not findbuff 'Magic reflect'
+        cast 'Magic reflection'
+        wait 2000
+    endif
+endif
+if autocast_pets = 1
+    
+endif
+if stop_if_not_tracking = 1
+    
+endif
+
+clearsysmsg 
+@setvar! lumbering 1
+wait 500
+overhead 'Lumberjacking' 0
+hotkey 'Use item in hand'
+wft 1000
+hotkey 'Target Self'
+wait 250
+while lumbering = 1
+    if insysmsg 'You do not see any harvestable' or insysmsg 'You cannot produce any wood'
+        overhead 'Move spot bro!' 88
+        wait 500
+        ##@setvar! lumbering 0
+        replay
+    endif  
+    if insysmsg 'You chop some'
+        overhead 'Success - Lets gooo!' 88
+        ##@setvar! lumbering 0
+        replay
+    endif
+    if insysmsg 'You hack at'
+        overhead 'Fail - get gud' 44
+        ##@setvar! lumbering 0
+        replay
+    endif
+    if lhandempty ?? 0 
+        overhead "Broke axe :(" 34
+        ##@setvar! lumbering 0
+        replay
+    endif
+    if insysmsg "travel"
+        overhead 'Waiting for travel...'
+        wait 1000
+        ##@setvar! lumbering 0
+        replay
+    endif
+    if insysmsg "now tracking"
+        if name == "Lumber Lone"
+            if findtype '29103' backpack as rtome
+                overhead 'Found tome'
+                dclick rtome
+                waitforgump 167090027
+                gumpresponse 100
+                pause 250
+            endif
+        endif
+    endif
+    if move_to_boombox = 1
+        if counttype '7133' backpack > 40
+            
+            overhead 'Found logs' 33
+            while findtype '7133' backpack as log
+                dclick log
+                wait 100
+            endwhile
+            pause 250
+            if insysmsg "now tracking"
+                if name == "Lumber Lone"
+                    if findtype '29103' backpack as rtome
+                        overhead 'Found tome'
+                        dclick rtome
+                        waitforgump 167090027
+                        gumpresponse 100
+                        pause 250
+                    endif
+                endif
+            endif
+            organizer organisernumber
+            while queued 
+                pause 50
+            endwhile
+            
+            if counttype 7127 backpack as logcount or counttype 7154 backpack as ingotcount
+                overhead 'Found {{logcount}} logs. Found {{ingotcount}} ingots.'
+            endif  
+        endif
+    endif
+endwhile
+
