@@ -1,0 +1,29 @@
+if skill 'Necromancy' = 120
+    stop
+endif
+if not cooldown mushroom and mana < 30
+    dclicktype 'mushroom'
+elseif mana < 30
+    skill 'meditation'
+    pause 100
+    if findbuff 'actively medi'
+        while mana < 90
+        endwhile
+    endif
+endif
+
+cast 'create food'
+while not insysmsg 'You create a magic'
+    pause 300   
+endwhile
+
+if counttype '29012' backpack > 50
+    @menu shelf 0
+    wft 500
+    target self
+    pause 1000
+    @menu shelf 1
+    pause 50
+endif
+pause 250
+replay

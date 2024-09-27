@@ -1,0 +1,281 @@
+##SETTINGS
+## How often it loops through vet kits // bandages on tank
+## Set it  5000 + whatever your want it to wait.. so if its 2 seconds it would be 7000
+@setvar! maxWaitVet 4000
+
+@setvar! minimumwait 250
+
+## AutoEquipWeapon with aspect in desc
+@setvar! autoequip 1
+
+## POTIONS: 1 for active, 0 for inactive
+@setvar! agilitypotion 0
+@setvar! magicresistpotion 0
+@setvar! eatfood 1
+@setvar! disableOverhead 0
+
+##POTION DURATION - if you have alchemy you should change them according to your durations
+@setvar! strengthpotionduration 120000
+
+## I recommend that you do not lower this prevent spam timer - can increase it - of entirely disable overhead msgs.
+if not timerexists preventspam
+    createtimer preventspam
+    settimer preventspam 10000
+endif
+
+
+
+if dead
+    stop
+endif
+
+##SURVIVAL!
+if paralyzed
+    say '[Pouch'
+    pause minimumwait
+endif
+if poisoned 
+    potion 'cure'
+    pause minimumwait
+endif
+## Strength potion and heal pot.
+if hits < 60
+    if not bandaging
+        if not findbuff 'Strength'
+            potion 'strength'
+            pause 50
+            
+            cooldown 'strength potion' 120000
+        endif
+    endif
+    pause 500
+    if not cooldown 'heal potion'
+        potion 'heal'
+        cooldown 'heal potion' 11500
+        pause minimumwait
+        
+    else
+        if disableOverhead = 0
+            overhead '☻ EMERGENCY ☻' 33
+        endif   
+    endif
+endif
+
+
+## Add check for debuff: weaken - to override the strength potion cooldown.
+## WEIGHT CHECK
+if findbuff 'weaken'
+    if findtype 'White Potion' backpack
+        potion 'strength'
+        pause minimumwait
+    endif    
+endif
+
+if maxweight = 390
+    if weight > 393
+        
+        if findtype 'White Potion' backpack
+            potion 'strength'
+            pause 50
+            
+            cooldown 'strength potion' strengthpotionduration
+        else
+            if disableOverhead = 0
+                overhead '↓ overweight ↓' 23 
+            endif
+            pause minimumwait
+            lifttype '3821' 100
+            pause minimumwait
+            droprelloc 0 0
+            pause minimumwait
+        endif
+    endif
+elseif maxweight = 460
+    if weight > 463
+        if disableOverhead = 0
+            overhead '↓ overweight ↓' 23 
+        endif
+        pause minimumwait
+        lifttype '3821' 100
+        pause minimumwait
+        droprelloc 0 0
+        pause minimumwait
+    endif
+endif
+
+if stam < 10
+    potion 'refresh'
+endif
+
+if warmode 'on'
+    if eatfood = 1 
+        if not findbuff 'Food satisfaction'
+            if findtype 'tray' backpack as ffood
+                dclick ffood
+            else
+                if disableOverhead = 0
+                    overhead 'No food buff - and no food in backpack'
+                endif
+                @setvar! eatfood 0
+            endif
+        endif
+    endif
+    if agilitypotion = 1 
+        if not findbuff 'Agility'
+            if findtype 'Blue potion' backpack
+                potion 'agility'
+                pause minimumwait
+               
+            else
+                if disableOverhead = 0
+                    overhead 'Out of agility potions' 33
+                endif
+            endif
+        endif
+    endif
+    if magicresistpotion = 1 
+        if not findbuff 'Magic Resist Potion'
+            if findtype 'Black potion' backpack as resistpot
+                dclick resistpot
+                pause minimumwait
+                pause 50
+                
+            else
+                if disableOverhead = 0
+                    overhead 'Out of agility potions' 33
+                endif
+            endif
+        endif
+    endif
+endif
+
+if findbuff 'bleed' or findbuff 'disease'
+    if not findbuff 'Magic Resist'
+        if findtype 'Black potion' backpack as resistpot
+            dclick resistpot
+            pause minimumwait
+            
+        endif
+    else
+        
+    endif
+endif
+
+## START: Auto equip section  
+if autoequip = 1
+    
+    if rhandempty
+        clearignore 
+    endif
+    
+    if listexists weaponlist
+        clearlist weaponlist
+    else
+        createlist weaponlist
+    endif
+    if skill 'fencing' > 79 and rhandempty and findtypelist weaponlist 'war fork|kryss' backpack 
+        foreach weap in weaponlist
+            getlabel weap found
+            pause 150
+            if "aspect" in found 
+                dclick weap
+                pause minimumwait
+                replay
+            else
+                @ignore weap
+            endif
+        endfor
+    endif 
+    
+    if skill 'wrestling' > 50 and rhandempty 
+        if findtype '22187' backpack as weap
+            dclick weap
+        endif
+    endif 
+    
+    if skill 'archery' > 79 and rhandempty and findtypelist weaponlist 'crossbow|bow' backpack 
+        foreach weap in weaponlist
+            getlabel weap found
+            pause 150
+            if "aspect" in found 
+                dclick weap
+                pause minimumwait
+                replay
+            else
+                @ignore weap
+            endif
+        endfor
+    endif
+    if skill 'macing' > 79 and rhandempty and findtypelist weaponlist 'maul|war axe|war mace|mace|hammer pick|club' backpack 
+        foreach weap in weaponlist
+            getlabel weap found
+            pause 150
+            if "aspect" in found
+                dclick weap
+                pause minimumwait
+                replay
+            else
+                @ignore weap
+            endif
+        endfor
+    endif
+    
+    if skill 'swords' > 79 and rhandempty and findtypelist weaponlist 'viking sword|katana' backpack 
+        foreach weap in weaponlist
+            getlabel weap found
+            pause 150
+            if "aspect" in found
+                dclick weap
+                pause minimumwait
+                replay
+            else
+                @ignore weap
+            endif
+        endfor
+        if rhandempty
+            overhead 'MISSING WEAPON'
+            clearignore
+            pause 250
+            if skill 'swords' > 79 and rhandempty and findtypelist weaponlist 'viking sword|katana' backpack 
+                foreach weap in weaponlist
+                    dclick weap
+                    replay
+                endfor
+            endif    
+        endif
+    endif
+   
+endif
+
+
+if warmode 'on'
+    if not bandaging
+        if findtype 'veterinary supplies' backpack as vets
+            say '[VeterinarySupplies'
+            pause 250
+            if insysmsg 'You or your nearby followers do not require healin'
+                if timer preventspam > 10000
+                    overhead '☻ No heal needed ☻' 2263
+                    settimer preventspam 0
+                endif
+                pause maxWaitVet
+                replay
+            elseif insysmsg 'You begin using veterinary supplies'
+                
+            endif
+        else
+            for 3
+                overhead 'OUT OF VET SUPS' 33
+                stop
+            endfor
+        endif
+    endif
+elseif diffhits >= 30
+    if not bandaging
+        say '[VeterinarySupplies'
+    endif
+else    
+    stop
+endif
+
+replay

@@ -1,0 +1,31 @@
+if not varexist tamingTarget
+    overhead "First run!"
+    setvar tamingTarget
+endif
+if dead tamingTarget
+    setvar tamingTarget 0
+endif
+pause 250
+if tamingTarget = 0 
+    overhead 'Set new target to tame'
+endif
+
+clearsysmsg 
+hotkey 'Animal Taming'
+wft 
+target 'tamingTarget' 
+getlabel lasttarget tamingTarget
+overhead "Taming {{tamingTarget}}"
+while not insysmsg 'AnimalTaming skillgain'
+    wait 250
+endwhile
+wait 250
+if noto tamingTarget = 'friend'
+    overhead 'We tamed the shit out of it'
+    say 'All kill'
+    wft 1000
+    target tamingTarget
+    setvar tamingTarget 0
+endif
+pause 250
+replay

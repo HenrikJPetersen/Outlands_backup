@@ -1,0 +1,21 @@
+if not gumpexists 4216593270
+    say '[ship'
+endif
+if not ingump 'Ship type' 4216593270
+    overhead 'Missing'
+    gumpresponse 2 4216593270
+    waitforgump 4216593270 1500
+    if ingump 'Ship type' 4216593270
+        sysmsg 'Found it'
+        replay
+    endif
+else
+    if ingump 'RobotTurtle'
+        sysmsg 'Found mine'
+        gumpresponse 201 4216593270
+    endif
+endif 
+
+
+
+

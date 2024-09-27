@@ -1,0 +1,393 @@
+@setvar! disableOverhead 0
+@setvar! eatfood 1
+@setvar! autoequip 1
+@setvar! drinkMrPotion 0
+@setvar! strengthpotionduration 132000
+
+## The time between each vet supplies attempt. Everything above 5000 is the time between vet attempts - so 7000 will be 2 seconds - does not apply in pvp mode
+@setvar! maxWaitVet 6500
+
+## Adjust to your ping - im running around 100 ping and need 250 to avoid 'wait to perform another action'
+@setvar! minimumWait 250
+
+## DO NOT EDIT BELOW ## DO NOT EDIT BELOW ## DO NOT EDIT BELOW ## DO NOT EDIT BELOW ##
+if not timerexists preventspam
+    createtimer preventspam
+    settimer preventspam 10000
+endif
+if not timerexists preventspamPvp
+    createtimer preventspamPvp
+    @settimer! preventspamPvp 0
+endif
+if not timerexists vetTimer
+    createtimer vetTimer
+    @settimer! vetTimer 0
+endif
+
+while targetexists 
+    if diffhits > 30 and not bandaging
+        if not lhandempty
+            clearhands 'left'
+            pause minimumWait
+        endif
+        potion 'heal'
+        cooldown 'heal potion' 11500
+    endif
+    pause minimumWait
+endwhile
+
+if autoskinning = 1
+    if dead myKillTarget
+        if find myKilltarget ground 0 0 2
+        
+            overhead 'target dead'
+            if findtype 'elven spellblade' backpack as sknife
+                dclick sknife
+                wft 500
+                target self
+            endif
+        endif
+    else
+        overhead 'WE FIGHTING' 33
+    endif
+endif    
+        
+
+
+## PVP handling - Requires a cooldown that triggers from the overhead msg: "is attacking you" - recommend setting it to around 300 seconds :)
+if cooldown pvp != 0
+    if timer preventspam > 10000
+        overhead '☻☻ PVP MODE ☻☻' 2263
+        settimer preventspam 0
+    endif
+    if not bandaging and hits < maxhits
+        say '[VetSupplies'
+        pause 500
+    endif
+    if hits < 70
+        if not cooldown 'heal potion'
+             if not lhandempty
+                clearhands 'left'
+                pause minimumWait
+            endif
+            potion 'Heal'
+            pause minimumWait
+            cooldown 'heal potion' 10200
+           
+        else
+            if timer preventspamPvp > 3000
+                overhead '☻ HEAL POT CD ☻' 34
+                settimer preventspamPvp 0
+            endif
+        endif
+    endif
+    if paralyzed 
+        if findtype 'pouch' backpack 38
+            say '[Pouch'
+            pause minimumWait
+        else
+            if timer preventspamPvp > 3000
+                overhead 'out of trapped pouches'
+                settimer preventspamPvp 0
+            endif
+        endif
+    endif
+    if poisoned
+        if findtype 'Orange potion' backpack
+            if not lhandempty
+                clearhands 'left'
+                pause minimumWait
+            endif
+            potion 'cure'
+            pause minimumWait
+        else
+            if timer preventspamPvp > 3000
+                overhead '☻ NO CURE POTS' 34
+                settimer preventspamPvp 0
+            endif
+        endif
+    endif
+    if findbuff 'Weaken'
+        if findtype 'White potion' backpack
+            if not lhandempty
+                clearhands 'left'
+                pause minimumWait
+            endif
+            potion 'Strength'
+            pause minimumWait
+        else
+            if timer preventspamPvp > 3000
+                overhead '☻ NO STR POTS' 34
+                settimer preventspamPvp 0
+            endif
+        endif
+    endif
+    if weight > maxweight
+        if findtype "gold coin" backpack as item
+            lift item 2000
+            droprelloc 0 0
+            wait minimumWait
+            if insysmsg "cannot drop anything"
+                drop backpack -1 -1 -1
+            endif
+            wait minimumWait
+        else
+            overhead "We are overweight and cannot drop anything" 34
+        endif
+    endif
+    replay
+endif
+## END PVP handling ##
+
+## Weight check 
+## Found an issue with parry and unequipping a shield when overweight - need to change it to work with parry
+## possible a reduced weight check.
+if maxweight = 390
+    if weight > 393
+        if findtype 'White Potion' backpack
+            if not lhandempty
+                clearhands 'left'
+                pause minimumWait
+            endif
+            potion 'strength'
+            pause minimumWait
+            cooldown 'strength potion' strengthpotionduration
+        else
+            if disableOverhead = 0
+                overhead '↓ overweight ↓' 23 
+            endif
+            pause minimumWait
+            lifttype '3821' 500
+            pause minimumWait
+            droprelloc 0 0
+            pause minimumWait
+        endif
+    endif
+elseif maxweight = 460
+    if weight > 463
+        if disableOverhead = 0
+            overhead '↓ overweight ↓' 23 
+        endif
+        pause minimumWait
+        lifttype '3821' 100
+        pause minimumWait
+        droprelloc 0 0
+        pause minimumWait
+    endif
+endif
+
+## HP CHECK
+if hits < 65
+    if not bandaging
+        say '[VetSupplies'
+        pause minimumWait
+    endif
+    if not findbuff 'Strength'
+        if not lhandempty
+            clearhands 'left'
+            pause minimumWait
+        endif
+        potion 'Strength'
+        cooldown 'strength potion' 132000
+        pause minimumWait
+    endif
+    if cooldown 'heal potion' = 0
+        if not lhandempty
+            clearhands 'left'
+            pause minimumWait
+        endif
+        potion 'Heal'
+        cooldown 'heal potion' 10200
+        pause minimumWait
+    else
+        if disableOverhead = 0
+            if timer preventspam > 10000
+                for 2
+                    overhead 'EMERGENCY' 33
+                    pause minimumWait
+                    settimer preventspam 0
+                endfor
+            endif
+        endif
+    endif
+endif
+## END HP CHECK ##
+
+
+## Utility ##
+
+if poisoned
+    if not lhandempty
+        clearhands 'left'
+        pause minimumWait
+    endif
+    potion 'cure'
+    pause minimumWait
+endif
+if not findbuff 'Food' and eatfood = 1
+    if findtype 'tray' backpack as food
+        dclick food
+    endif
+endif
+
+if drinkMrPotion = 1
+if findbuff 'bleed' or findbuff 'disease'
+    if not bandaging and diffhits > 2
+        say '[VetSupplies'
+        pause minimumWait 
+    endif
+    if not findbuff 'Magic Resist'
+        if findtype 'Black potion' backpack as resistpot
+            if not lhandempty
+                clearhands 'left'
+                pause minimumWait
+            endif
+            dclick resistpot
+            pause minimumWait
+            if disableOverhead = 0
+                if timer preventspam > 10000
+                    overhead 'DOT on you'
+                    settimer preventspam 0
+                endif
+            endif
+        else
+            if disableOverhead = 0
+                if timer preventspam > 10000
+                    overhead 'No Resist pot'
+                    settimer preventspam 0
+                endif
+            endif
+        endif
+    endif
+endif
+endif
+if findbuff 'Weaken' and weight > maxweight
+    if findtype 'White potion' backpack
+            if not lhandempty
+                clearhands 'left'
+                pause minimumWait
+            endif
+        potion 'Strength'
+        cooldown 'strength potion' 132000
+    else
+        if findtype "gold coin" backpack as item
+            lift item 2000
+            droprelloc 0 0
+            wait minimumWait
+            if insysmsg "cannot drop anything"
+                drop backpack -1 -1 -1
+            endif
+            wait minimumWait
+        else
+            overhead "We are overweight and cannot drop anything" 34
+        endif
+    endif
+endif
+
+## END UTILITY ##
+
+## AutoEquip
+if autoequip = 1
+    if listexists weaponlist
+        clearlist weaponlist
+    else
+        createlist weaponlist
+    endif
+    if skill 'archery' > 79
+        
+    else
+        if rhandempty
+            clearignore 
+        endif
+    endif
+    if skill 'parry' = 80 and lhandempty
+        if findtype 'wooden shield' backpack as shield
+            dclick shield
+            pause minimumWait
+        endif
+    endif
+    if skill 'fencing' > 79 and rhandempty and findtypelist weaponlist 'war fork|kryss' backpack 
+        foreach weap in weaponlist
+            getlabel weap found
+            pause 150
+            if "aspect" in found 
+                dclick weap
+                pause minimumWait
+                replay
+            else
+                @ignore weap
+            endif
+        endfor
+    endif 
+    if skill 'mace fighting' > 79 and rhandempty and findtypelist weaponlist 'war mace|maul|club' backpack 
+        foreach weap in weaponlist
+            getlabel weap found
+            pause 150
+            if "aspect" in found 
+                dclick weap
+            pause minimumWait
+                replay
+            else
+                @ignore weap
+            endif
+        endfor
+    endif
+     if skill 'swords' > 79 and rhandempty and findtypelist weaponlist 'viking sword|katana' backpack 
+        foreach weap in weaponlist
+            getlabel weap found
+            pause 150
+            if "aspect" in found 
+                dclick weap
+            pause minimumWait
+                replay
+            else
+                @ignore weap
+            endif
+        endfor
+    endif
+    if skill 'archery' > 79 and rhandempty and findtypelist weaponlist '5117' backpack 
+        foreach weap in weaponlist
+            getlabel weap found
+            pause 150
+            if "aspect" in found 
+                dclick weap
+                pause minimumWait
+                replay
+            else
+                @ignore weap
+            endif
+        endfor
+    endif
+    ## Could not get wrestling to work with martial manuals like the rest of the weapons - so this is a dirty quickfix.
+    if skill 'wrestling' > 79 and rhandempty 
+        if findtype '22187' backpack as weap
+            dclick weap
+            pause minimumWait
+        endif
+    endif 
+endif
+
+
+## End autoequip
+
+
+## VET SUPPLIES!
+if warmode on
+    if not bandaging and timer vetTimer > maxWaitVet 
+        //overhead 'Started vet {{vetTimer}}' 
+        say '[VetSupplies'
+        pause minimumWait
+        if insysmsg 'You or your nearby followers do not require healing'
+            settimer vetTimer 5000
+        else
+            settimer vetTimer 0
+        endif
+
+    endif
+elseif diffhits > 10 and not bandaging 
+    say '[VetSupplies'
+else
+    stop
+endif
+
+replay

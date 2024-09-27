@@ -1,0 +1,29 @@
+#if gumpexists 3019157059
+#    gumpresponse 6 3019157059
+#endif
+#waitforgump 3019157059
+while findtype 8454|8455 backpack as crewdude
+    if gumpexists 189348675
+        gumpclose 189348675
+    endif
+    dclick crewdude
+    pause 500
+    waitforgump 189348675
+    if ingump '2.00 % crew damage' or ingump '2.50 % crew damage' or ingump '5.00 % Regular'
+        
+        sysmsg 'found one'
+        @ignore crewdude
+    else
+        sysmsg 'NEGATIVE' 33
+        pause 500
+        hotkey 'Grab item'
+        wft
+        target crewdude
+        
+    endif
+    gumpclose 189348675    
+endwhile
+pause 1500
+
+replay
+

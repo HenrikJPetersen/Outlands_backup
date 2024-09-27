@@ -1,0 +1,150 @@
+@setvar! crewcount 6
+
+
+
+if not varexist crew_one
+    setvar crew_one
+else
+    if find crew_one ground -1 -1 14
+        
+    else
+        setvar crew_one
+    endif
+endif
+if not varexist crew_two
+    setvar crew_two
+else
+    if find crew_two ground -1 -1 14
+        
+    else
+        setvar crew_one
+    endif
+endif
+if not varexist crew_three
+    setvar crew_three
+else
+    if find crew_three ground -1 -1 14
+        
+    else
+        setvar crew_three
+    endif
+endif
+if not varexist crew_four
+    setvar crew_four
+else
+    if find crew_four ground -1 -1 14
+        
+    else
+        setvar crew_four
+    endif
+endif
+if not varexist crew_five
+    setvar crew_five
+else
+    if find crew_five ground -1 -1 14
+        
+    else
+        setvar crew_five
+    endif
+endif
+if not varexist crew_six
+    setvar crew_six
+else
+    if find crew_six ground -1 -1 14
+        
+    else
+        setvar crew_six
+    endif
+endif
+
+
+if not bandaging and find crew_one ground -1 -1 5
+    hotkey 'Use Bandage (No Timer)'
+    wft
+    target crew_one
+    pause 250
+    if not bandaging
+        overhead 'Crew_one'
+    endif
+endif
+
+pause 250
+if not bandaging and find crew_two ground -1 -1 5
+    hotkey 'Use Bandage (No Timer)'
+    wft
+    target crew_two
+    pause 250
+    if not bandaging 
+        overhead 'Crew_two'
+    endif
+endif
+pause 250
+if not bandaging and find crew_three ground -1 -1 5
+    hotkey 'Use Bandage (No Timer)'
+    wft
+    target crew_three
+    pause 250
+    if not bandaging 
+        overhead 'Crew_three'
+    endif
+endif
+pause 250
+if not bandaging and find crew_four ground -1 -1 5
+    hotkey 'Use Bandage (No Timer)'
+    wft
+    target crew_four
+    pause 250
+    if not bandaging 
+        overhead 'Crew_four'
+    endif
+endif
+pause 250
+if not bandaging and find crew_five ground -1 -1 5
+    hotkey 'Use Bandage (No Timer)'
+    wft
+    target crew_five
+    pause 250
+    if not bandaging 
+        overhead 'Crew_five'
+    endif
+endif
+pause 250
+if not bandaging and find crew_six ground -1 -1 5
+    hotkey 'Use Bandage (No Timer)'
+    wft
+    target crew_six
+    pause 250
+    if not bandaging 
+        overhead 'Crew_six'
+    endif
+endif
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+pause 1000
+replay
+
+
+
+
+
+
+
+
+
+
+
+
+
+

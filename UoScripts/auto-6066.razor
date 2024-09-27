@@ -1,0 +1,9 @@
+say 'all kill'
+wft 500
+if findtype 'a rift deamon' ground 0 0 20 as deamon
+    target deamon
+elseif findtype 'a lesser rift deamon' ground 0 0 20 as ldeamon
+    target ldeamon
+else
+    overhead 'TARGET YOURSELF' 33
+endif

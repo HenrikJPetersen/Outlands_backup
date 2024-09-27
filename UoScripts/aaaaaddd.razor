@@ -1,0 +1,18 @@
+if not varexist dockmaster
+    @setvar dockmaster
+endif
+if cooldown pvp
+    @menu dockmaster 1
+    waitforgump 3287496917 1000
+    gumpresponse 7 3287496917
+endif
+if hp < maxhp
+    @menu dockmaster 1
+    waitforgump 3287496917 1000
+    gumpresponse 7 3287496917
+endif
+if insysmsg 'you dock the ship. you may now'
+    overhead 'We docked'
+endif
+pause 1000
+replay

@@ -1,0 +1,25 @@
+@setvar! myKillTarget lasttarget
+pause 250
+if noto myKillTarget = 'hostile'
+    attack myKillTarget
+    overhead 'HERE' 2263 myKillTarget
+elseif noto myKillTarget = 'innocent'
+    overhead 'Youre about to attack an innocent' 44
+    @setvar! myKillTarget 0
+elseif noto myKillTarget = 'invulnerable'
+    overhead 'Cant kill invulnerable' 44
+    @setvar! myKillTarget 0
+elseif noto myKillTarget = 'friend'
+    overhead 'Dont kill your friend' 44
+    @setvar! myKillTarget 0
+endif    
+
+
+
+#innocent (blue)
+# friend (green)
+# hostile (gray)
+# criminal (gray)
+# enemy (orange)
+# murderer (red)
+# invulnerable (yellow)

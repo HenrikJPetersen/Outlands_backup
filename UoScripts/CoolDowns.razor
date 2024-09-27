@@ -1,0 +1,8 @@
+@setvar! myKillTarget lasttarget 
+if dead myKillTarget 
+    overhead 'Its dead'
+    @setvar myKillTarget 0
+endif
+
+@getlabel myKillTarget myLabel
+overhead '↓↓ {{myLabel}} ↓↓' 33 myKillTarget

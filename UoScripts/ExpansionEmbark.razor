@@ -1,0 +1,64 @@
+#if not varexist globalwait
+#    @setvar globalwait 150
+#endif
+### Check if ship gump is open
+#if gumpexists 4216593270 and ingump 'Zeans' 4216593270 or ingump 'RobotTurtle' 4216593270
+#    gumpresponse 201 4216593270
+#    pause globalwait
+#    stop
+#else
+#    if listexists tiller_list
+#        clearlist tiller_list
+#    else
+#        createlist tiller_list
+#    endif
+#    @clearignore 
+#    if findtypelist tiller_list 'tiller man' 'ground'
+#        foreach tiller in tiller_list
+#            sysmsg 'clicking tiller' 55
+#            dclick tiller
+#            overhead '{{tiller}}'
+#            waitforgump 4216593270
+#                if ingump 'Zeans' 4216593270 or ingump 'RobotTurtle' 4216593270
+#                    replay
+#                endif
+#            sysmsg 'neeeeeext' 55
+#            @ignore tiller
+#        endfor
+#        sysmsg 'Could not find your boat - retrying' 44
+#        replay
+#    endif
+#endif
+
+
+
+if not listexists tillers
+    createlist tillers
+    sysmsg '>>> Created tillers list'  
+else
+    clearlist tillers
+    sysmsg '>>> Clearing tillers list'
+endif
+
+if gumpexists 4216593270 and ingump 'RobotTurtle'
+    gumpresponse 201 4216593270
+else
+    if findtypelist tillers 'tiller man' 'ground' 
+        sysmsg 'Found a tiller man'
+        foreach tillerman in tillers
+            dclick tillerman
+            while not gumpexists 4216593270
+                sysmsg 'waiting for gump'
+                wait 50
+            endwhile
+            if gumpexists 4216593270
+                if ingump 'RobotTurtle' 4216593270
+                    overhead 'HERE' 2263 tillerman
+                    gumpresponse 201 4216593270
+                else
+                    @ignore! tillerman 
+                endif
+            endif
+        endif
+    endif
+endif

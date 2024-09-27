@@ -1,0 +1,30 @@
+if skill 'Animal Taming' > 99
+    if listexists pets
+        clearlist pets
+        pause 15
+        pushlist pets 0x379CF
+        pushlist pets 0x4B3EF
+        pushlist pets 0x88AD45
+        pushlist pets 0x434FA1
+        pushlist pets 0x19C6A1
+    else
+        createlist pets
+        pause 15
+        replay
+    endif
+
+
+    unsetvar killtarget
+    pause 25
+    sysmsg 'set your killtarget' 44
+    @setvar! killtarget
+    overhead 'Commanding pets'
+    foreach pet in pets
+        @menu pet 1
+        wft 600
+        target killtarget
+        pause 75
+    endfor
+else
+    say 'all kill'
+endif

@@ -1,0 +1,51 @@
+if not listexists cheststopick
+    createlist cheststopick
+    pushlist cheststopick 3708
+    pushlist cheststopick 3650
+    pushlist cheststopick 3712
+else
+    clearlist cheststopick
+endif
+if findtypelist cheststopick '3712' backpack 
+    foreach x in cheststopick
+        clearsysmsg 
+        getlabel x mychestlabel
+        sysmsg 'Picking: {{mychestlabel}}'
+        dclick x
+        for 3
+            waitforgump 736038070 500
+        endfor
+        if not gumpexists 736038070
+            ignore x
+            replay
+        endif
+        while not insysmsg 'you will now automatically continue lockpicking attempts'
+            gumpresponse 10 736038070
+            pause 250
+        endwhile
+        clearsysmsg 
+        pause 300
+        while not insysmsg 'you will now automatically continue remove trap attempts'
+            gumpresponse 11 736038070
+        pause 250
+        endwhile
+        pause 300
+        if not ingump 'Cleared of traps'
+            gumpresponse 7 736038070
+            while not ingump 'Cleared of traps'
+            endwhile
+        endif
+        if ingump 'Pick lock'
+            gumpresponse 4 736038070
+            waitforgump 736038070
+            while not ingump 'pick lock' 736038070
+                
+            endwhile
+        endif
+        ignore x
+    endfor
+endif
+
+
+   
+   

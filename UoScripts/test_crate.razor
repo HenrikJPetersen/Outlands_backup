@@ -1,0 +1,32 @@
+if position 4216 3166 and not dead 
+    if findtype 3645|3644 ground 0 0 2 as scrate
+        overhead 'FOUND CRATE'
+        
+        lift scrate
+        pause 250
+        drop 0x5123EC0E
+            
+    endif    
+endif
+while not position 4219 3166
+    overhead 'You got to move it move it'
+    pause 1000
+endwhile
+
+if findtype 1766 ground 0 0 2 as door
+    overhead 'FOOUND'
+    dclick door
+endif
+## Move crate to first position
+lift scrate
+droprelloc 4220 3164
+while not position 4220 3163
+    overhead 'You got to move it move it'
+endwhile
+
+
+
+
+
+    
+

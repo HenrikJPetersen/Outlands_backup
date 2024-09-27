@@ -1,0 +1,97 @@
+if not varexist lootchest
+    setvar lootchest
+else
+    if find lootchest
+        overhead 'Found'
+    else
+        setvar lootchest
+    endif
+endif
+pause 500
+if not varexist distrochest
+    setvar distrochest
+else
+    if find distrochest
+        overhead 'Found'
+    else
+        setvar distrochest
+        pause 500
+    endif
+endif
+pause 1000
+##Create list of item types
+if queued 
+    clearall 
+endif
+
+while findtype '24434|5981|3985|3836|8826|5356|29036|576' lootchest as lootItem
+    getlabel lootItem ItemLabel
+    pause 50
+    overhead '{{ItemLabel}}'
+    pause 50
+    lift lootItem 1
+    pause 300
+    //drop distrochest
+    
+    if 'Core' in ItemLabel
+        drop distrochest 48 67 0
+    elseif 'Extract' in ItemLabel
+        drop distrochest 68 67 0
+    elseif 'scroll' in ItemLabel
+        drop distrochest 88 67 0
+    elseif 'phylactery' in ItemLabel
+        drop distrochest 108 67 0
+    elseif 'map' in ItemLabel
+        drop distrochest 48 87 0
+    elseif 'cloth' in ItemLabel
+        drop distrochest 88 87 0
+    elseif 'research' in ItemLabel
+        drop distrochest 43 125 0
+    else
+        overhead 'UNKNOWN ITEM'
+        drop distrochest 148 128 0
+    endif
+    pause 250
+endwhile
+pause 250
+#if findtype '24434|5981|3985|8826|5356|29036' lootchest 
+#    replay
+#endif
+
+
+if counttype 'gold coin' backpack as kaching
+    if kaching > 500
+        overhead 'kaching'
+    else
+        overhead 'POOR POOR'
+    endif
+endif
+
+
+
+
+while findtype 3821 lootchest as goldcoin
+    lift goldcoin 120
+    pause 300
+    drop distrochest 99 131 0
+    pause 300
+endwhile
+pause 250
+while findtype 2539 lootchest as dubs
+    lift dubs 120
+    pause 300
+    drop distrochest 79 131 0
+    pause 300
+endwhile
+## gold coin - 3821
+
+## muffins - 2539
+
+
+
+
+
+
+
+
+

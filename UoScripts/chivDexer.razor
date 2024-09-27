@@ -1,0 +1,32 @@
+@setvar! holylight_hpcheck 35
+
+if ingump '12/12' 1387930325 or ingump '11/12' 1387930325 or ingump '10/12' 1387930325 or ingump '9/12' 1387930325 or ingump '8/12' 1387930325 or ingump '7/12' 1387930325 or ingump '6/12' 1387930325 or ingump '5/12' 1387930325 
+    @setvar! holylight_runes 1
+else 
+    @setvar! holylight_runes 0
+endif
+pause 200
+if hp < holylight_hpcheck and not cooldown 'holylight'  and holylight_runes = 1
+    yell '[HolyLight'
+    cooldown holylight 30000
+    pause 300
+endif
+
+
+@setvar! noblesacrifice_hpcheck 35
+
+if ingump '12/12' 1387930325 or ingump '11/12' 1387930325 or ingump '10/12' 1387930325 or ingump '9/12' 1387930325 or ingump '8/12' 1387930325 or ingump '7/12' 1387930325 or ingump '6/12' 1387930325 or ingump '5/12' 1387930325  or ingump '4/12' 1387930325 
+    @setvar! noblesacrifice_runes 1
+else 
+    @setvar! noblesacrifice_runes 0
+endif
+pause 200
+if hp < noblesacrifice_hpcheck and not cooldown 'holylight'  and noblesacrifice_runes = 1
+    yell '[NobleSacrifice'
+    wft 500
+    target self
+    cooldown noblesacrifice 30000
+    pause 300
+endif
+
+

@@ -1,0 +1,42 @@
+if not varexist ttome
+    @setvar ttome
+endif
+pause 50
+if not gumpexists 1863945839
+    dclick ttome
+    waitforgump 1863945839
+endif
+if findtype '5356' backpack as map
+    getlabel map myMapLabel
+    overhead '{{myMapLabel}}'
+    if "100.0%" in myMapLabel
+        overhead 'Test'
+        pause 500
+        getlabel map MyMapLabel
+    else
+        //DO SPYGLASS STUFF HERE
+        if not gumpexists 1520869851
+            dclicktype '5365' backpack
+            waitfortarget 1000
+            target map
+        else
+            gumpresponse 4 1520869851
+            waitforgump 1520869851
+            pause 1500
+        endif
+            
+    
+    endif
+    
+
+else
+    
+    //Level 3
+    gumpresponse 12 1863945839
+    waitforgump 1863945839
+    
+endif
+replay
+
+ 
+

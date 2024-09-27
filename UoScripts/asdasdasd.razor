@@ -1,0 +1,31 @@
+if not timerexists healtimer
+    createtimer healtimer
+    settimer healtimer 0
+endif
+if not varexist tankpet
+    setvar tankpet
+endif
+while hp < maxhp
+    say 'all guard me'
+    dclicktype "Yellow Potion" 
+    pause 1000
+    if hp = maxhp
+        say 'all follow me'
+    endif
+    if hp < 20
+        script 'UseGate'
+    endif
+endwhile
+pause 5000
+hotkey 'Target closest grey monster'
+attack lasttarget
+
+if timer healtimer >= 20000
+    overhead '{{healtimer}}'
+    settimer healtimer 0
+    cast 'greater heal'
+    wft 4000
+    target tankpet
+    
+endif
+replay

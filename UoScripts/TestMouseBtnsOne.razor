@@ -1,0 +1,21 @@
+if not varexist needToOrganize
+    @setvar! needToOrganize 0
+endif
+while findtype '7133' backpack as log
+    overhead 'Found logs'
+    dclick log
+    if needToOrganize = 0
+        overhead 'Setting needtoorganize'
+        setvar needToOrganize 1
+    endif
+    pause 250
+endwhile
+if needToOrganize = 1
+    organizer 10
+    while queued 
+        pause 50
+    endwhile
+    setvar needToOrganize 0
+endif
+
+

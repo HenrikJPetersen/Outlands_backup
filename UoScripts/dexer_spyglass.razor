@@ -1,0 +1,159 @@
+@setvar! minimumwait 250
+@setvar! announceplayerboats 0
+@setvar! showshipbombs 1
+@setvar! autoattack 1
+
+
+## Create spam timer....
+if not timerexists preventspam
+    createtimer preventspam
+    settimer preventspam 8000
+else
+    settimer preventspam 8000
+endif
+
+## Prevent script from doing anything if a target cursor is up.
+while targetexists 
+    pause 250
+endwhile
+
+if name == 'Zeans'
+    if diffhits > 25
+        for 3
+            overhead '☻☻ HEAL HEAL HEAL ☻☻' 33
+        endfor
+    endif
+endif
+
+if showshipbombs = 1
+    if findtype '5188' ground -1 -1 2 as sbomb
+        dclick sbomb
+    elseif findtype '5188' ground -1 1 10 as sbomb
+        if timer preventspam > 8000
+            settimer preventspam 0
+            for 3
+                overhead "↓↓ Move closer ↓↓" 2263 sbomb
+            endfor
+
+        endif
+    endif
+endif
+
+## Heal routine outside spyglass or 
+if cooldown spyglass
+    if poisoned and diffhits > 15
+        sysmsg '>> Poisoned' 44
+        if findtype '3847' backpack
+            while targetexists 
+            endwhile
+            potion 'cure'
+            pause minimumwait
+        else
+            sysmsg '>> Out of cure pots' 33
+            overhead  '>> Out of cure pots' 33
+        endif
+    endif
+    ## Start bandaid.
+    if skill 'Healing' > 50 and not bandaging and diffhits > 5
+        sysmsg '>>>> Attempting to heal' 2263
+        if findtype '3617' backpack
+            hotkey 'Bandage self'
+            pause minimumwait
+        else
+            sysmsg '>> Out of bandages' 33
+            overhead '> Out of bandages' 33
+        endif
+    elseif skill 'Healing' = 0.0
+        sysmsg '> No healing - chucking a potion' 44
+        if findtype '3852' backpack
+            potion 'Heal'
+        endif
+    endif
+    ## heal pot if low hp
+    if diffhits > 30 and cooldown bandaid > 4
+        if findtype '3852' backpack
+            potion 'Heal'
+        endif
+    endif
+    if warmode = true
+    if autoattack = 1
+        hotkey 'target closest grey monster'
+        pause 300
+        if insysmsg 'No one matching'
+            if timer preventspam > 8000
+                settimer preventspam 0
+                overhead 'Nothing to attack nearby'
+            endif
+        else
+            @setvar! myenemytarget lasttarget 
+            if myenemytarget = lasttarget 
+                sysmsg 'already attacking'
+            else
+                attack lasttarget 
+            endif
+        endif
+    endif    
+    endif
+else
+    sysmsg '> No CD for spyglass or pvp'
+    sysmsg '>> Checking for spyglass gump' 44
+    if gumpexists 2890020940
+        gumpclose 2890020940
+        pause 25
+    endif
+    ## Valorite spyglass
+    if findtype 'spyglass' backpack 1763 as glass
+        dclick glass
+        wft 500
+        target 'self'
+        waitforgump 2890020940
+    ## Agapite spyglass
+    elseif findtype 'spyglass' backpack 2425 as glass
+        dclick glass
+        wft 500
+        target 'self'
+        waitforgump 2890020940
+    ## Any spyglass
+    elseif findtype 'spyglass' backpack as glass
+        dclick glass
+        wft 500
+        target 'self'
+        waitforgump 2890020940
+    else
+        sysmsg 'No more spyglass in backpack' 33
+    endif
+    
+    if ingump 'Search for ships' 2890020940
+        gumpresponse 4 2890020940
+        cooldown spyglass 7000
+    endif
+    pause 150
+    if announceplayerboats = 1
+        if ingump "a small ship" 2890020940 or ingump "a small dragon ship" 2890020940 or   ingump "a medium ship" 2890020940 or    ingump "a medium dragon ship" 2890020940 or  ingump "a large ship" 2890020940 or     ingump "a large dragon ship" 2890020940 or   ingump "a carrack" 2890020940 or   ingump "a galleon" 2890020940
+            for 2
+                sysmsg '♦♦ PLAYER BOAT ♦♦' 2263
+                overhead '♦♦ PLAYER BOAT ♦♦' 2263
+            endfor
+        endif
+    endif
+    while ingump "Next" 2890020940
+        if ingump "Next" 2890020940
+            gumpresponse 3 2890020940
+            sysmsg '> found next 3'
+            # Announcing playerboats if found in gump  - set annouceplayerboats to 1
+            if annouceplayerboats = 1
+                if ingump "a small ship" 2890020940 or  ingump "a small dragon ship" 2890020940 or   ingump "a medium ship" 2890020940 or    ingump "a medium dragon ship" 2890020940 or  ingump "a large ship" 2890020940 or     ingump "a large dragon" 2890020940 or   ingump "a carrack" 2890020940 or   ingump "a galleon" 2890020940
+                    for 2
+                        sysmsg '♦♦ PLAYER BOAT ♦♦' 2263
+                        overhead '♦♦ PLAYER BOAT ♦♦' 2263
+                    endfor
+                endif
+            endif
+        else
+            replay
+        endif
+        pause 1000
+    endwhile
+endif
+pause minimumwait
+replay

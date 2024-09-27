@@ -1,0 +1,26 @@
+if not listexists crewlist
+    createlist crewlist
+else
+    clearlist crewlist
+endif
+
+@setvar! chesttosort
+clearignore 
+
+if findtypelist crewlist 8455|8454 chesttosort
+    foreach crew in crewlist
+        getlabel crew mycrewlabl
+        overhead '{{mycrewlabl}}'
+        pause 100
+        if "monkey" in mycrewlabl
+            hotkey 'grab item'
+            wft 500
+            target crew
+        else
+            @ignore crew
+        endif
+        while queued
+        endwhile
+    endfor
+endif
+        

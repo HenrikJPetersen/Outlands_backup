@@ -1,0 +1,29 @@
+if findtype 'hatch' ground any any 2 as hatchfound
+    dclick hatchfound
+    pause 250
+    if findtype '3705' hatchfound 0 as ppouch
+        hotkey 'Set Organizer HotBag-04'
+        wft 500
+        target ppouch
+        pause 250
+        organizer 04
+        while queued
+            pause 50
+        endwhile
+    else
+        overhead 'Organiser pouch not found'
+        if findtype '3705' backpack 0 as ppouch
+            getlabel ppouch myLabel
+            if "0 items" in myLabel
+                lift ppouch
+                pause 250
+                drop hatchfound
+            endif
+        else
+            overhead 'You need an empty pouch in your inventory'
+        endif
+        
+    endif
+else
+    overhead 'Could not find hatch within 2 tiles' 33
+endif

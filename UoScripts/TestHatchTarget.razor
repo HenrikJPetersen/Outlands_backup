@@ -1,0 +1,42 @@
+if not varexist hatch
+    setvar! hatch
+endif
+if not find hatch ground -1 -1 3
+    overhead 'TURN THAT BOAT'
+endif
+hotkey 'Set Grab Item HotBag'
+wft 1000
+target hatch
+pause 300
+if not listexists items
+    createlist items
+else
+    clearlist items
+endif
+if findtype '3702' hatch as magicbag
+    hotkey 'Set Grab Item HotBag'
+    wft 500
+    target magicbag
+
+    
+endif
+
+endif
+//Put magic shit in this grabber
+if findtypelist items 'rope|mushroom spore|3854|unidentified katana' backpack
+    if findtype '3702' hatch as magicbag
+        hotkey 'Set Grab Item HotBag'
+        wft 500
+        target magicbag
+    endif
+    foreach item in items
+        hotkey 'Grab Item'
+        wft 500
+        target item
+        pause 500
+    endfor
+endif
+    
+    
+
+        

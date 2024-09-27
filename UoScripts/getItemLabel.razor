@@ -1,0 +1,104 @@
+@setvar! waitVetHeal 2000
+@setvar! waitTankHeal 2000
+if not timerexists preventspam
+    createtimer preventspam
+endif
+clearsysmsg 
+if targetexists 
+    hotkey 'Cancel current target'
+endif
+if weight > maxweight 
+    if not findbuff 'strength'
+        overhead 'No str buff'
+        if not cooldown 'strength potion'
+            potion 'strength'
+            cooldown 'strength potion' 120000
+        endif
+    else
+        overhead  'overweight' 23 
+        pause 250
+        lifttype '3821' 100
+        pause 150
+        droprelloc 0 0
+        pause 150
+    endif
+endif
+if paralyzed 
+    say '[pouch'
+    pause 150
+endif
+if poisoned 
+    potion 'cure'
+    pause 250
+endif
+
+if hits < 50
+    if not bandaging
+        if not findbuff 'strength'
+            potion 'strength'
+            cooldown 'strength potion' 120000
+        endif
+    endif
+    pause 250
+    if not cooldown 'heal potion'
+        potion 'heal'
+        cooldown 'heal potion' 11500
+        pause 250
+    endif
+endif
+if warmode 'on'
+    if not bandaging 
+        if findtype 'veterinary supplies' backpack as vets
+            say '[VeterinarySupplies'
+            pause 250
+            if insysmsg 'You or your nearby followers do not require healin'
+                overhead '☻ No heal needed ☻' 2263
+                pause waitVetHeal
+                replay
+            elseif insysmsg 'You begin using veterinary supplies'
+                overhead 'VET STARTED'
+            endif
+        else
+            for 3
+                overhead 'OUT OF VET SUPS' 33
+                stop
+            endfor
+        endif
+    endif
+else
+    if timer preventspam > 10000
+        overhead 'Tank heal only - switch witch warmode' 2263
+        settimer preventspam 0
+    endif
+    if not bandaging
+        //Attempt to prevent misstargeting mobs and flag criminal.
+        if targetexists 
+            hotkey 'Cancel current target'
+        endif
+        hotkey 'Use Bandage (No Timer)'
+        wft 1000
+        if findtype 'tanka' ground 0 0 2 as tankpet
+            target tankpet
+        elseif findtype 'tanka' ground 0 0 20
+            hotkey 'Cancel current target'
+            overhead 'Move closer to your tank pet' 33
+            pause 500
+            
+        else
+            overhead 'Cannot find your tank pet' 33
+            pause 1000
+            replay
+        endif
+        pause 250
+        if insysmsg 'That being is not damaged'
+            overhead '☻ No heal needed ☻' 2263'
+            pause waitTankHeal
+        elseif insysmsg 'That is too far away'
+            pause 500
+        endif    
+    endif
+endif
+
+replay
+    
+    

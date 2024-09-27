@@ -1,0 +1,30 @@
+if not varexist globalwait
+    @setvar! globalwait 150
+endif
+if not varexist tilerman
+    @setvar! tilerman
+endif
+if not varexist boathp
+    @setvar! boathp
+endif
+if not gumpexists 4216593270
+    dclick tilerman 
+    dclick boathp
+    if ingump 'RobotTurtle' 4216593270
+        gumpresponse 21 4216593270
+    endif
+elseif gumpexists 4216593270
+    //overhead 'Found ship gump'
+    if ingump 'RobotTurtle' 4216593270
+        gumpresponse 21 4216593270
+    elseif find tilerman
+        dclick tiller
+        gumpresponse 21 4216593270      
+    endif
+else
+    say '[ship'
+    pause globalwait
+    replay
+endif
+
+

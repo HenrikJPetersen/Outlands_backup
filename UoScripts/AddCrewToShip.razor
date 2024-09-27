@@ -1,0 +1,37 @@
+if not listexists crewlist
+    createlist crewlist
+else
+    clearlist crewlist
+endif
+pause 150
+if findtypelist crewlist '8454|8455' backpack
+    if gumpexists 4216593270
+        sysmsg '> Found ship gump'
+        if not ingump 'Crew Size' 4216593270
+            sysmsg '> Navigating to crew'
+            gumpresponse 3 4216593270
+        endif
+        pause 150
+        if ingump '1/2' 4216593270
+            sysmsg '> Navigating to last crew page'
+            gumpresponse 11 4216593270
+        endif
+        pause 150
+        foreach crew in crewlist
+            sysmsg '> Adding crew'
+            gumpresponse 22 4216593270
+            wft 500
+            target crew
+            while not gumpexists 189348675
+            endwhile
+            while gumpexists 189348675
+                gumpresponse 2 189348675
+            endwhile
+            pause 500
+            if gumpexists 189348675
+                sysmsg 'something went wrong' 33
+                stop
+            endif
+        endfor
+    endif
+endif

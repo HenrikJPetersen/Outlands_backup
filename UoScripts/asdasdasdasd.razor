@@ -1,0 +1,34 @@
+if skill 'veterinary' = 120
+    for 3
+        say 'all follow me'
+        pause 500
+    endfor
+    stop
+endif
+if counttype '3617' backpack < 10
+    @menu shelf 1
+endif
+pause 250
+if not bandaging
+    dclicktype '3617'
+waitfortarget
+target 0x3828C4
+endif
+pause 500
+if insysmsg 'That being is not damaged'
+    say 'a flamehound kill'
+    wft 500
+    target 0x3828C4
+    warmode 'off'
+    warmode 'on'
+    warmode 'off'
+endif
+pause 250
+if hits < 80
+    for 5
+    say 'all follow me'
+    pause 500
+    endfor
+endif
+replay
+

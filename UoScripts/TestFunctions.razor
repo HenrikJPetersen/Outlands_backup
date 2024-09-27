@@ -1,0 +1,182 @@
+if not varexist followCount
+    @setvar! followCount 0
+endif
+if followers = 0
+    @setvar! followCount 0
+elseif followers = 1
+    @setvar! followCount 1
+elseif followers = 2
+    @setvar! followCount 2
+elseif followers = 3
+    @setvar! followCount 3
+elseif followers = 4
+    @setvar! followCount 4
+elseif followers = 5
+    @setvar! followCount 5
+endif
+
+@setvar! withercooldown 30700
+@setvar! summonghoul 0
+
+#### To enable autodispel - set var to 1
+#### To disable set it to 0
+if not varexist autoDispel
+    @setvar! autoDispel 1
+endif
+if not varexist petToDispel
+    @setvar! petToDispel 3
+endif
+
+
+if autoDispel = 1
+    @setvar! petToDispel 1
+elseif autoDispel = 0
+    @setvar! petToDispel 0 
+endif
+
+
+########### Brings up a target cursor to indicate what pet youre dispelling #############
+if followCount >= 4
+if petToDispel = 1
+    @setvar petToDispel
+endif
+endif
+############
+if followCount = 0
+    overhead 'no pets'
+    if cooldown wither
+    else
+        say '[wither'
+        cooldown wither withercooldown
+    endif
+    cast 'earth elemental'
+    pause 50
+    while not findtype "an earth elemental" ground -1 -1 0
+        if insysmsg 'disturbed'
+            stop
+        endif
+        pause 250
+    endwhile
+    pause 250
+    if findtype "an earth elemental" ground -1 -1 0 as guardpet
+        @menu guardpet 3
+        overhead 'GUARDING' 2170 guardpet
+        pause 250
+        stop
+    endif
+elseif followCount = 1
+    overhead '1 slot pet found'
+    if cooldown wither
+    else
+        say '[wither'
+        cooldown wither withercooldown
+    endif
+    cast 'earth elemental'
+    pause 50
+    while not findtype "an earth elemental" ground -1 -1 0
+        if insysmsg 'disturbed'
+            stop
+        endif
+        pause 250
+    endwhile
+    pause 250
+    if findtype "an earth elemental" ground -1 -1 0 as guardpet
+        @menu guardpet 3
+        overhead 'GUARDING' 2170 guardpet
+        pause 250
+        stop
+    endif
+elseif followCount = 2 
+    if findtype "an earth elemental" -1 -1 12 as EE
+        if cooldown wither
+            overhead 'WITHER ON CD'
+        else
+            say '[Wither'   
+            cooldown wither withercooldown
+        endif
+        cast 'earth elemental'
+        pause 50
+        while not findtype "an earth elemental" ground -1 -1 0
+            if insysmsg 'disturbed'
+                stop
+            endif
+            pause 250
+        endwhile
+        pause 250
+        if findtype "an earth elemental" ground -1 -1 0 as guardpet
+            @menu guardpet 3
+            overhead 'GUARDING' 2170 guardpet
+            pause 250
+        endif
+    endif
+    
+elseif followCount = 3
+    if findtype "an earth elemental" -1 -1 12 as EE
+        if cooldown wither = 0
+            say '[Wither'
+            cooldown wither withercooldown
+        else 
+            overhead 'WITHER ON CD'
+        endif
+        cast 'earth elemental'
+        pause 50
+        while not findtype "an earth elemental" ground -1 -1 0
+            if insysmsg 'disturbed'
+                stop
+            endif
+            pause 250
+            pause 250
+        endwhile
+        pause 250
+        if findtype "an earth elemental" ground -1 -1 0 as guardpet
+            @menu guardpet 3
+            overhead 'GUARDING' 2170 guardpet
+            pause 250
+        endif
+    endif
+elseif followCount = 4 or followCount = 5
+    if findtype "a lich" ground -1 -1 12 as lich
+        if noto lich = "friend"
+            @menu lich 3
+            overhead 'guard active' 22 lich
+        endif
+    endif
+    if dead petToDispel
+        overhead 'Could not find pet to dispel'
+    else
+        cast 'dispel'
+        while not targetexists 
+        endwhile
+        while targetexists 
+            target petToDispel
+        endwhile
+    endif
+    if cooldown wither
+        if mana < 45
+            overhead 'Stopping - no mana'
+            stop
+        endif
+    else
+        say '[wither'
+        cooldown wither withercooldown
+    endif
+    pause 250
+    cast 'earth elemental'
+    while not findtype "an earth elemental" ground -1 -1 0
+        if insysmsg 'disturbed'
+            stop
+        endif
+        pause 250
+    endwhile
+    if findtype "an earth elemental" ground -1 -1 0 as guardpet
+        @menu pet 3
+        overhead '■■ Guard active ■■' 2170 guardpet
+        pause 250
+    endif
+    if findtype "a lich" ground -1 -1 12 as lich
+        if noto lich = "friend"
+            @menu lich 4
+            overhead 'follow active' 22 lich
+        endif
+    endif
+endif

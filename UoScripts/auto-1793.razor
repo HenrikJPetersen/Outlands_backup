@@ -1,0 +1,31 @@
+skill 'provocation'
+## 15 is the range in tiles
+if findtypelist 'BIG DEAMON' ground -1 -1 15 as bigdeamon
+    foreach deamon in bigdeamons
+        getlabel bigdeamons mybdeamonlabel
+        pause 25
+        if 'provo' in mybigdeamonlabel
+            @ignore deamon
+        else
+            overhead '■■■ HERE ■■■' 2263 deamon
+            target deamon
+            continue
+        endif
+    endfor
+    sysmsg 'NO BIG DEAMONS FOUND' 44
+endif
+if findtypelist 'SMALL DEAMON' ground -1 -1 15 as smalldeamon
+    foreach deamon in smalldeamon
+        getlabel bigdeamons mysmalldeamonlabel
+        pause 25
+        if 'provo' in mysmalldeamonlabel
+            @ignore deamon
+        else
+            overhead '■■■ HERE ■■■' 2263 deamon
+            target deamon
+            continue
+        endif
+    endfor
+    sysmsg 'NO SMALL DEAMONS FOUND' 44
+endif
+

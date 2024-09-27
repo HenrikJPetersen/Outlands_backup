@@ -1,0 +1,36 @@
+
+if maxweight = 390
+    if weight > 395
+        if counttype 'White Potion' backpack > 2
+            if findtype 'White Potion' backpack
+                if not lhandempty
+                    clearhands 'left'
+                    pause minimumWait
+                endif
+                potion 'strength'
+                pause minimumWait
+                cooldown 'strength potion' strengthpotionduration
+            endif
+        else
+            if disableOverhead = 0
+                overhead '↓ overweight ↓' 23 
+            endif
+            pause minimumWait
+            lifttype '3821' 500
+            pause minimumWait
+            droprelloc 0 0
+            pause minimumWait
+        endif
+    endif
+elseif maxweight = 460
+    if weight > 465
+        if disableOverhead = 0
+            overhead '↓ overweight ↓' 23 
+        endif
+        pause minimumWait
+        lifttype '3821' 100
+        pause minimumWait
+        droprelloc 0 0
+        pause minimumWait
+    endif
+endif

@@ -1,0 +1,284 @@
+##SETTINGS
+## How often it loops through vet kits // bandages on tank
+## Set it to 5000 + whatever your want it to wait.. so if its 2 seconds it would be 7000
+@setvar! maxWaitTotal 7000
+@setvar! maxWaitVet 2000
+@setvar! maxWaitTank 3000
+
+## AutoEquipWeapon with aspect in desc
+
+
+## toggleWarmodePotions: if not in warmode - it will skip buff potions.
+@setvar! toggleWarmodePotions 1
+
+## POTIONS: 1 for active, 0 for inactive
+@setvar! skipAllBuffPotions 1
+@setvar! agilitypotion 0
+@setvar! magicresistpotion 0
+@setvar! eatfood 1
+@setvar! disableOverhead 0
+@setvar! autoequip 1
+
+
+
+##POTION DURATION - if you have alchemy you should change them according to your durations
+@setvar! strengthpotionduration 120000
+
+
+## I recommend that you do not lower this prevent spam timer - can increase it - of entirely disable overhead msgs.
+if not timerexists preventspam
+    createtimer preventspam
+    settimer preventspam 10000
+endif
+if not timerexists bandage
+    createtimer bandage
+    settimer bandage 0
+endif
+
+@setvar! minimumwait 250
+
+
+if dead
+    stop
+endif
+
+##SURVIVAL!
+if paralyzed
+    say '[Pouch'
+    pause minimumwait
+endif
+if poisoned 
+    potion 'cure'
+    pause minimumwait
+endif
+## Strength potion and heal pot.
+if hits < 50
+    if not bandaging
+        if not findbuff 'Strength'
+            potion 'strength'
+            cooldown 'strength potion' 120000
+        endif
+    endif
+    pause 500
+    if not cooldown 'heal potion'
+        potion 'heal'
+        cooldown 'heal potion' 11500
+        pause minimumwait
+    else
+        if disableOverhead = 0
+            overhead '☻ EMERGENCY ☻' 33
+        endif   
+    endif
+endif
+
+
+## Add check for debuff: weaken - to override the strength potion cooldown.
+## WEIGHT CHECK
+if weight > maxweight
+    if not findbuff 'strength'
+        if disableOverhead = 0
+            overhead 'No str buff'
+        endif
+        if findtype 'White Potion' backpack
+            if not cooldown 'strength potion'
+                potion 'strength'
+                cooldown 'strength potion' strengthpotionduration
+            endif
+        else
+            if disableOverhead = 0
+                overhead '↓ overweight ↓' 23 
+            endif
+            pause minimumwait
+            lifttype '3821' 150
+            pause minimumwait
+            droprelloc 0 0
+            pause minimumwait
+        endif
+    else
+        if disableOverhead = 0
+            overhead '↓ overweight ↓' 23 
+        endif
+        pause minimumwait
+        lifttype '3821' 150
+        pause minimumwait
+        droprelloc 0 0
+        pause minimumwait
+    endif
+endif
+
+if eatfood = 1 
+    if not findbuff 'Food satisfaction'
+        if findtype 'tray' backpack as ffood
+            dclick ffood
+        else
+            if disableOverhead = 0
+                overhead 'No food buff - and no food in backpack'
+            endif
+            @setvar! eatfood 0
+        endif
+    endif
+endif
+
+if toggleWarmodePotions = 1 and skipAllBuffPotions = 0
+    if warmode 'on'
+        if not findbuff 'Agility'
+            if findtype 'Blue potion' backpack
+                potion 'agility'
+                pause minimumwait
+            else
+                if disableOverhead = 0
+                    overhead 'Out of agility potions' 33
+                endif
+            endif
+        endif
+        if not findbuff 'Magic Resist Potion'
+            if findtype 'Black potion' backpack as resistpot
+                dclick resistpot
+                pause minimumwait
+            else
+                if disableOverhead = 0
+                    overhead 'Out of agility potions' 33
+                endif
+            endif
+        endif
+    else
+        
+    endif
+elseif toggleWarmodePotions = 0
+    if agilitypotion = 1 
+        if not findbuff 'Agility'
+            if findtype 'Blue potion' backpack
+                potion 'agility'
+                pause minimumwait
+            else
+                if disableOverhead = 0
+                    overhead 'Out of agility potions' 33
+                endif
+            endif
+        endif
+    endif
+    if magicresistpotion = 1 
+        if not findbuff 'Magic Resist Potion'
+            if findtype 'Black potion' backpack as resistpot
+                dclick resistpot
+                pause minimumwait
+            else
+                if disableOverhead = 0
+                    overhead 'Out of agility potions' 33
+                endif
+            endif
+        endif
+    endif
+endif
+## START: Auto equip section  
+if autoequip = 1
+    if listexists weaponlist
+        clearlist weaponlist
+    else
+        createlist weaponlist
+    endif
+    if skill 'fencing' > 79 and rhandempty and  findtypelist weaponlist 'war fork|kryss' backpack 
+        foreach weap in weaponlist
+            getlabel weap found
+            pause 150
+            if "exceptional" in found 
+                dclick weap
+                pause minimumwait
+                replay
+            else
+                @ignore weap
+            endif
+        endfor
+    endif   
+    if skill 'macing' > 79 and rhandempty and findtypelist weaponlist 'maul|war axe|war mace|mace|hammer pick|club' backpack 
+        foreach weap in weaponlist
+            getlabel weap found
+            pause 150
+            if "exceptional" in found
+                dclick weap
+                pause minimumwait
+                replay
+            else
+                @ignore weap
+            endif
+        endfor
+    endif
+    if rhandempty
+        overhead 'MISSING WEAPON'
+        clearignore
+    endif
+    if skill 'swords' > 79 and rhandempty and findtypelist weaponlist 'viking sword|katana' backpack 
+        foreach weap in weaponlist
+            getlabel weap found
+            pause 150
+            if "exceptional" in found
+                dclick weap
+                pause minimumwait
+                replay
+            else
+                @ignore weap
+            endif
+        endfor
+    endif
+    if rhandempty
+        overhead 'MISSING WEAPON'
+        clearignore
+    endif
+endif
+
+if warmode 'on'
+    if not bandaging 
+        if timer bandage > maxWaitTotal
+        else
+            replay
+        endif
+        
+        if findtype 'veterinary supplies' backpack as vets
+            say '[VeterinarySupplies'
+            pause 250
+            if insysmsg 'You or your nearby followers do not require healin'
+                if timer preventspam > 10000
+                    overhead '☻ No heal needed ☻' 2263
+                    settimer preventspam 0
+                endif
+                pause maxWaitVet
+                
+                replay
+            elseif insysmsg 'You begin using veterinary supplies'
+                settimer bandage 0
+            endif
+        else
+            for 3
+                overhead 'OUT OF VET SUPS' 33
+                stop
+            endfor
+        endif
+    endif
+else
+    stop
+endif
+
+replay
+
+
+    
+    
+
+    
+    
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

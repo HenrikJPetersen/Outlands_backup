@@ -1,0 +1,32 @@
+if warmode 'on'
+    if not bandaging 
+        if findtype 'veterinary supplies' backpack as vets
+            say '[VeterinarySupplies'
+            pause 250
+            if insysmsg 'You or your nearby followers do not require healin'
+                overhead '☻ No heal needed ☻' 2263
+                pause 3000
+                replay
+            elseif insysmsg 'You begin using veterinary supplies'
+                overhead 'VET STARTED'
+            endif
+        else
+            for 3
+                overhead 'OUT OF VET SUPS' 33
+                stop
+            endfor
+        endif
+    endif
+else
+    hotkey 'Use Bandage'
+    wft 500
+    if findtype 'tanka' ground 0 0 8 as tankpet
+        target tankpet
+    else
+        overhead 'Cannot find your tank pet'
+        replay
+    endif    
+endif
+    
+    
+    

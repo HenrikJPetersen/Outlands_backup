@@ -1,0 +1,60 @@
+## Remember to change to your name in line: 28
+## Choose what to do when boarding your ship
+@setvar! ReadyCrew 1
+@setvar! ShipHotbarGumps 1
+@setvar! TargetingModeGumps 1
+@setvar! closecrewgump 1
+##unsetvar mytillerm
+@setvar! minpause 300
+if find mytillerm 'ground' 
+    if not gumpexists 4216593270
+        sysmsg '>> Found your tillerman but no ship gump' 88
+        dclick mytillerm
+        pause minpause
+        replay
+    else
+        sysmsg '>> Found your tillerman and ship gump' 88
+        gumpresponse 21 4216593270
+    endif
+else
+    # Change to a 'findtypelist' so it will click every tillerman untill it opens the gump with your name.
+    if findtype 'tiller man' 'ground' as tiller
+        setvar mytillerm tiller
+        dclick mytillerm 
+        pause 50
+        if gumpexists 4216593270 and ingump 'RobotTurtle' 4216593270 or ingump 'Zeans' 4216593270
+            sysmsg '>> Tillerman ID set correctly' 88
+        else 
+            sysmsg 'You need to reset variable mytillerm' 33
+        endif
+    endif
+endif
+pause 350
+if insysmsg 'where do you wish to disembark'
+    sysmsg '■ LEO MODE ACTIVE ■' 33
+    stop
+endif
+sysmsg 'Getting ready to sail, ohoy sailor' 44
+if ReadyCrew = 1
+    sysmsg '>> Ready crew'
+    # Ready the crew
+    say '[ReadyCrew'
+    pause minpause
+endif
+if ShipHotbarGumps = 1
+    # Open ship hotbar gumps
+    sysmsg '>> Shiphotbars'
+    say '[ShipHotbars'
+    pause minpause
+endif
+if TargetingModeGumps  = 1
+    sysmsg '>> targetting gump'
+    say '[TargetingMode'
+    pause minpause
+endif
+if closecrewgump = 1
+    ## Close crew gump
+    if gumpexists 1722920179
+        gumpclose 1722920179
+    endif
+endif

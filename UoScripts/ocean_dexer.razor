@@ -1,0 +1,524 @@
+## Requirement to run without errors.
+## Cooldown called: 'healpot' of type: regular
+## Cooldown called: 'holylight' of type: regular
+## Cooldown called: 'bandage' of type: Bandage timer
+## Cooldown called: 'taunttted' of type: Bandage timer
+## Cooldown called: 'pvp' of type: regular  
+## Cooldown called: 'spyglass' of type: regular  
+    ##cooldown spyglass 0
+## Minimumwaitforping - ping related. would not go below 250(EU players, no idea about performance in US).    
+@setvar! minimumWaitForPing 250    
+## Target rangecheck distance in tiles.
+@setvar! rangecheck 14
+## Enable chivheals.
+@setvar! chivheals 0
+## Show text indicator above ship bombs.
+@setvar! showshipbombs 1
+## Auto AOE taunt.
+@setvar! taunt 0
+## Autospy.
+@setvar! autospy 1
+## Notify when out of warmode.
+@setvar! notifywarmode 0
+## Delay between warmode notification.
+@setvar! warmodenotifydelay 8000
+## Auto eat food - if no food buff.
+@setvar! autofood 1
+## Auto equip weapon if lhandempty
+@setvar! autoequip 1
+
+@setvar! autocartobuff 0
+
+
+## Auto open ship hp(Can cause some issues when near ally ships - working on a fix)
+@setvar! autoopenshiphp 0
+## Experimental: Not fully implemented yet and not part of this release
+@setvar! autohealcrew 0
+@setvar! autoloot 0
+@setvar! autodumploot 0
+
+
+##☻☻☻☻☻☻☻☻ DO NOT EDIT BELOW ☻☻☻☻☻☻☻☻##
+clearsysmsg 
+
+@setvar! autohealpot 1
+
+if cooldown spyglass > 60000 and findtype '5365' backpack
+    cooldown spyglass 0
+endif
+
+
+if not timerexists warmodenotifier
+    createtimer warmodenotifier
+    settimer warmodenotifier 0
+else
+    settimer warmodenotifier 0
+endif
+@setvar! myKillTarget 0
+
+
+## Open abilityhotbar
+if skill 'fishing' >= 80 and not gumpexists 3954121934 and not lhandempty
+    say '[abilityhotbar'
+    pause minimumWaitForPing
+endif
+## Open chiv hotbar
+if skill 'chivalry' > 80 and not gumpexists 525330479
+    say '[chivalryhotbar'
+    pause minimumWaitForPing
+endif
+
+
+if autofood = 1
+    if not findbuff 'food'
+        dclicktype 'tray'
+    endif
+endif
+    
+
+while not dead
+    if warmode 
+    ## WARMODE START
+        clearsysmsg 
+        ## Autoequip harpoon or trident.
+        if autoequip = 1
+            if lhandempty and skill 'fishing' >= 80 
+                if findtype 'harpoon' as poon
+                    dclick poon
+                    pause 350
+                elseif findtype 'trident' as tdent
+                    dclick tdent
+                    pause 350
+                else
+                    sysmsg '☻☻☻ Could not find a weapon ☻☻☻' 33
+                    @setvar! autoequip 0
+                endif
+            endif
+        endif
+
+
+        ## Bandage handler
+        if not bandaging and hp < maxhp
+            while targetexists 
+            endwhile
+            hotkey 'Bandage self'
+            pause 450
+        endif
+        
+        ## Heal pot handler
+        if autohealpot = 1
+            if not bandaging and hp < 40
+                clearsysmsg 
+                if findtype 'Yellow Potion' backpack
+                    if not cooldown healpot
+                        potion 'heal'
+                        cooldown healpot 10000
+                        pause minimumWaitForPing
+                    else 
+                        overhead 'coooldown healpot'
+                    endif
+                    if insysmsg 'You are already at full health.'
+                        cooldown healpot 0
+                    endif
+                else
+                    sysmsg 'OUT OF HEAL POTS' 33
+                    @setvar! autohealpot 0
+                endif
+            endif
+        
+            if cooldown bandage > 4 and hp < 40
+                clearsysmsg 
+                if findtype 'Yellow Potion' backpack
+                    if not cooldown healpot
+                        potion 'heal'
+                        cooldown healpot 10000
+                        pause minimumWaitForPing
+                    else 
+                        overhead 'coooldown healpot'
+                    endif
+                    if insysmsg 'You are already at full health.'
+                        cooldown healpot 0
+                    endif
+                else
+                    sysmsg 'OUT OF HEAL POTS' 33
+                    @setvar! autohealpot 0
+                endif
+            endif
+        endif
+        
+        ## Cure handler
+        if autocure = 1
+            if poisoned and diffhits > 40 and cooldown 'bandage' > 4
+                if findtype 'Orange potion' backpack
+                    potion 'cure'
+                else
+                    sysmsg 'OUT OF CURE POTS' 33
+                    @setvar! autocure 0
+                endif
+            endif
+            if poisoned and hp < 40
+                if findtype 'Orange potion' backpack
+                    potion 'cure'
+                else
+                    sysmsg 'OUT OF CURE POTS' 33
+                    @setvar! autocure 0
+                endif
+            endif
+        endif
+        
+        
+        
+        ## Chiv heals handler
+        
+        if chivheals = 1 and skill 'chivalry' > 100
+            @setvar! holylight_hpcheck 35
+            if not cooldown 'holylight' and hp < holylight_hpcheck
+                if ingump '12/12' 1387930325 or ingump '11/12' 1387930325 or ingump '10/12' 1387930325 or ingump '9/12' 1387930325 or ingump '8/12' 1387930325 or ingump '7/12' 1387930325 or ingump '6/12' 1387930325 or ingump '5/12' 1387930325 
+                    yell '[HolyLight'
+                    cooldown holylight 30000
+                pause 300
+                else 
+                    
+                endif
+            endif
+            @setvar! noblesacrifice_hpcheck 35
+            if hp < noblesacrifice_hpcheck and not cooldown 'noblesacrifice'
+                if ingump '12/12' 1387930325 or ingump '11/12' 1387930325 or ingump '10/12' 1387930325 or ingump '9/12' 1387930325 or ingump '8/12' 1387930325 or ingump '7/12' 1387930325 or ingump '6/12' 1387930325 or ingump '5/12' 1387930325  or ingump '4/12' 1387930325 
+                    yell '[NobleSacrifice'
+                    wft 500
+                    target self
+                    cooldown noblesacrifice 30000
+                    pause 300
+                else
+                    
+                endif
+            else 
+                
+            endif
+            
+        endif
+        
+        
+        
+        ## Get targets Boss has first priority.
+        if find myKillTarget ground -1 -1 rangecheck
+            
+        elseif not find myKillTarget ground -1 -1 rangecheck
+            sysmsg '>> NO TARGET' 44
+            hotkey 'Target closest murderer monster'
+            pause minimumWaitForPing
+            if insysmsg 'No one matching that was found'
+                @setvar! foundboss 0
+                clearsysmsg 
+                hotkey 'target closest grey monster'
+                pause minimumWaitForPing
+                if insysmsg 'No one matching that was found'
+                    @setvar! foundmob 0
+                    @setvar! myKillTarget 0
+                    warmode off
+                else
+                    sysmsg '>>> Found a mob' 44
+                    @setvar! foundmob 1
+                    @setvar! myKillTarget lasttarget
+                    overhead '●▼♪♪ HERE ♪♪▼●' 2263 myKillTarget
+                endif
+            else
+                @setvar! foundboss 1
+                @setvar! myKillTarget lasttarget
+                overhead '●▼♪♪ HERE ♪♪▼●' 2263 myKillTarget
+            endif
+        endif
+        ## Attack target if not friendly.
+        if foundboss = 1 or foundmob = 1
+            pause minimumWaitForPing
+            if noto myKillTarget = 'hostile'
+                attack myKillTarget
+            elseif noto myKillTarget = 'murderer'
+                attack myKillTarget
+            elseif noto myKillTarget = 'enemy'
+                attack myKillTarget
+            elseif noto myKillTarget = 'criminal'
+                attack myKillTarget
+            elseif noto myKillTarget = 'innocent'
+                overhead 'Youre  to attack an innocent' 44
+                @setvar! myKillTarget 0
+            elseif noto myKillTarget = 'invulnerable'
+                overhead 'Cant  invulnerable' 44
+                @setvar! myKillTarget 0
+            elseif noto myKillTarget = 'friend'
+                overhead 'Dont kill your friend' 44
+                @setvar! myKillTarget 0
+            endif  
+        else 
+            warmode 'off'
+            sysmsg '<< We are clear of targets or out of range. Rangecheck: ({{rangecheck}} tiles) >>' 44
+            pause minimumWaitForPing
+        endif
+        
+        if taunt = 1 and find myKillTarget ground -1 -1 4 and not cooldown taunttted and skill 'parry' >= 80
+            say '[taunt'
+            wft 500
+            target self
+            cooldown taunttted 15000
+            pause 350
+        endif
+        ## WARMODE END
+    else
+        
+        ## NOT IN WARMODE START
+        clearsysmsg 
+        ## Autoequip harpoon or trident.
+        if autoequip = 1
+            if lhandempty and skill 'fishing' >= 80 
+                if findtype 'harpoon' as poon
+                    dclick poon
+                    pause 350
+                elseif findtype 'trident' as tdent
+                    dclick tdent
+                    pause 350
+                else
+                    sysmsg '☻☻☻ Could not find a weapon ☻☻☻' 33
+                    @setvar! autoequip 0
+                endif
+            endif
+        endif
+
+
+        ## Bandage handler
+        if not bandaging and hp < maxhp
+            while targetexists 
+            endwhile
+            hotkey 'Bandage self'
+            pause 450
+        endif
+        
+        ## Heal pot handler
+        if autohealpot = 1
+            if not bandaging and hp < 40
+                clearsysmsg 
+                if findtype 'Yellow Potion' backpack
+                    if not cooldown healpot
+                        potion 'heal'
+                        cooldown healpot 10000
+                        pause minimumWaitForPing
+                    else 
+                        overhead 'coooldown healpot'
+                    endif
+                    if insysmsg 'You are already at full health.'
+                        cooldown healpot 0
+                    endif
+                else
+                    sysmsg 'OUT OF HEAL POTS' 33
+                    @setvar! autohealpot 0
+                endif
+            endif
+        
+            if cooldown bandage > 4 and hp < 40
+                clearsysmsg 
+                if findtype 'Yellow Potion' backpack
+                    if not cooldown healpot
+                        potion 'heal'
+                        cooldown healpot 10000
+                        pause minimumWaitForPing
+                    else 
+                        overhead 'coooldown healpot'
+                    endif
+                    if insysmsg 'You are already at full health.'
+                        cooldown healpot 0
+                    endif
+                else
+                    sysmsg 'OUT OF HEAL POTS' 33
+                    @setvar! autohealpot 0
+                endif
+            endif
+        endif
+        
+        ## Cure handler
+        if autocure = 1
+            if poisoned and diffhits > 40 and cooldown 'bandage' > 4
+                if findtype 'Orange potion' backpack
+                    potion 'cure'
+                else
+                    sysmsg 'OUT OF CURE POTS' 33
+                    @setvar! autocure 0
+                endif
+            endif
+            if poisoned and hp < 40
+                if findtype 'Orange potion' backpack
+                    potion 'cure'
+                else
+                    sysmsg 'OUT OF CURE POTS' 33
+                    @setvar! autocure 0
+                endif
+            endif
+        endif
+        
+        
+        
+        ## Chiv heals handler
+        if chivheals = 1 and skill 'chivalry' > 100
+            @setvar! holylight_hpcheck 35
+            if hp < holylight_hpcheck and not cooldown 'holylight'
+                if ingump '12/12' 1387930325 or ingump '11/12' 1387930325 or ingump '10/12' 1387930325 or ingump '9/12' 1387930325 or ingump '8/12' 1387930325 or ingump '7/12' 1387930325 or ingump '6/12' 1387930325 or ingump '5/12' 1387930325 
+                    yell '[HolyLight'
+                    cooldown holylight 30000
+                    pause 300
+                else 
+                    sysmsg 'Not enough runes for holylight'
+                endif
+            endif
+            @setvar! noblesacrifice_hpcheck 35
+            if ingump '12/12' 1387930325 or ingump '11/12' 1387930325 or ingump '10/12' 1387930325 or ingump '9/12' 1387930325 or ingump '8/12' 1387930325 or ingump '7/12' 1387930325 or ingump '6/12' 1387930325 or ingump '5/12' 1387930325  or ingump '4/12' 1387930325 
+                if hp < noblesacrifice_hpcheck and not cooldown 'noblesacrifice'
+                    yell '[NobleSacrifice'
+                    wft 500
+                    target self
+                    cooldown noblesacrifice 30000
+                    pause 300
+                endif
+            else 
+                sysmsg 'Not enough runes for noblesacrifice'
+            endif
+        endif
+        
+    
+        ## NOT IN WARMODE END
+    endif
+    
+    if autospy = 1 
+        if not queued and not targetexists and not cooldown spyglass 
+        # Closegump for more smooth spyglass
+            if gumpexists 2890020940
+                gumpclose 2890020940
+                pause 25
+            endif
+            while targetexists 
+                sysmsg 'Target cursor up'
+                wait 500
+            endwhile
+            sysmsg '> Running spyglass !!' 44
+            //Valorite
+            if findtype '5365' backpack 1763 as glass
+                while targetexists 
+                endwhile
+                dclick glass
+                wft 500
+                target 'self'
+                waitforgump 2890020940
+            //Agapite
+            elseif findtype '5365' backpack 2425 as glass
+                while targetexists 
+                endwhile
+                dclick glass
+                wft 500
+                target 'self'
+                waitforgump 2890020940
+            elseif findtype '5365' backpack as glass
+                while targetexists 
+                endwhile
+                dclick glass
+                wft 500
+                target 'self'
+                waitforgump 2890020940
+            elseif not findtype '5365' backpack
+                sysmsg 'No more spyglass in backpack' 33
+                cooldown spyglass 1000000
+            endif
+            
+            if skill 'cartography' = 80 and not cooldown pvp
+                if ingump '152' 2890020940
+                    for 2
+                        sysmsg 'Missing Cartography buff...' 33
+                    endfor
+                    if warmode 
+                    else
+                        if findtype '2726' backpack as explopack
+                            sysmsg 'Getting cartography buff'
+                            dclick explopack
+                        endif
+                    endif
+                endif
+            endif
+            
+            if autocartobuff = 1
+                if skill 'cartography' > 79 and not cooldown pvp
+                    pause minimumWaitForPing
+                    if ingump '152' 2890020940
+                        for 2
+                            sysmsg 'Missing Cartography buff...' 33
+                        endfor
+                        if warmode 
+                        else
+                            if findtype '2726' backpack as explopack
+                                sysmsg 'Getting cartography buff'
+                                dclick explopack
+                            endif
+                        endif
+                    endif
+                endif
+            endif
+            
+            if ingump 'Search for ships' 2890020940
+                gumpresponse 4 2890020940
+                cooldown spyglass 8000
+            endif 
+            pause minimumWaitForPing
+            # Announcing playerboats if found in gump - set annouceplayerboats to 1
+            if annouceplayerboats = 1
+                if ingump "a small ship" 2890020940 or ingump "a small dragon ship" 2890020940 or   ingump "a medium ship" 2890020940 or    ingump "a medium dragon ship" 2890020940 or  ingump "a large ship" 2890020940 or     ingump "a large dragon ship" 2890020940 or   ingump "a carrack" 2890020940 or   ingump "a galleon" 2890020940
+                    for 2
+                        sysmsg '♦♦ PLAYER BOAT ♦♦' 2263
+                        overhead '♦ PLAYER BOAT ♦' 2263
+                    endfor
+                endif
+            endif
+            while ingump "Next" 2890020940
+                if ingump "Next" 2890020940
+                    pause 500
+                    gumpresponse 3 2890020940
+                    # Announcing playerboats if found in gump  - set annouceplayerboats to 1
+                    if annouceplayerboats = 1
+                        if ingump "a small ship" 2890020940 or  ingump "a small dragon ship" 2890020940 or   ingump "a medium ship" 2890020940 or    ingump "a medium dragon ship" 2890020940 or  ingump "a large ship" 2890020940 or     ingump "a large dragon" 2890020940 or   ingump "a carrack" 2890020940 or   ingump "a galleon" 2890020940
+                            for 2
+                                sysmsg '♦♦ PLAYER BOAT ♦♦' 2263
+                                overhead '♦ PLAYER BOAT ♦' 2263
+                            endfor
+                        endif
+                    endif
+                endif
+            endwhile
+        endif
+    endif
+    ## Autoopen ship hp
+    if autoopenshiphp = 1
+        ## AUTO OPEN SHIP HP BAR 
+        if listexists tiller_list
+            clearlist tiller_list
+        else
+            createlist tiller_list
+        endif
+        
+        if findtypelist tiller_list 'tiller man' 'ground' or findtypelist tiller_list 'status bar' ground
+            foreach tiller in tiller_list
+                dclick tiller
+                waitforgump 4216593270
+                @ignore tiller
+            endfor
+        endif
+    endif
+    if not timerexists preventspamtimer
+        createtimer preventspamtimer 
+        settimer preventspamtimer 3500
+    endif
+    if showshipbombs = 1
+        if findtype '5188' ground -1 -1 10 as sbomb
+            if timer preventspamtimer > 3000
+                settimer preventspamtimer 0
+                for 1
+                    overhead "↓↓ SHIP B898OMB ↓↓" 2263 sbomb
+                    overhead "↓↓ SHIP BOMB ↓↓" 33 sbomb
+                endfor
+            endif
+        endif
+    endif
+endwhile

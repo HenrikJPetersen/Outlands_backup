@@ -1,0 +1,26 @@
+@setvar! minimumWait 250
+
+
+
+
+
+
+
+## HEAL HANDLING START
+if not bandaging and timer vetHealTimer > maxWaitVet
+    say 'VetSupplies'
+    
+    pause minimumWait
+endif
+
+if hp < 80 and not bandaging
+    say 'VetSupplies'
+    pause minimumWait
+    if hp < 75
+        potion 'Heal'
+        pause minimumWait
+    endif
+endif
+## HEAL HANDLING END
+
+    

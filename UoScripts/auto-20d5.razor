@@ -1,0 +1,16 @@
+if not cooldown hiding or cooldown stealth and hidden
+    hotkey 'Target Closest Grey Monster'
+    if not find lasttarget ground -1 -1 1
+        overhead "▼ OUT OF RANGE ▼" 88 lasttarget
+    else
+        hotkey 'Attack Last Target'
+        pause 250
+        skill 'hiding'
+    endif
+elseif not hidden
+    skill 'hiding'
+elseif hidden
+    skill 'stealth'
+else
+    overhead 'You will fail hiding after attack'
+endif

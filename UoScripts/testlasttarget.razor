@@ -1,0 +1,25 @@
+## See bottom of script for spell/ability ID
+## Last used ID: 2
+@setvar! enabledCooldowns 1
+if not targetexists 
+    @setvar! globalcooldown 0
+endif
+if enabledCooldowns = 1
+    hotkey 'Last target'
+    if not targetexists 
+        pause 25
+        if globalcooldown = 9
+            cooldown poisontick 4700
+            @setvar! globalcooldown 0
+        endif
+    endif
+elseif enabledCooldowns = 0
+    hotkey 'Last target'
+else
+    hotkey 'Last target'    
+endif
+@setvar globalcooldown 0
+## cooldowns disabled: 0
+## poison 9
+overhead '☻☻ HERE ☻☻'  2263 lasttarget 
+  

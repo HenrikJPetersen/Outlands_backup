@@ -1,0 +1,91 @@
+## Implement cast timer cooldowns for spells - so we do not get stuck while waiting for a target.
+
+if skill 'necromancy' > 99 and not cooldown corpseskin
+    say '[corpseskin'
+    cooldown corpseskin 29000
+endif
+if findtype 'status bar' ground
+    overhead 'WE GOT A MANA WELL' 2263
+endif
+if mana < 80 and not cooldown mushroom
+    overhead 'Can eat a shroom'
+    if findtype '29012' backpack as shroom
+        dclick shroom
+        cooldown mushroom 60000
+    else
+        cast 'create food'
+    pause 1250
+    endif
+endif
+if not cooldown harm and mana > 6
+    cast 'harm'
+    while not targetexists 
+    endwhile
+    while targetexists 
+        lasttarget
+    endwhile
+    elseif not cooldown lightning and mana > 11
+    cast 'lightning'
+    while not targetexists 
+    endwhile
+    while targetexists 
+        lasttarget
+    endwhile
+elseif mana > 41
+    cast 'Flamestrike'
+    while not targetexists 
+    endwhile
+    while targetexists 
+        lasttarget
+    endwhile
+elseif mana < 40 and findtype 'status bar' ground
+    cast 'Flamestrike'    
+    while not targetexists 
+        if not findtype 'status bar' ground
+            replay
+        endif
+    endwhile
+    while targetexists 
+        lasttarget
+    endwhile
+elseif mana < 41 
+    skill 'meditation'
+    cooldown meditation 8000
+    pause 75
+    if findbuff 'actively meditating'
+        while mana < 90
+        pause 250
+           if not findbuff 'actively meditation'
+               if not cooldown meditation
+                overhead 'trigger meditation in while loop'
+                skill 'meditation'
+                cooldown meditation 9000
+                else
+                endif
+            endif
+                
+            if not cooldown harm and cooldown meditation < 2000
+                cast 'harm'
+                while not targetexists 
+                endwhile
+                while targetexists 
+                    lasttarget
+                endwhile
+                pause 150
+            endif
+            if not cooldown lightning and cooldown meditation < 2000
+                cast 'lightning'
+                while not targetexists 
+                endwhile
+                while targetexists 
+                    lasttarget
+                endwhile
+                pause 150
+            endif
+        endwhile
+    else
+        skill 'meditation'
+    endif
+endif
+pause 160
+replay

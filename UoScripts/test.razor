@@ -1,0 +1,35 @@
+if listexists tiller_list
+    clearlist tiller_list
+else
+    createlist tiller_list
+endif
+##unsetvar tillerman
+clearignore
+if gumpexists 4216593270
+    if ingump 'RobotTurtle'
+        gumpresponse 21 4216593270
+        break
+    else
+        gumpclose 4216593270
+        pause 300
+        replay
+    endif
+else
+    if find tillerman 'ground'
+        dclick tillerman
+        pause 300
+        gumpresponse 21 4216593270
+        break
+    endif
+    if findtypelist tiller_list 'tiller man' 'ground'
+        foreach x in tiller_list
+            dclick x
+            pause 400
+            if ingump 'RobotTurtle' 4216593270
+                gumpresponse 21 4216593270
+                @setvar tillerman x
+                break
+            endif
+        endfor
+    endif   
+endif

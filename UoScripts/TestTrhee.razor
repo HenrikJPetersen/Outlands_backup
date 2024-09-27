@@ -1,0 +1,60 @@
+if lhandempty 
+    if findtype 'fishing pole' backpack 
+        dress fishing
+    else
+        for 15
+            overhead 'OUT OF FISHING POLES'
+            pause 5000
+        endfor
+        break
+    endif
+endif
+pause 50
+organizer 12
+
+clearsysmsg
+overhead 'Starting fishing' 2263
+hotkey 'Use item in hand'
+pause 250
+while not insysmsg 'Fishing skillgain'
+    if insysmsg 'resources nearby'
+        while insysmsg 'resources nearby'
+            overhead 'Ay ay captain, we need to move' 33
+            pause 5000
+        endwhile
+    endif
+    if cooldown largefish != 0
+        pause 250
+        cooldown largefish 0
+        pause 500
+        clearsysmsg
+        overhead 'We caught a big one' 2263
+        replay
+    endif
+    if cooldown 'special net' != 0
+        pause 250
+        cooldown 'special net' 0
+        pause 500
+        clearsysmsg
+        overhead 'We go them nets' 2263
+        replay
+    endif
+    if cooldown lobster != 0
+        pause 250
+        cooldown lobster 0
+        pause 500
+        clearsysmsg
+        overhead 'We got a loooobster!' 2263
+        replay
+    endif
+    if cooldown crab != 0
+        pause 250
+        cooldown crab 0
+        pause 500
+        clearsysmsg
+        overhead 'Craaaab, it happened again!' 2263
+        replay
+    endif
+endwhile
+pause 250
+loop

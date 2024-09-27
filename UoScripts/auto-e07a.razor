@@ -1,0 +1,27 @@
+while mana < 100
+    if findbuff 'actively meditating'
+        pause 500
+    else
+        skill 'meditation'
+    endif
+endwhile
+for 30
+    if findtype 'pouch' backpack 0 as pouch
+        cast 'magic trap'
+        wft
+        target pouch
+        pause 500
+    else
+        overhead 'no ore pouches to trap'
+        break
+    endif
+endfor
+while mana < 100
+    
+    if findbuff 'actively meditating'
+        pause 500
+    else
+        skill 'meditation'
+    endif
+endwhile
+replay

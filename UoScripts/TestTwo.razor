@@ -1,0 +1,22 @@
+if rhandempty
+    clearignore 
+endif
+if listexists weaponlist
+    clearlist weaponlist
+else
+    createlist weaponlist
+endif 
+pause 250
+if skill 'mace fighting' > 59 and rhandempty and findtypelist weaponlist 'club' backpack 
+    foreach weap in weaponlist
+        getlabel weap found
+        pause 150
+        if "aspect" in found 
+            dclick weap
+            pause minimumwait
+            replay
+        else
+            @ignore weap
+        endif
+    endfor
+endif
