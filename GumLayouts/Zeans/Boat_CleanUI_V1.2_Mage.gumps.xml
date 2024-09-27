@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gumps>
+	<anchored_group_gump matrix_w="2" matrix_h="1">
+		<gump type="7" x="2377" y="668" serial="1134" name="Hiding" graphicId="0" hideLabel="False" scale="0.6" matrix_x="0" matrix_y="0" />
+		<gump type="7" x="2429" y="668" serial="1135" name="DetectHidden" graphicId="0" hideLabel="False" scale="0.6" matrix_x="1" matrix_y="0" />
+	</anchored_group_gump>
+	<anchored_group_gump matrix_w="2" matrix_h="1">
+		<gump type="15" x="1217" y="794" serial="0" id="53" matrix_x="0" matrix_y="0" />
+		<gump type="15" x="1261" y="794" serial="0" id="46" matrix_x="1" matrix_y="0" />
+	</anchored_group_gump>
+	<anchored_group_gump matrix_w="4" matrix_h="2">
+		<gump type="7" x="1131" y="986" serial="1051" name="RecallEmbark" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="0" />
+		<gump type="7" x="1201" y="986" serial="1058" name="Embark" graphicId="0" hideLabel="False" scale="0.8" matrix_x="1" matrix_y="0" />
+		<gump type="7" x="1271" y="986" serial="1067" name="CrewAttack" graphicId="0" hideLabel="False" scale="0.8" matrix_x="2" matrix_y="0" />
+		<gump type="7" x="1341" y="986" serial="1059" name="CrewStop" graphicId="0" hideLabel="False" scale="0.8" matrix_x="3" matrix_y="0" />
+		<gump type="7" x="1131" y="1021" serial="1055" name="RepairHull" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="1" />
+		<gump type="7" x="1201" y="1021" serial="1056" name="RepairSails" graphicId="0" hideLabel="False" scale="0.8" matrix_x="1" matrix_y="1" />
+		<gump type="7" x="1271" y="1021" serial="1057" name="RepairGuns" graphicId="0" hideLabel="False" scale="0.8" matrix_x="2" matrix_y="1" />
+		<gump type="7" x="1341" y="1021" serial="1089" name="shiprepair" graphicId="0" hideLabel="False" scale="0.8" matrix_x="3" matrix_y="1" />
+	</anchored_group_gump>
+	<anchored_group_gump matrix_w="8" matrix_h="2">
+		<gump type="7" x="1982" y="606" serial="1108" name="Bark" graphicId="0" hideLabel="False" scale="0.6" matrix_x="0" matrix_y="0" />
+		<gump type="7" x="2034" y="606" serial="1123" name="highfive" graphicId="0" hideLabel="False" scale="0.6" matrix_x="1" matrix_y="0" />
+		<gump type="7" x="2086" y="606" serial="1131" name="Boo" graphicId="0" hideLabel="False" scale="0.6" matrix_x="2" matrix_y="0" />
+		<gump type="7" x="1982" y="632" serial="1015" name="shush" graphicId="0" hideLabel="False" scale="0.6" matrix_x="0" matrix_y="1" />
+		<gump type="7" x="2034" y="632" serial="1071" name="Clap" graphicId="0" hideLabel="False" scale="0.6" matrix_x="1" matrix_y="1" />
+		<gump type="7" x="2086" y="632" serial="1073" name="Puke" graphicId="0" hideLabel="False" scale="0.6" matrix_x="2" matrix_y="1" />
+		<gump type="7" x="2138" y="632" serial="1074" name="Kiss" graphicId="0" hideLabel="False" scale="0.6" matrix_x="3" matrix_y="1" />
+		<gump type="7" x="2190" y="632" serial="1080" name="Oops" graphicId="0" hideLabel="False" scale="0.6" matrix_x="4" matrix_y="1" />
+		<gump type="7" x="2242" y="632" serial="1093" name="fart" graphicId="0" hideLabel="False" scale="0.6" matrix_x="5" matrix_y="1" />
+		<gump type="7" x="2294" y="632" serial="1094" name="spit" graphicId="0" hideLabel="False" scale="0.6" matrix_x="6" matrix_y="1" />
+		<gump type="7" x="2346" y="632" serial="1105" name="laugh" graphicId="0" hideLabel="False" scale="0.6" matrix_x="7" matrix_y="1" />
+	</anchored_group_gump>
+	<anchored_group_gump matrix_w="3" matrix_h="7">
+		<gump type="7" x="14" y="1107" serial="1008" name="aspect" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="0" />
+		<gump type="7" x="14" y="1142" serial="1012" name="Echo" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="1" />
+		<gump type="7" x="14" y="1177" serial="1009" name="societies" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="2" />
+		<gump type="7" x="14" y="1212" serial="1010" name="bossresults" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="3" />
+		<gump type="7" x="14" y="1247" serial="1013" name="Server Rank" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="4" />
+		<gump type="7" x="14" y="1282" serial="1079" name="DmgTracker" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="5" />
+		<gump type="7" x="14" y="1317" serial="1132" name="skillscrolls" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="6" />
+	</anchored_group_gump>
+	<anchored_group_gump matrix_w="1" matrix_h="5">
+		<gump type="7" x="2484" y="832" serial="1133" name="statusbar" graphicId="0" hideLabel="False" scale="0.4" matrix_x="0" matrix_y="0" />
+		<gump type="7" x="2484" y="849" serial="1016" name="circletrans" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="1" />
+		<gump type="7" x="2484" y="884" serial="1078" name="CrimHeal" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="2" />
+		<gump type="7" x="2484" y="919" serial="1103" name="playerstats" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="3" />
+		<gump type="7" x="2484" y="954" serial="1077" name="Zooolgy" graphicId="0" hideLabel="False" scale="0.8" matrix_x="0" matrix_y="4" />
+	</anchored_group_gump>
+	<anchored_group_gump matrix_w="1" matrix_h="4">
+		<gump type="7" x="1907" y="778" serial="1111" name="MadnessArmor" graphicId="0" hideLabel="False" scale="0.6" matrix_x="0" matrix_y="0" />
+		<gump type="7" x="1907" y="804" serial="1124" name="BloodArmor" graphicId="0" hideLabel="False" scale="0.6" matrix_x="0" matrix_y="1" />
+		<gump type="7" x="1907" y="830" serial="1125" name="DeathArmor" graphicId="0" hideLabel="False" scale="0.6" matrix_x="0" matrix_y="2" />
+		<gump type="7" x="1907" y="856" serial="1129" name="ArcaneArmor" graphicId="0" hideLabel="False" scale="0.6" matrix_x="0" matrix_y="3" />
+	</anchored_group_gump>
+	<anchored_group_gump matrix_w="4" matrix_h="2">
+		<gump type="25" x="677" y="952" serial="0" entryname="shipbomb" matrix_x="0" matrix_y="1" />
+		<gump type="25" x="829" y="952" serial="0" entryname="Boarding" matrix_x="1" matrix_y="1" />
+		<gump type="25" x="981" y="952" serial="0" entryname="Cannons" matrix_x="2" matrix_y="1" />
+		<gump type="25" x="1133" y="952" serial="0" entryname="COMBAT TIMER" matrix_x="3" matrix_y="1" />
+	</anchored_group_gump>
+	<anchored_group_gump matrix_w="1" matrix_h="2">
+		<gump type="25" x="887" y="888" serial="0" entryname="weap" matrix_x="0" matrix_y="0" />
+		<gump type="25" x="887" y="915" serial="0" entryname="Bandage" matrix_x="0" matrix_y="1" />
+	</anchored_group_gump>
+	<anchored_group_gump matrix_w="3" matrix_h="2">
+		<gump type="22" x="733" y="987" serial="0" matrix_x="0" matrix_y="1" />
+		<gump type="23" x="863" y="987" serial="0" matrix_x="1" matrix_y="1" />
+		<gump type="26" x="993" y="987" serial="0" matrix_x="2" matrix_y="1" />
+	</anchored_group_gump>
+	<gump type="27" x="944" y="602" serial="0" />
+	<gump type="9" x="2278" y="1005" serial="3437364" isminimized="False" />
+	<gump type="2" x="1930" y="739" serial="1333366212" graphic="60" isminimized="False" />
+	<gump type="2" x="44" y="1101" serial="1438231354" graphic="60" isminimized="False" />
+	<gump type="2" x="296" y="1102" serial="1244449725" graphic="60" isminimized="False" />
+	<gump type="2" x="2176" y="742" serial="1428556860" graphic="60" isminimized="False" />
+	<gump type="21" x="1760" y="47" serial="0" />
+	<gump type="12" x="1977" y="662" serial="0" />
+	<gump type="3" x="1096" y="1104" serial="0" rows="1" columns="20" rectsize="45">
+		<controls>
+			<control graphic="3980" hue="0" />
+			<control graphic="3981" hue="0" />
+			<control graphic="3974" hue="0" />
+			<control graphic="3973" hue="0" />
+			<control graphic="3972" hue="0" />
+			<control graphic="3976" hue="0" />
+			<control graphic="3963" hue="0" />
+			<control graphic="3962" hue="0" />
+			<control graphic="3852" hue="0" />
+			<control graphic="3847" hue="0" />
+			<control graphic="3851" hue="0" />
+			<control graphic="3849" hue="0" />
+			<control graphic="3846" hue="0" />
+			<control graphic="3850" hue="0" />
+			<control graphic="3617" hue="0" />
+			<control graphic="5365" hue="2213" />
+			<control graphic="5370" hue="0" />
+			<control graphic="25758" hue="0" />
+			<control graphic="3699" hue="2492" />
+			<control graphic="5188" hue="2825" />
+		</controls>
+	</gump>
+	<gump type="5" x="794" y="1055" serial="1" />
+	<gump type="7" x="1898" y="1055" serial="1114" name="taunt" graphicId="0" hideLabel="False" scale="0.8" />
+	<gump type="1" x="652" y="59" serial="0" graphic="30080" direction="1" />
+	<gump type="5" x="543" y="23" serial="0" />
+	<gump type="24" x="1990" y="15" serial="0" />
+	<gump type="4" x="608" y="990" serial="3437364" />
+	<gump type="18" x="1997" y="998" serial="0" />
+	<gump type="6" x="2181" y="-9" serial="0" />
+</gumps>

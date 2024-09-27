@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<gumps>
+	<gumps label="necrobar" gumpId="622436516" x="547" y="1073" force="True" />
+	<gumps label="Skill scro" gumpId="2125225775" x="207" y="70" force="False" />
+	<gumps label="spyglass" gumpId="2890020940" x="1982" y="119" force="False" />
+	<gumps label="abilities" gumpId="1774462345" x="377" y="1038" force="False" />
+	<gumps label="targetting" gumpId="455990628" x="1644" y="835" force="False" />
+	<gumps label="Targeting" gumpId="3329337894" x="1411" y="1045" force="False" />
+	<gumps label="release gu" gumpId="931181454" x="373" y="60" force="False" />
+	<gumps label="boarding" gumpId="2881168634" x="704" y="126" force="False" />
+	<gumps label="dockmaster" gumpId="3287496917" x="1098" y="78" force="False" />
+	<gumps label="shipHpBar" gumpId="1227367621" x="104" y="72" force="False" />
+	<gumps label="captchas" gumpId="720347269" x="421" y="72" force="False" />
+	<gumps label="crewgump" gumpId="1722920179" x="90" y="139" force="False" />
+	<gumps label="chivgump" gumpId="1387930325" x="545" y="1071" force="False" />
+	<gumps label="abilitybar" gumpId="3954121934" x="1543" y="96" force="False" />
+</gumps>
