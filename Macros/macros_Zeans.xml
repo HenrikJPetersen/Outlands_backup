@@ -1,0 +1,702 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<macros>
+	<macro name="Paperdoll" key="112" mousebutton="0" alt="True" ctrl="False" shift="True">
+		<actions>
+			<action code="8" subcode="10" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Options" key="111" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="8" subcode="9" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Journal" key="106" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="8" subcode="12" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Backpack" key="105" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="9" subcode="16" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Bow" key="98" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="18" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="closeallhealthbars" key="112" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="69" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="closeinactivehpbars" key="112" mousebutton="0" alt="True" ctrl="True" shift="False">
+		<actions>
+			<action code="81" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="nameOnOff" key="110" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="66" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="aspect" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[aspect" />
+		</actions>
+	</macro>
+	<macro name="societies" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[societies" />
+		</actions>
+	</macro>
+	<macro name="bossresults" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[bossresults" />
+		</actions>
+	</macro>
+	<macro name="lastobjct" key="122" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="17" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="Echo" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[echo" />
+		</actions>
+	</macro>
+	<macro name="Server Rank" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[ServerRank" />
+		</actions>
+	</macro>
+	<macro name="pouch" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[pouch" />
+		</actions>
+	</macro>
+	<macro name="shush" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[shush" />
+		</actions>
+	</macro>
+	<macro name="circletrans" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="29" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="groan" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[groan" />
+		</actions>
+	</macro>
+	<macro name="Ship_Forward" key="1073741920" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Forward" />
+		</actions>
+	</macro>
+	<macro name="Ship_ForwardLeft" key="1073741919" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[ForwardLeft" />
+		</actions>
+	</macro>
+	<macro name="Ship_ForwardRight" key="1073741921" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[ForwardRight" />
+		</actions>
+	</macro>
+	<macro name="Ship_TurnLeft" key="1073741916" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[TurnLeft" />
+		</actions>
+	</macro>
+	<macro name="Ship_TurnRight" key="1073741918" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[TurnRight" />
+		</actions>
+	</macro>
+	<macro name="Ship_Stop" key="1073741917" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Stop" />
+		</actions>
+	</macro>
+	<macro name="Ship_BackwardRight" key="1073741915" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[BackwardRight" />
+		</actions>
+	</macro>
+	<macro name="Ship_BackwardLeft" key="1073741913" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[BackwardLeft" />
+		</actions>
+	</macro>
+	<macro name="Ship_Left" key="1073741916" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Left" />
+		</actions>
+	</macro>
+	<macro name="Ship_Right" key="1073741918" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Right" />
+		</actions>
+	</macro>
+	<macro name="Ship_Hotbars" key="1073741922" mousebutton="0" alt="True" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[ShipHotbars" />
+			<action code="28" subcode="0" submenutype="2" text="250" />
+			<action code="1" subcode="0" submenutype="2" text="[TargetingMode" />
+			<action code="28" subcode="0" submenutype="2" text="250" />
+			<action code="1" subcode="0" submenutype="2" text="[Ship" />
+			<action code="28" subcode="0" submenutype="2" text="250" />
+			<action code="1" subcode="0" submenutype="2" text="[ReadyCrew" />
+			<action code="28" subcode="0" submenutype="2" text="250" />
+			<action code="1" subcode="0" submenutype="2" text="[Recallboarding" />
+		</actions>
+	</macro>
+	<macro name="Disembark" key="1073741919" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Disembark" />
+		</actions>
+	</macro>
+	<macro name="Ship_Back" key="1073741914" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Backward" />
+		</actions>
+	</macro>
+	<macro name="Reload" key="1073741910" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[ReloadCannons" />
+			<action code="4" subcode="0" submenutype="2" text="Reloading" />
+		</actions>
+	</macro>
+	<macro name="Magery_GreaterHeal" key="1073741885" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="90" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_Heal" key="114" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="65" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery__Reflect" key="99" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="97" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_Protection" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="76" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_ReactiveArmor" key="110" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="68" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_ArchProtection" key="118" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="87" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_MagicArrow" key="51" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="66" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_Explosion" key="49" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="104" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_eBolt" key="50" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="103" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_Cure" key="1073741884" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="72" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_ArchCure" key="102" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="86" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_MassCurse" key="103" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="107" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_ManaVamp" key="104" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="114" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_Recall" key="1073741886" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="15" subcode="93" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Magery_Paralyze" key="1073741887" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="99" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Ship_LesserAbility" key="49" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[LesserAbility" />
+		</actions>
+	</macro>
+	<macro name="Ship_RegularAbility" key="50" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[RegularAbility" />
+		</actions>
+	</macro>
+	<macro name="Ship_GreaterAbility" key="51" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[GreaterAbility" />
+		</actions>
+	</macro>
+	<macro name="Ship_FireCannons" key="0" mousebutton="5" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[FireCannons" />
+		</actions>
+	</macro>
+	<macro name="RecallEmbark" key="1073741913" mousebutton="0" alt="True" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Recallboardingparty" />
+			<action code="28" subcode="0" submenutype="2" text="150" />
+			<action code="1" subcode="0" submenutype="2" text="[Embarkfollowers" />
+		</actions>
+	</macro>
+	<macro name="Ship_SecondLesserAbility" key="49" mousebutton="0" alt="True" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[SecondLesserAbility" />
+		</actions>
+	</macro>
+	<macro name="Ship_SecondGreaterAbility" key="51" mousebutton="0" alt="True" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[SecondGreaterAbility" />
+		</actions>
+	</macro>
+	<macro name="Ship_SecondRegularAbility" key="50" mousebutton="0" alt="True" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[SecondRegularAbility" />
+		</actions>
+	</macro>
+	<macro name="RepairHull" key="1073741913" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[RepairHull" />
+		</actions>
+	</macro>
+	<macro name="RepairSails" key="1073741914" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[RepairSails" />
+		</actions>
+	</macro>
+	<macro name="RepairGuns" key="1073741915" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[RepairGuns" />
+		</actions>
+	</macro>
+	<macro name="Embark" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="&gt;Script test_embark" />
+		</actions>
+	</macro>
+	<macro name="CrewStop" key="99" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[CrewStop" />
+			<action code="28" subcode="0" submenutype="2" text="250" />
+			<action code="1" subcode="0" submenutype="2" text="[CrewHalt" />
+		</actions>
+	</macro>
+	<macro name="BoardingRope" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[SendBoarding" />
+			<action code="28" subcode="0" submenutype="2" text="250" />
+			<action code="50" subcode="205" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="ReadyCrew" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[ReadyCrew" />
+		</actions>
+	</macro>
+	<macro name="Ram" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Ram" />
+		</actions>
+	</macro>
+	<macro name="Magery_Lightning" key="1073741884" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="91" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Pet_Allguardme" key="0" mousebutton="5" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="All Guard Me" />
+		</actions>
+	</macro>
+	<macro name="Pet_AllFollowme" key="0" mousebutton="5" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="All Follow Me" />
+		</actions>
+	</macro>
+	<macro name="Magery_Invisibility" key="97" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="105" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="CrewAttack" key="101" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[CrewAttack" />
+		</actions>
+	</macro>
+	<macro name="cry" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[cry" />
+		</actions>
+	</macro>
+	<macro name="eSleep" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[sleep" />
+		</actions>
+	</macro>
+	<macro name="Surprise" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[surprise" />
+		</actions>
+	</macro>
+	<macro name="Clap" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Clap" />
+		</actions>
+	</macro>
+	<macro name="Greet" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Greet" />
+		</actions>
+	</macro>
+	<macro name="Puke" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Puke" />
+		</actions>
+	</macro>
+	<macro name="Kiss" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Kiss" />
+		</actions>
+	</macro>
+	<macro name="Hurt" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Hurt" />
+		</actions>
+	</macro>
+	<macro name="Yes" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Yes" />
+		</actions>
+	</macro>
+	<macro name="Zooolgy" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Zoology " />
+		</actions>
+	</macro>
+	<macro name="CrimHeal" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[PreventCriminalHealing" />
+		</actions>
+	</macro>
+	<macro name="DmgTracker" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[DamageTracker" />
+		</actions>
+	</macro>
+	<macro name="Oops" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[oops" />
+		</actions>
+	</macro>
+	<macro name="Yell" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Yell" />
+		</actions>
+	</macro>
+	<macro name="closecorpsegump" key="104" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="82" subcode="0" submenutype="0" />
+			<action code="28" subcode="0" submenutype="2" text="250" />
+			<action code="69" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="confused" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[confused" />
+		</actions>
+	</macro>
+	<macro name="sleep" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[sleep" />
+		</actions>
+	</macro>
+	<macro name="scripttest" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="&gt;Script Boataoerota" />
+		</actions>
+	</macro>
+	<macro name="swapaspect" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="&gt;Script aspectswap" />
+		</actions>
+	</macro>
+	<macro name="release" key="1073741891" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="i wish to release this" />
+		</actions>
+	</macro>
+	<macro name="meditation" key="109" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[yell" />
+			<action code="28" subcode="0" submenutype="2" text="25" />
+			<action code="13" subcode="47" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="shiprepair" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[repair" />
+		</actions>
+	</macro>
+	<macro name="Eventscore" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[eventscore" />
+		</actions>
+	</macro>
+	<macro name="switchtoharvest" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="&gt;Script switchtoharvest" />
+		</actions>
+	</macro>
+	<macro name="Burp" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[belch" />
+		</actions>
+	</macro>
+	<macro name="fart" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[fart" />
+		</actions>
+	</macro>
+	<macro name="spit" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[spit" />
+		</actions>
+	</macro>
+	<macro name="Laugh" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Laugh" />
+		</actions>
+	</macro>
+	<macro name="SendBoarding" key="115" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[SendBoarding" />
+		</actions>
+	</macro>
+	<macro name="Weaken" key="52" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="69" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="clumsy" key="53" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="62" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Telekinesis" key="115" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="82" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="explopot" key="53" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="68" subcode="222" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="recallboarding" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Recallboardingparty" />
+		</actions>
+	</macro>
+	<macro name="embarkfol" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[embarkfollowers" />
+		</actions>
+	</macro>
+	<macro name="playerstats" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[playerstats" />
+		</actions>
+	</macro>
+	<macro name="whistle" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[whistle" />
+		</actions>
+	</macro>
+	<macro name="laugh" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[laugh" />
+		</actions>
+	</macro>
+	<macro name="chainligthning" key="114" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="110" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="emote_grumble" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Grumble" />
+		</actions>
+	</macro>
+	<macro name="Bark" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[bark" />
+		</actions>
+	</macro>
+	<macro name="Cackles" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[cackle" />
+		</actions>
+	</macro>
+	<macro name="HarvestArmor" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[AspectArmor Harvest" />
+		</actions>
+	</macro>
+	<macro name="MadnessArmor" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[AspectArmor Madness" />
+		</actions>
+	</macro>
+	<macro name="FrostWeapon" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[AspectSpellbook Frost" />
+		</actions>
+	</macro>
+	<macro name="MadnessWeapon" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[AspectSpellbook Madness" />
+		</actions>
+	</macro>
+	<macro name="taunt" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[taunt" />
+		</actions>
+	</macro>
+	<macro name="Skewer" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[fishingstance3" />
+		</actions>
+	</macro>
+	<macro name="Strafe" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[fishingstance4" />
+		</actions>
+	</macro>
+	<macro name="PinDown" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[fishingstance2" />
+		</actions>
+	</macro>
+	<macro name="Snipe" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Fishingstance1" />
+		</actions>
+	</macro>
+	<macro name="Heave" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[fishingstance5" />
+		</actions>
+	</macro>
+	<macro name="RunTrough" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="{FishingFinisher1" />
+		</actions>
+	</macro>
+	<macro name="Salvo" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[Fishingfinisher2" />
+		</actions>
+	</macro>
+	<macro name="magery_bless" key="98" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="15" subcode="78" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="highfive" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[highfive" />
+		</actions>
+	</macro>
+	<macro name="BloodArmor" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[aspectarmor blood" />
+		</actions>
+	</macro>
+	<macro name="DeathArmor" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[AspectArmor Death" />
+		</actions>
+	</macro>
+	<macro name="ArcaneWeapon" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[AspectSpellbook Arcane" />
+		</actions>
+	</macro>
+	<macro name="ship_AuxAbility" key="51" mousebutton="0" alt="False" ctrl="True" shift="True">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[AuxiliaryAbility" />
+		</actions>
+	</macro>
+	<macro name="Ship_AuxAbilityTwo" key="51" mousebutton="0" alt="True" ctrl="True" shift="True">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[SecondAuxiliaryAbility" />
+		</actions>
+	</macro>
+	<macro name="ArcaneArmor" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[AspectArmor Arcane" />
+		</actions>
+	</macro>
+	<macro name="howl" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[howl" />
+		</actions>
+	</macro>
+	<macro name="Boo" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[boo" />
+		</actions>
+	</macro>
+	<macro name="skillscrolls" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[AutoUseSpellScrolls" />
+		</actions>
+	</macro>
+	<macro name="statusbar" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="8" subcode="11" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Hiding" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="13" subcode="43" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="DetectHidden" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="13" subcode="39" submenutype="1" />
+		</actions>
+	</macro>
+</macros>

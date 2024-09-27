@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<macros>
+	<macro name="Paperdoll" key="112" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="8" subcode="10" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Options" key="111" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="8" subcode="9" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Journal" key="106" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="8" subcode="12" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Backpack" key="105" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="8" subcode="16" submenutype="1" />
+		</actions>
+	</macro>
+	<macro name="Bow" key="98" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="18" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="Salute" key="115" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="19" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="closeallhealthbars" key="112" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="69" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="closeinactivehpbars" key="112" mousebutton="0" alt="True" ctrl="True" shift="False">
+		<actions>
+			<action code="81" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="nameOnOff" key="1073741921" mousebutton="0" alt="False" ctrl="True" shift="False">
+		<actions>
+			<action code="66" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="aspect" key="1073741921" mousebutton="0" alt="True" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[aspect" />
+		</actions>
+	</macro>
+	<macro name="societies" key="1073741920" mousebutton="0" alt="True" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[societies" />
+		</actions>
+	</macro>
+	<macro name="bossresults" key="1073741919" mousebutton="0" alt="True" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[bossresults" />
+		</actions>
+	</macro>
+	<macro name="lastobjct" key="122" mousebutton="0" alt="True" ctrl="False" shift="False">
+		<actions>
+			<action code="17" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="Echo" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[echo" />
+		</actions>
+	</macro>
+	<macro name="Server Rank" key="1073741918" mousebutton="0" alt="True" ctrl="True" shift="False">
+		<actions>
+			<action code="1" subcode="0" submenutype="2" text="[ServerRank" />
+		</actions>
+	</macro>
+	<macro name="circletrans" key="0" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="29" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="pausewalk" key="114" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="85" subcode="0" submenutype="0" />
+		</actions>
+	</macro>
+	<macro name="explopot" key="53" mousebutton="0" alt="False" ctrl="False" shift="False">
+		<actions>
+			<action code="68" subcode="222" submenutype="1" />
+		</actions>
+	</macro>
+</macros>
