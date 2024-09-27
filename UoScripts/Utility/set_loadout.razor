@@ -1,0 +1,273 @@
+@setvar! minimumwait 300
+if skill 'spirit speak' >= 80
+    overhead 'Land build'
+    if gumpexists 3232825965
+        gumpclose 3232825965
+    endif
+    if findtype 'storage shelf' ground -1 -1 3 as shelf
+        dclick shelf
+        pause 500
+        gumpresponse 1001 3232825965
+        pause 500
+        if ingump '120' 3232825965
+            overhead 'Need to adjust'
+            # - Blackpearl
+            for 5
+                gumpresponse 130 3232825965
+                pause minimumwait
+            endfor
+            # - Moss
+            for 5
+                gumpresponse 131 3232825965
+                pause minimumwait
+            endfor
+            # - root
+            for 5
+                gumpresponse 132 3232825965
+                pause minimumwait
+            endfor
+            # - garlic
+            for 5
+                gumpresponse 133 3232825965
+                pause minimumwait
+            endfor
+            # - ginseng
+            for 5
+                gumpresponse 134 3232825965
+                pause minimumwait
+            endfor
+            # - silk
+            for 5
+                gumpresponse 135 3232825965
+                pause minimumwait
+            endfor
+            # - shade
+            for 9
+                gumpresponse 136 3232825965
+                pause minimumwait
+            endfor
+            # - ash
+            for 5
+                gumpresponse 137 3232825965
+                pause minimumwait
+            endfor
+            # Round bag DESELECT
+            gumpresponse 201 3232825965
+            pause minimumwait
+            
+            ## ROPES SELECT 
+            gumpresponse 204 3232825965
+            pause minimumwait
+            ## UP ARROW ROPES
+            gumpresponse 219 3232825965
+            pause minimumwait
+            
+            # Deselect explo pots
+            gumpresponse 306 3232825965
+            pause minimumwait
+            
+            #Next arrow
+            gumpresponse 21 3232825965
+            pause minimumwait
+            
+            #Spyglass page
+            gumpresponse 53 3232825965
+            pause minimumwait
+            
+            #Deselect spyglass
+            while not ingump 'Gold' 3232825965
+                gumpresponse 40 3232825965
+                pause minimumwait
+            endwhile
+            gumpresponse 205 3232825965
+            pause minimumwait
+            
+            # Ships page
+            gumpresponse 54 3232825965
+            waitforgump 3232825965
+            
+            # Cannon balls
+            gumpresponse 100 3232825965
+            pause minimumwait
+            
+            # Repair kits
+            gumpresponse 101 3232825965
+            pause minimumwait
+
+            # Boarding ropes
+            gumpresponse 102 3232825965
+            pause minimumwait
+            
+            # Ship bombs
+            gumpresponse 107 3232825965
+            pause minimumwait
+        elseif ingump '70'
+            overhead 'All good'
+        endif
+    endif
+    if findlayer self talisman as chain
+        if gumpexists 2785326818
+            gumpclose 2785326818
+            pause minimumwait
+        endif
+        dclick chain
+        waitforgump 2785326818
+        if not ingump 'Poison damage' 2785326818
+            for 3
+            overhead 'CHANGE CHAIN CHANGE CHAIN' 33
+            endfor
+        endif
+        if gumpexists 2785326818
+            gumpclose 2785326818
+            pause minimumwait
+        endif
+    endif
+endif
+if skill 'alchemy' >= 80
+    overhead 'Ocean build' 88
+    if gumpexists 3232825965
+        gumpclose 3232825965
+    endif
+    if findtype 'storage shelf' ground -1 -1 3 as shelf
+        dclick shelf
+        pause 500
+        gumpresponse 1001
+        pause 500
+        if ingump '70' 3232825965
+        # - Blackpearl
+            for 5
+                gumpresponse 115 3232825965
+                pause minimumwait
+            endfor
+            # - Moss
+            for 5
+                gumpresponse 116 3232825965
+                pause minimumwait
+            endfor
+            # - root
+            for 5
+                gumpresponse 117 3232825965
+                pause minimumwait
+            endfor
+            # - garlic
+            for 5
+                gumpresponse 118 3232825965
+                pause minimumwait
+            endfor
+            # - ginseng
+            for 5
+                gumpresponse 119 3232825965
+                pause minimumwait
+            endfor
+            # - silk
+            for 5
+                gumpresponse 120 3232825965
+                pause minimumwait
+            endfor
+            # - shade
+            for 9
+                gumpresponse 121 3232825965
+                pause minimumwait
+            endfor
+            # - ash
+            for 5
+                gumpresponse 122 3232825965
+                pause minimumwait
+            endfor
+          
+            # Round bag SELECT 
+            gumpresponse 201 3232825965
+            pause minimumwait
+            
+            ## ROPES DESELECT
+            gumpresponse 204 3232825965
+            pause minimumwait
+            
+            gumpresponse 306 3232825965
+            pause minimumwait
+            for 14
+                gumpresponse 321 3232825965
+                pause minimumwait
+            endfor
+            
+            
+            #Next arrow
+            gumpresponse 21 3232825965
+            pause minimumwait
+            
+            #Spyglass page
+            gumpresponse 53 3232825965
+            pause minimumwait
+            
+            # spyglass SELECT
+            while not ingump 'Gold' 3232825965
+                gumpresponse 40 3232825965
+                pause minimumwait
+            endwhile
+            gumpresponse 205 3232825965
+            pause minimumwait
+            
+            # Take 2 spyglasses
+            gumpresponse 220 3232825965
+            pause minimumwait
+            
+            # Ships page
+            gumpresponse 54 3232825965
+            waitforgump 3232825965
+
+            # Cannon balls
+            gumpresponse 100 3232825965
+            pause minimumwait
+            for 39
+                gumpresponse 115 3232825965
+                pause minimumwait
+            endfor
+            
+            # Repair kits
+            gumpresponse 101 3232825965
+            pause minimumwait
+            for 39
+                gumpresponse 116 3232825965
+                pause 500
+            endfor
+
+            # Boarding ropes
+            gumpresponse 102 3232825965
+            pause minimumwait
+            for 29
+                gumpresponse 117 3232825965
+                pause minimumwait
+            endfor
+            
+            # Ship bombs
+            gumpresponse 107 3232825965
+            pause minimumwait
+            for 11 
+                gumpresponse 122 3232825965
+                pause minimumwait
+            endfor
+        else
+            overhead 'All good'
+        endif 
+        if findlayer self talisman as chain
+            if gumpexists 2785326818
+                gumpclose 2785326818
+                pause minimumwait
+            endif
+            dclick chain
+            waitforgump 2785326818
+            if not ingump 'Ship cannon' 2785326818
+                for 3
+                overhead 'CHANGE CHAIN CHANGE CHAIN' 33
+                endfor
+            endif
+            if gumpexists 2785326818
+                gumpclose 2785326818
+                pause minimumwait
+            endif
+        endif 
+    endif
+endif
+
+
+

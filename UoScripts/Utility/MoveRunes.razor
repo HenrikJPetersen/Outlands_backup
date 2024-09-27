@@ -1,0 +1,18 @@
+if not varexist runetime_moveto
+    setvar runetime_moveto
+endif
+waitforgump 1551740969
+gumpresponse 3
+waitforgump 1551740969
+if findtype "recall rune" backpack 0 as currentRune
+    getlabel currentRune runeDescription
+    overhead runeDescription
+    pause 100
+    while find currentRune backpack 0
+        lift currentRune
+        pause 400
+        drop runetime_moveto
+    endwhile
+endif
+pause 300
+replay

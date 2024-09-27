@@ -1,0 +1,175 @@
+if not varexist veteranchest
+    setvar veteranchest
+endif
+if not varexist expertchest
+    setvar expertchest
+endif
+if not varexist masterchest
+    setvar masterchest
+endif
+if not listexists crewlist
+    createlist crewlist
+else 
+    clearlist crewlist
+endif
+
+@setvar! chesttosort
+
+
+if findtypelist crewlist 8455|8454 chesttosort
+    foreach crew in crewlist
+        clearsysmsg 
+        dclick crew
+        while not gumpexists 189348675
+            pause 250
+        endwhile
+        
+        if ingump "Veteran"
+            sysmsg '> Found a veteran' 44
+            pause 250
+            if ingump "Sailor" 189348675
+                sysmsg '>> Sailer' 44
+                lift crew
+                pause 250
+                drop veteranchest 16 50 0
+                pause 250
+            elseif ingump "Engineer" 189348675
+                lift crew
+                pause 250
+                drop veteranchest 49 50 0
+                pause 250
+            elseif ingump "Pilgrim" 189348675
+                lift crew
+                pause 250
+                drop veteranchest 64 71 0
+            elseif ingump "Monkey" 189348675
+                lift crew
+                pause 250
+                drop veteranchest 29 71 0
+                pause 250
+            elseif ingump "Navigator" 189348675
+                lift crew
+                pause 250
+                drop veteranchest 86 50 0
+                pause 250
+            elseif ingump "Hedge Mage" 189348675
+                lift crew
+                pause 250
+                drop veteranchest 114 50 0
+                pause 250
+            elseif ingump "Orc Reaver" 189348675
+                lift crew
+                pause 250
+                drop veteranchest 100 72 0
+                pause 250
+            elseif ingump "Paviseman" 189348675
+                
+            else
+                lift crew
+                pause 250
+                drop veteranchest 142 72 0   
+                pause 250
+            endif
+        endif
+        
+        if ingump "Expert"
+            sysmsg '> Found an Expert' 44
+            pause 150
+            if ingump "Sailor" 189348675
+                sysmsg '>> Sailer' 44
+                lift crew
+                pause 250
+                drop expertchest 16 50 0
+                pause 250
+            elseif ingump "Engineer" 189348675
+                lift crew
+                pause 250
+                drop expertchest 49 50 0
+                pause 250
+            elseif ingump "Pilgrim" 189348675
+                lift crew
+                pause 250
+                drop expertchest 64 71 0
+            elseif ingump "Monkey" 189348675
+                lift crew
+                pause 250
+                drop expertchest 29 71 0
+                pause 250
+            elseif ingump "Navigator" 189348675
+                lift crew
+                pause 250
+                drop expertchest 86 50 0
+                pause 250
+            elseif ingump "Hedge Mage" 189348675
+                lift crew
+                pause 250
+                drop expertchest 114 50 0
+                pause 250
+            elseif ingump "Orc Reaver" 189348675
+                lift crew
+                pause 250
+                drop expertchest 100 72 0
+                pause 250
+            else
+                lift crew
+                pause 250
+                drop expertchest 142 72 0   
+                pause 250
+            endif
+        endif 
+        
+        if ingump "Master"
+            sysmsg '> Found a Master' 44
+            pause 150
+            if ingump "Sailor" 189348675
+                sysmsg '>> Sailer' 44
+                lift crew
+                pause 250
+                drop masterchest 16 50 0
+                pause 250
+            elseif ingump "Engineer" 189348675
+                lift crew
+                pause 250
+                drop masterchest 49 50 0
+                pause 250
+            elseif ingump "Pilgrim" 189348675
+                lift crew
+                pause 250
+                drop masterchest 64 71 0
+            elseif ingump "Monkey" 189348675
+                lift crew
+                pause 250
+                drop masterchest 29 71 0
+                pause 250
+            elseif ingump "Navigator" 189348675
+                lift crew
+                pause 250
+                drop masterchest 86 50 0
+                pause 250
+            elseif ingump "Hedge Mage" 189348675
+                lift crew
+                pause 250
+                drop masterchest 114 50 0
+                pause 250
+            elseif ingump "Orc Reaver" 189348675
+                lift crew
+                pause 250
+                drop masterchest 100 72 0
+                pause 250
+            else
+                lift crew
+                pause 250
+                drop masterchest 142 72 0   
+                pause 250
+            endif
+        endif
+        
+        pause 250
+        gumpclose 189348675
+        pause 250
+        if insysmsg "That container cannot"
+            stop
+        endif
+    endfor
+endif
+

@@ -1,0 +1,58 @@
+## To overview: gumpresponse 2
+if not listexists runeselector
+    createlist runeselector
+endif
+pushlist runeselector 200
+pushlist runeselector 201
+pushlist runeselector 202
+pushlist runeselector 203
+pushlist runeselector 204
+pushlist runeselector 205
+pushlist runeselector 206
+pushlist runeselector 207
+pushlist runeselector 208
+pushlist runeselector 209
+pushlist runeselector 210
+pushlist runeselector 211
+pushlist runeselector 212
+pushlist runeselector 213
+pushlist runeselector 214
+pushlist runeselector 215
+pushlist runeselector 216
+pushlist runeselector 217
+pushlist runeselector 218
+pushlist runeselector 219
+pushlist runeselector 220
+pushlist runeselector 221
+pushlist runeselector 222
+pushlist runeselector 223
+pushlist runeselector 224
+pushlist runeselector 225
+
+##NO TOUCHY
+
+if not varexist tometocopy
+    setvar tometocopy
+endif
+pause 250
+if not gumpexists 167090027
+    dclick tometocopy 
+endif
+waitforgump 167090027
+foreach runechoice in runeselector
+    gumpresponse runechoice 167090027
+    waitforgump 167090027
+    pause 500
+    
+    gumpresponse 2 167090027
+    waitforgump 167090027
+    pause 500
+    if gumpexists 1263030975
+        overhead 'WE DONE'
+        unsetvar tometocopy
+        stop    
+    endif
+endfor
+overhead 'DONE OUTSIDE FOREACH'
+unsetvar tometocopy
+clearlist runeselector

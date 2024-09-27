@@ -1,0 +1,18 @@
+if lhandempty ?? 0 
+    if findtype "hatchet" backpack
+        dclicktype 'hatchet' backpack
+    endif
+endif
+pause 500
+if findtype "7133" backpack as log
+    hotkey "use item in hand"
+    while not targetexists 
+    endwhile
+    while targetexists 
+        target log
+    endwhile
+else
+    stop
+endif
+pause 1000
+replay

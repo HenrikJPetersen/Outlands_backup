@@ -1,0 +1,59 @@
+#@setvar badbag
+#@setvar goodbag    
+clearhands 'both'
+if findtype "cutlass|broadsword|scimitar|viking sword|longsword|katana|executioner's axe|double axe|halberd|large battle axe|two handed axe" backpack as item
+    pause 250     
+    getlabel item description  
+    pause 100
+    overhead description  
+    if supremely in description or exceedingly in description or slaying in description
+        lift item 
+        drop goodbag -1 -1 -1 
+    else
+        lift item 
+        drop badBag -1 -1 -1 
+    endif 
+  
+elseif findtype "maul|war axe|war mace|mace|hammer pick|club|quarter staff|war hammer|gnarled staff|black staff" backpack as item
+    pause 250   
+    getlabel item description
+    pause 100
+    overhead description
+    if supremely in description or exceedingly in description or slaying in description
+        lift item 
+        drop goodbag -1 -1 -1 
+    else
+        lift item 
+        drop badBag -1 -1 -1 
+    endif
+elseif findtype "kryss|war fork|long spear|short spear" backpack as item
+    pause 250
+    getlabel item description
+    pause 100
+    overhead description
+    if supremely in description or exceedingly in description or slaying in description
+        lift item 
+        drop goodbag -1 -1 -1 
+    else
+        lift item 
+        drop badBag -1 -1 -1 
+    endif
+    elseif findtype "crossbow|bow|heavy crossbow" backpack as item
+    pause 250
+    getlabel item description
+    pause 100
+    overhead description
+    if supremely in description or exceedingly in description or slaying in description
+        lift item 
+        drop goodbag -1 -1 -1 
+    else
+        lift item 
+        drop bowBag -1 -1 -1 
+    endif
+// Missing armor instruments, crooks
+else 
+    break    
+endif
+pause 250
+
+replay

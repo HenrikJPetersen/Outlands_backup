@@ -1,0 +1,61 @@
+#if findlayer self head as hitem
+#    setvar headitem hitem
+#elseif find headitem ground -1 -1 3 
+#    dclick headitem
+#endif
+#if findlayer self neck as nitem
+#    setvar neckitem nitem
+#elseif find neckitem ground -1 -1 3 
+#    dclick headitem
+#endif
+#if findlayer self innertorso as iitem
+#    setvar innertorsoitem iitem
+#elseif find innertorsoitem ground -1 -1 3 
+#    dclick headitem
+#endif
+#if findlayer self arms as aitem
+#    setvar armsitem aitem
+#elseif find armsitem ground -1 -1 3 
+#    dclick headitem
+#endif
+#if findlayer self gloves as gitem
+#    setvar glovesitem item
+#elseif find glovesitem ground -1 -1 3 
+#    dclick headitem
+#endif
+#if findlayer self pants as pitem
+#    setvar pantshitem item
+#elseif find pantshitem ground -1 -1 3 
+#    dclick headitem
+#endif
+
+
+if findlayer self head as hitem
+    if varexist headitem
+        if hitem = headitem
+            sysmsg '>>> No need to update headitem' 44
+        else
+            sysmsg '>>> New head item detected - setting variable'
+            setvar headitem hitem
+        endif
+    else
+        setvar headitem hitem
+    endif
+elseif find headitem ground -1 -1 3 
+    dclick headitem
+endif
+
+
+
+
+    
+    
+
+    
+
+
+
+
+
+
+

@@ -1,0 +1,76 @@
+if not varexist dockmaster
+    @setvar dockmaster
+endif
+if cooldown pvp
+    @menu dockmaster 1
+    waitforgump 3287496917 1000
+    gumpresponse 7 3287496917
+endif
+if hp < maxhp
+    @menu dockmaster 1
+    waitforgump 3287496917 1000
+    gumpresponse 7 3287496917
+endif
+if poisoned 
+    @menu dockmaster 1
+    waitforgump 3287496917 1000
+    gumpresponse 7 3287496917
+endif
+if insysmsg 'you dock the ship. you may now'
+    overhead 'We docked'
+    stop
+endif
+
+if lhandempty
+    if findtype 'fishing pole' backpack
+    dress fishing
+    pause 500
+    else
+        overhead 'out of poles'
+        break
+    endif
+endif
+
+if name != 'RobotTurtle'
+    if ingump 'Ready' 1774462345
+        overhead 'Using mariners fortune'
+        gumpresponse 7 1774462345
+        cooldown mariners 269000
+    endif
+endif
+clearsysmsg
+hotkey 'Use item in hand'
+sysmsg  'Fishing' 2263
+while not insysmsg 'skillgain'
+    pause 500
+    if insysmsg 'You do not see any harvestable resources nearb'
+        overhead 'YOU NEED TO MOVE' 33
+        pause 2000
+        overhead 'YOU NEED TO MOVE' 33
+        stop
+    endif
+    
+    if cooldown pvp
+        @menu dockmaster 1
+        waitforgump 3287496917 1000
+        gumpresponse 7 3287496917
+    
+    endif
+    if hp < maxhp
+        @menu dockmaster 1
+        waitforgump 3287496917 1000
+        gumpresponse 7 3287496917
+    
+    endif
+    if poisoned 
+        @menu dockmaster 1
+        waitforgump 3287496917 1000
+        gumpresponse 7 3287496917
+    
+    endif
+    if insysmsg 'you dock the ship. you may now'
+        overhead 'We docked'
+        stop
+    endif
+endwhile
+replay

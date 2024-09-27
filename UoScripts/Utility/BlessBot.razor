@@ -1,0 +1,59 @@
+if not listexists petstobuff
+    createlist petstobuff
+else
+    clearlist petstobuff
+endif
+if not timerexists blesstimer
+    createtimer blesstimer
+    settimer blesstimer 0
+endif
+if not timerexists spamtimer
+    createtimer spamtimer
+    settimer spamtimer 0
+endif
+
+if timer blesstimer > 360000
+    overhead 'Timer up, clearing ignore: {{blesstimer}}'
+    clearignore 
+    if mana > 50
+        ##Add the type of pets you are using to the list here.
+        if findtypelist petstobuff '317' ground -1 -1 6
+            foreach pet in petstobuff
+                cast 'bless'
+                wft 2000
+                getlabel pet mypetlabel
+                overhead '{{mypetlabel}}'
+                target pet
+                pause 300
+                @ignore pet
+            endfor
+        endif
+        pause 300
+        hotkey 'Next Friendly Player Target'
+        if insysmsg 'new target set'
+            cast 'Bless'
+            wft 2000
+            target lasttarget 
+        endif
+        settimer blesstimer 0
+    else
+        if not findbuff 'actively medi'
+            skill 'meditation'
+            pause 1000
+            while mana < 50
+                pause 1000
+            endwhile
+        endif
+    endif
+else
+    if timer spamtimer > 10000
+        overhead 'Awaiting timer: {{blesstimer}}'
+        overhead 'Spamtimer: {{spamtimer}}'
+        settimer spamtimer 0
+    endif
+    pause 2500
+endif
+
+
+replay
+

@@ -1,0 +1,38 @@
+if not listexists crewlist
+    createlist crewlist
+else
+    clearlist crewlist
+endif
+
+@setvar! vetchest
+@setvar! expertchest
+@setvar! masterchest
+
+@setvar! chesttosort
+if findtypelist crewlist 8455|8454 chesttosort
+    foreach crew in crewlist
+        getlabel crew mylabel
+        overhead mylabel 79
+        pause 250
+        if 'veteran' in mylabel
+            sysmsg '> Found a vet'
+            lift crew
+            pause 300
+            drop vetchest 148 106 0
+        elseif 'expert' in mylabel
+            sysmsg '> Found an expert'
+            lift crew
+            pause 300
+            drop expertchest 148 106 0
+        elseif 'master' in mylabel
+            sysmsg '> Found a master'
+            lift crew
+            pause 300
+            drop masterchest 148 106 0
+        elseif 'heroic' in mylabel or 'legendary' in mylabel
+            sysmsg 'WHO ARE YOU KIDDING LOLOL'
+        endif
+        pause 500
+        @setvar mylabel 'CLEAR'
+    endfor
+endif

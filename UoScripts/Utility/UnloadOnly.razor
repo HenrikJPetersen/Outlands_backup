@@ -1,0 +1,9 @@
+if findtype 'bank deposit safe' ground 0 0 3 as safe
+    if findtype '3821' backpack as lewt
+        lift lewt 60000
+        pause 250
+        drop safe
+    endif
+else
+    overhead 'false'
+endif

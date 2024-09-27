@@ -1,0 +1,10 @@
+if findtype 'elven spellblade' backpack as sknife
+    dclick sknife 
+    while not targetexists 
+    endwhile
+    while targetexists 
+        hotkey 'Target self'
+    endwhile
+else
+    overhead '■■ NO S-KNIFE ■■' 33
+endif

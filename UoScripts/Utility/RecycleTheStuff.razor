@@ -1,0 +1,638 @@
+# Set minimum amount of items to id with container wand.
+@setvar! minimum_id_amount 2
+@setvar! eat_arcane_essence 1
+@setvar! auto_set_grabbag 1
+@setvar! enable_heal_while_recycling 1
+@setvar! print_ignore_list 1
+@setvar! save_regular_leather 0
+@setvar! Keep_running_main_script 1
+
+##############################
+# WHAT TO SAVE OPTIONS START #
+##############################
+# Weapons types to save
+@setvar! keep_crafted 1
+@setvar! always_save_dungeon_bonus 1 
+@setvar! weapon_ruin 0
+@setvar! weapon_might 0
+@setvar! weapon_force 0
+@setvar! weapon_power 1
+@setvar! weapon_vanquishing 1
+@setvar! weapon_slayer 1
+@setvar! weapon_eminently 0
+@setvar! weapon_exceedingly 1
+@setvar! weapon_supremely 1
+# Armor types to save
+@setvar! armor_invulnerbility 1
+@setvar! armor_fortification 0
+# Spellbooks to save
+# Save EMINENTLY spellbooks with dmg modifiers (Ruin, might, force, power, vanq, slayer)
+# 1 = yes | 0 = no
+@setvar! spellbook_modiers 1
+@setvar! spellbook_modiers 1
+# Instruments types to save
+@setvar! instrument_supremely 1
+@setvar! instrument_exceedingly 1
+############################
+# WHAT TO SAVE OPTIONS END #
+############################
+
+# Replace vetDexerScript with the main script youre running when farming.
+if back_to_main_script = 1
+    @setvar! back_to_main_script 0
+    sysmsg '>> Re-run main script' 68
+    script 'vetDexerScript'
+endif
+
+@setvar! start_recycling 0
+
+# Require one of the round bags to set lootbag
+if not find lootbag backpack
+    overhead 'cannot find lootbag'
+    if findtype 'bag' backpack as lbag
+        @setvar! lootbag lbag
+        if auto_set_grabbag = 1
+            sysmsg '>> Setting it to grab item hotbag' 44
+            hotkey 'Set Grab Item HotBag'
+            wft 500
+            target lootbag
+            sysmsg '☻ Grabbag set ☻' 44        
+        endif
+        sysmsg '>> Lootbag set succesfully' 44
+    else
+        sysmsg '▲▲ Cannot set lootbag ▲▲' 33
+        sysmsg '▲▲ Make sure you got a round bag in inventory ▲▲' 33
+        unsetvar lootbag
+        stop
+    endif
+else
+    sysmsg '☻ Lootbag found ☻' 44
+endif
+
+# TRIGGER
+# If items_to_recycle > 10 recycle using a container wand.
+# If weight > 423 and items_to_recycle > 0
+
+if not listexists triggerlist
+    createlist triggerlist
+else
+    clearlist triggerlist
+endif
+
+# Collect numbers of items to recycle in lootbag
+if findtypelist triggerlist  30995|31025|31031|31053|30988|31130|20012|20008|30999|30997|31017|31051|31029|20006|31141|31186|31055|31047|31142|31142|31003|20014|31184|30994|30099|531043|31045|31049|31001|31000|5135|5042|3920|5117|9917|3922|5121|5125|3719|5123|3938|5044|5181|3932|5179|5040|5127|3713|3568|5112|3721|5177|3934|5185|5119|3937|5046|5049|3913|3911|3915|3909|5115|5187|3917|5182|22187|5063|5129|5132|5075|5074|5061|5070|7175|7179|7169|5090|5089|5076|7610|5085|7170|7181|5204|5207|5203|5201|5205|5101|5105|5131|5078|7947|5060|5059|5103|5056|5106|5142|5146|5143|5138|5144|5139|7173|7177|7034|7033|7027|7035|7026|7029|7031|7107|7109|10245|3740|3762|3763|3742|3834 lootbag
+endif
+
+# Check if we should recycle    
+if weight > 423 and list triggerlist > 0
+    sysmsg '☻☻ Recycling weight and item ☻☻' 44
+    @setvar! start_recycling 1
+    @setvar! use_container_id 0
+elseif list triggerlist >= minimum_id_amount
+    sysmsg '☻☻ Recycling countype > 10 ☻☻' 44
+    @setvar! start_recycling 1
+    @setvar! use_container_id 1
+else
+    sysmsg '▲▲ Skipping: No items ▲▲' 68
+    @setvar! back_to_main_script 1
+    replay
+endif
+
+
+if findtype '20495' backpack as container_wand
+    @setvar! container_id_tool container_wand
+    sysmsg '>> Found container id wand' 44
+else
+    sysmsg '▲▲ Script will fail due to not having a container wand ▲▲ ' 33
+endif
+if findtype '20496' backpack as id_wand
+    @setvar! single_id_tool id_wand
+    sysmsg '>> Found single id wand' 44
+else
+    sysmsg '▲▲ Script will fail due to not having a id  wand ▲▲ ' 33
+endif
+    
+if not listexists recyclelist
+    createlist recyclelist
+else
+    clearlist recyclelist
+endif
+if not listexists ignorelist
+    createlist ignorelist
+else
+    clearlist ignorelist
+endif
+
+
+if enable_heal_while_recycling = 1
+# Attempts to heal you or your pet if needed
+    if skill 'veterinary' > 79 or skill 'healing' > 59
+        if hp < maxhp and not bandaging or followers != 0
+            if skill 'veterinary' > 79
+                say '[VetSupplies'
+                pause 500
+            else
+                hotkey 'Bandage self'
+                pause 250
+            endif
+        endif
+    elseif skill 'alchemy' > 0
+        potion 'Heal'
+        pause 250
+    endif
+    if skill 'Veterinary' > 79 and not findtype '25750' backpack
+        overhead '▲▲ NO VET KITS ▲▲' 33
+        sysmsg  '▲▲ NO VET KITS ▲▲' 33
+    elseif skill 'Alchemy' > 0 and not findtype 'Yellow Potion' backpack
+        overhead '▲▲ NO BANDAGES ▲▲' 33
+    elseif skill 'Healing' > 79 and not findtype '3617' backpack
+        overhead '▲▲ NO HEALPOTS ▲▲' 33
+    endif
+endif
+
+clearsysmsg 
+# ID items and add to recyclelist and ignorelist
+if start_recycling = 1 
+    if start_recycling = 1 and use_container_id = 1
+        # Container ID lootbag 
+        dclick container_id_tool
+        pause 25
+        # Attempting to retry if ping is high or a lag spike happens.
+        if insysmsg 'you must wait to perform'
+            dclick container_id_tool
+        endif
+        wft 500
+        target lootbag
+    endif
+    
+    #Weapons
+    if listexists weaponlist
+        clearlist weaponlist
+    else
+        createlist weaponlist
+    endif
+    
+    sysmsg '>> Checking weapons' 44
+    if findtypelist weaponlist 30995|31025|31031|31053|30988|30999|30997|31017|31051|31029|20006|31141|31186|31055|31047|31142|20014|31184|30994|5042|3920|5117|9917|3922|5121|5125|3719|5123|3938|5044|5181|3932|5179|5040|5127|3713|3568|5112|3721|5177|3934|5185|5119|3937|5046|5049|3913|3911|3915|3909|5115|5187|3917|5182|22187 lootbag
+        foreach item in weaponlist
+            @getlabel! item itemlabel
+            pause 25
+            if 'unidentified' in itemlabel
+                // INSERT SINGLE ID
+                dclick single_id_tool
+                pause 25
+                # Attempting to retry if ping is high or a lag spike happens.
+                if insysmsg 'you must wait to perform'
+                    dclick single_id_tool
+                endif
+                wft 500
+                target item
+                pause 25
+                @getlabel! item itemlabel
+            endif
+            pause 25
+            // Insert save statements
+            if 'unidentified' in itemlabel
+                # Do nothing
+            elseif keep_crafted = 1 and 'exceptional' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif always_save_dungeon_bonus = 1 and 'slaying' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_supremely = 1 and 'supremely' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_exceedingly = 1 and 'exceedingly' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_eminently = 1 and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_vanquishing = 1 and 'vanquishing' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_power = 1 and 'power' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_force = 1 and 'force' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_might = 1 and 'might' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_ruin = 1 and 'ruin' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            else                    
+                sysmsg '>> Add to recycllist: {{item}} - {{itemlabel}}'  66
+                @pushlist recyclelist item 'front'
+            endif
+        endfor
+    else 
+        sysmsg '>> No weapons found' 333
+    endif
+   
+    # Heal
+    if enable_heal_while_recycling = 1
+    # Attempts to heal you or your pet if needed
+        if skill 'veterinary' > 79 or skill 'healing' > 59
+            if hp < maxhp and not bandaging or followers != 0
+                if skill 'veterinary' > 79
+                    say '[VetSupplies'
+                    pause 500
+                else
+                    hotkey 'Bandage self'
+                    pause 250
+                endif
+            endif
+        elseif skill 'alchemy' > 0
+            potion 'Heal'
+            pause 250
+        endif
+        if skill 'Veterinary' > 79 and not findtype '25750' backpack
+            overhead '▲▲ NO VET KITS ▲▲' 33
+            sysmsg  '▲▲ NO VET KITS ▲▲' 33
+        elseif skill 'Alchemy' > 0 and not findtype 'Yellow Potion' backpack
+            overhead '▲▲ NO BANDAGES ▲▲' 33
+        elseif skill 'Healing' > 79 and not findtype '3617' backpack
+            overhead '▲▲ NO HEALPOTS ▲▲' 33
+        endif
+    endif
+    # Armor
+    clearsysmsg
+    if listexists armorlist
+        clearlist armorlist
+    else
+        createlist armorlist
+    endif
+    sysmsg '>> Checking armors' 44
+    if findtypelist armorlist 31130|31142|31003|5135|5063|5129|5132|5075|5074|5061|5070|7175|7179|7169|5090|5089|5076|7610|5085|7170|7181|5204|5207|5203|5201|5205|5101|5105|5131|5078|7947|5060|5059|5103|5056|5106|5142|5146|5143|5138|5144|5139|7173|7177|7034|7033|7027|7035|7026|7029|7031|7107|7109 lootbag
+        foreach item in armorlist
+            @getlabel! item itemlabel
+            pause 25
+            if 'unidentified' in itemlabel
+                // INSERT SINGLE ID
+                dclick single_id_tool
+                pause 25
+                # Attempting to retry if ping is high or a lag spike happens.
+                if insysmsg 'you must wait to perform'
+                    dclick single_id_tool
+                endif
+                wft 500
+                target item
+                pause 10
+                @getlabel! item itemlabel
+            endif
+            
+            if 'unidentified' in itemlabel
+                # Do nothing
+            elseif keep_crafted = 1 and 'exceptional' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif armor_invulnerbility = 1 and 'invulnerability' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif armor_fortification = 1 and 'fortification' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            else
+                sysmsg '>> Add to recycllist: {{item}} - {{itemlabel}}' 66
+                @pushlist recyclelist item 'front'
+            endif
+        endfor
+    else
+        sysmsg '>> No armor found' 333
+    endif
+    
+    # Heal
+    if enable_heal_while_recycling = 1
+    # Attempts to heal you or your pet if needed
+        if skill 'veterinary' > 79 or skill 'healing' > 59
+            if hp < maxhp and not bandaging or followers != 0
+                if skill 'veterinary' > 79
+                    say '[VetSupplies'
+                    pause 500
+                else
+                    hotkey 'Bandage self'
+                    pause 250
+                endif
+            endif
+        elseif skill 'alchemy' > 0
+            potion 'Heal'
+            pause 250
+        endif
+        if skill 'Veterinary' > 79 and not findtype '25750' backpack
+            overhead '▲▲ NO VET KITS ▲▲' 33
+            sysmsg  '▲▲ NO VET KITS ▲▲' 33
+        elseif skill 'Alchemy' > 0 and not findtype 'Yellow Potion' backpack
+            overhead '▲▲ NO BANDAGES ▲▲' 33
+        elseif skill 'Healing' > 79 and not findtype '3617' backpack
+            overhead '▲▲ NO HEALPOTS ▲▲' 33
+        endif
+    endif
+    
+    # Spellbooks
+    if listexists booklist
+        clearlist booklist
+    else
+        createlist booklist
+    endif
+    sysmsg '>> Checking spellbooks' 44
+    if findtypelist booklist 3834 lootbag
+        foreach item in booklist
+            @getlabel! item itemlabel
+            pause 25
+            if 'unidentified' in itemlabel
+                // INSERT SINGLE ID
+                dclick single_id_tool
+                pause 25
+                # Attempting to retry if ping is high or a lag spike happens.
+                if insysmsg 'you must wait to perform'
+                    dclick single_id_tool
+                endif
+                wft 500
+                target item
+                pause 10
+                @getlabel! item itemlabel
+            endif
+            
+            if keep_crafted = 1 and 'exceptional' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif 'supremely' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif 'exceedingly' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif spellbook_modiers = 1 and 'ruin' in itemlabel and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif spellbook_modiers = 1 and 'might' in itemlabel and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif spellbook_modiers = 1 and 'force' in itemlabel and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif spellbook_modiers = 1 and 'power' in itemlabel and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif spellbook_modiers = 1 and 'vanquishing' in itemlabel and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            else
+                sysmsg '>> Add to recycllist: {{item}} - {{itemlabel}}' 66
+                @pushlist recyclelist item 'front'
+            endif
+        endfor
+    else
+        sysmsg '>> No spellbooks found' 333
+    endif
+    # Heal
+    if enable_heal_while_recycling = 1
+    # Attempts to heal you or your pet if needed
+        if skill 'veterinary' > 79 or skill 'healing' > 59
+            if hp < maxhp and not bandaging or followers != 0
+                if skill 'veterinary' > 79
+                    say '[VetSupplies'
+                    pause 500
+                else
+                    hotkey 'Bandage self'
+                    pause 250
+                endif
+            endif
+        elseif skill 'alchemy' > 0
+            potion 'Heal'
+            pause 250
+        endif
+        if skill 'Veterinary' > 79 and not findtype '25750' backpack
+            overhead '▲▲ NO VET KITS ▲▲' 33
+            sysmsg  '▲▲ NO VET KITS ▲▲' 33
+        elseif skill 'Alchemy' > 0 and not findtype 'Yellow Potion' backpack
+            overhead '▲▲ NO BANDAGES ▲▲' 33
+        elseif skill 'Healing' > 79 and not findtype '3617' backpack
+            overhead '▲▲ NO HEALPOTS ▲▲' 33
+        endif
+    endif
+    
+    # Instruments
+    if listexists instrumentlist
+        clearlist instrumentlist
+    else
+        createlist instrumentlist
+    endif
+    sysmsg '>> Checking instruments' 44
+    if findtypelist instrumentlist 20012|20008|10245|3740|3762|3763|3742 lootbag
+        foreach item in instrumentlist
+            @getlabel! item itemlabel
+            pause 25
+            if 'unidentified' in itemlabel
+                // INSERT SINGLE ID
+                dclick single_id_tool
+                pause 25
+                # Attempting to retry if ping is high or a lag spike happens.
+                if insysmsg 'you must wait to perform'
+                    dclick single_id_tool
+                endif
+                wft 500
+                target item
+                pause 10
+                @getlabel! item itemlabel
+            endif
+            
+            if instrument_supremely = 1 and 'supremely' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+                
+            elseif instrument_exceedingly = 1 and 'exceedingly' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif 'greater' in itemlabel and 'deamonic' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            else
+                sysmsg '>> Add to recycllist: {{item}} - {{itemlabel}}' 66
+                @pushlist recyclelist item 'front'
+            endif 
+        endfor
+    else
+        sysmsg '>> No instruments found' 333
+    endif 
+endif
+
+
+
+if enable_heal_while_recycling = 1
+# Attempts to heal you or your pet if needed
+    if skill 'veterinary' > 79 or skill 'healing' > 59
+        if hp < maxhp and not bandaging or followers != 0
+            if skill 'veterinary' > 79
+                say '[VetSupplies'
+                pause 500
+            else
+                hotkey 'Bandage self'
+                pause 250
+            endif
+        endif
+    elseif skill 'alchemy' > 0
+        potion 'Heal'
+        pause 250
+    endif
+    if skill 'Veterinary' > 79 and not findtype '25750' backpack
+        overhead '▲▲ NO VET KITS ▲▲' 33
+        sysmsg  '▲▲ NO VET KITS ▲▲' 33
+    elseif skill 'Alchemy' > 0 and not findtype 'Yellow Potion' backpack
+        overhead '▲▲ NO BANDAGES ▲▲' 33
+    elseif skill 'Healing' > 79 and not findtype '3617' backpack
+        overhead '▲▲ NO HEALPOTS ▲▲' 33
+    endif
+endif
+   
+
+# Recycling
+
+
+if list recyclelist > 0
+    while list recyclelist > 0 
+        foreach item in recyclelist
+            getlabel item desc
+            sysmsg 'Recycling: {{item}} - {{desc}}' 33
+            pause 25
+            if not gumpexists 949095101
+                if findtype 4032|4032|3997|7864|4148|4136 backpack as recyclerItemKit
+                    dclick recyclerItemKit
+                    waitforgump 949095101 1000
+                else
+                    sysmsg  "▲▲ No crafting tool found. Stopping ▲▲" 33
+                    if back_to_main_script = 1
+                        sysmsg '▲▲ Returning to main script ▲▲' 68
+                        @setvar! back_to_main_script 1
+                        replay
+                    else
+                        stop
+                    endif
+                endif
+            endif
+            if gumpexists 949095101
+                while not ingump "Recycle Single Item" 949095101
+                    gumpresponse 2 949095101
+                    waitforgump 949095101 1000
+                endwhile
+                gumpresponse 3 949095101
+                wft 1000
+                target item
+                poplist recyclelist item
+                pause 75
+            endif
+        endfor
+    endwhile
+    clearlist recyclelist
+endif
+
+
+pause 50
+if gumpexists 949095101
+    while gumpexists 949095101
+        gumpclose 949095101
+    endwhile
+endif
+sysmsg '>>> Print ignorelist'
+# Print saved items to sysmsg
+if print_ignore_list = 1
+    sysmsg 'Attmpt to print saved items ' 44
+    if list ignorelist > 0
+        foreach x in ignorelist
+            getlabel x ignorelabel
+            sysmsg 'Saved: {{ignorelabel}}' 2263
+        endfor
+    else
+        sysmsg '>> Nothing was added to ignore list <<' 33
+    endif
+endif
+
+# Handle essence
+if cooldown pvp and findtype 12686 backpack as essence
+    sysmsg '☻☻ EATING ESSENCE - DAMN PKS! ☻☻' 2263
+    dclick essence
+    wft 500
+    while targetexists 
+        target self
+    endwhile 
+elseif eat_arcane_essence = 1 and findtype 12686 backpack as essence 
+    sysmsg '☻☻ Consume Essence ☻☻' 2263
+    dclick essence
+    wft 500
+    while targetexists 
+        target self
+    endwhile
+elseif findtype 12686 backpack
+    sysmsg '☻☻ Adding essence to boombox ☻☻' 44
+    hotkey 'Organizer Agent-01'
+endif
+
+if gumpexists 949095101
+    while gumpexists 949095101
+        gumpclose 949095101
+    endwhile
+endif
+
+# Cleanup
+if save_regular_leather = 1
+else
+    if findtype 4225 backpack 0 -1 as leather
+        sysmsg '> Dropping regular leather' 33
+        lift leather 1000
+        pause 25
+        droprelloc 0 0
+        pause 25
+        if insysmsg 'droprelloc - you cannot'
+            sysmsg '▲▲ Move from other players to drop leather ▲▲' 33
+        endif
+      
+    endif
+endif
+if gumpexists 949095101
+    while gumpexists 949095101
+        gumpclose 949095101
+    endwhile
+endif
+
+# Return to main script
+
+if Keep_running_main_script = 1
+    sysmsg '▲▲ Returning to main script ▲▲' 68
+    @setvar! back_to_main_script 1
+    pause 25
+    replay
+else
+    stop
+endif
+# Clear ignore if standing next to my shelf
+if position 920 3019
+    clearignore 
+endif

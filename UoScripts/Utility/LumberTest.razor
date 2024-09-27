@@ -1,0 +1,127 @@
+if not varexist jase_lumber_runebook
+    overhead "Select your escape runebook" 88
+    setvar jase_lumber_runebook
+endif
+if not listexists "jase_lumber_actions"
+    createlist "jase_lumber_actions"
+endif
+if not findbuff 'Tracking hunting'
+    script 'lumberrecall'
+    replay
+endif
+
+while insysmsg "now tracking"
+    script 'lumberrecall'
+    for 4
+        overhead '-P-K--P-K--P-K--' 33
+        pause 1100
+    endfor
+    replay
+endwhile
+clearsysmsg 
+if not varexist needToOrganize
+    @setvar! needToOrganize 0
+endif
+if counttype '7133' backpack > 40
+    overhead 'Found logs' 33
+    while findtype '7133' backpack as log
+    dclick log
+    if needToOrganize = 0
+        setvar needToOrganize 1
+    endif
+    endwhile
+    pause 250
+endif
+if needToOrganize = 1
+    organizer 10
+    while queued 
+        pause 50
+    endwhile
+    setvar needToOrganize 0
+endif
+
+
+if lhandempty ?? 0 
+    if findtype "hatchet" backpack
+        dclicktype 'hatchet' backpack
+        wait 200
+    endif
+endif
+            
+if lhandempty ?? 0 
+    overhead "No more hatchets!" 34
+    stop
+endif
+
+wait 500
+overhead 'Lumberjacking' 0
+hotkey 'Use item in hand'
+wft 1000
+hotkey 'Target Self'
+pause 250
+if ingump 'Captcha'
+    for 3
+    overhead 'CAPTCHA detected' 33
+    pause 500
+    endfor
+    stop
+endif
+for 75
+    wait 100
+    if insysmsg 'world is saving'
+        for 30
+            overhead 'Waiting for world save...'
+            wait 1000
+            if insysmsg 'save complete'
+                overhead 'Save complete - continue on!' 88
+                clearsysmsg 
+                wait 250
+                replay
+            elseif insysmsg "now tracking"
+                script 'lumberrecall'
+                
+                replay
+            endif
+        endfor
+    elseif insysmsg "now tracking"
+        script 'lumberrecall'
+        for 3
+            overhead '-P-K--P-K--P-K--' 33
+        endfor
+        replay
+    elseif lhandempty ?? 0 
+        overhead "Broke axe" 34
+        replay
+    elseif insysmsg 'You do not see any' or insysmsg 'You cannot produce any wood'
+        overhead 'Move to next spot' 88
+        wait 250
+        replay
+    elseif insysmsg "travel"
+        overhead 'Waiting for travel...'
+        wait 1000
+        replay
+    else
+        if insysmsg "any harvestable" or insysmsg "jase_lumber_actions"
+            // No Ore
+            overhead 'Move to next spot' 88
+            replay
+        elseif insysmsg "skillgain" or insysmsg "harvesting is not allowed"
+            // Gained skill
+            replay
+        elseif insysmsg "world is saving" or insysmsg 'World save complete'
+            // World Save
+            replay
+        elseif insysmsg "You hack"
+            // Failed
+            replay
+        elseif insysmsg "You chop"
+            // Success
+            replay
+        elseif insysmsg "You must wait"
+            // Wait message
+            overhead 'You must wait..' 34
+            wait 500
+            replay
+        endif
+    endif
+endfor

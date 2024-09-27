@@ -1,0 +1,21 @@
+clearsysmsg 
+pause 100
+if findtype '3853' backpack
+    if findtype '23034' ground -1 -1 2 as stockpile
+        @menu stockpile 0
+        wft 1000
+        target 'self'
+    endif
+else
+    if findtype 'storage shelf' ground -1 -1 2 as shelf
+        @menu shelf 1
+        pause 150
+    endif
+endif
+
+pause 250
+if insysmsg 'no items available'
+    stop
+endif
+replay
+    

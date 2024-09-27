@@ -1,0 +1,250 @@
+@setvar eatessence 1
+clearsysmsg 
+@setvar! minimumwait 150
+clearignore 
+if varexist itemlabel
+    unsetvar itemlabel
+endif
+# Setting recycletools
+if findtype '7864' backpack as tinkertools
+    @setvar! recycle tinkertools
+    sysmsg '> Found tinkertools' 44
+endif
+# Container wand
+if findtype '20495' backpack as idcwand
+    @setvar! idwand idcwand
+    sysmsg '> Found container id wand' 44
+endif
+# If you have more than 422 stones in inventory, you cannot move items around.
+# Trigger to recycle
+#if weight > 400
+# TRIGGER WHILE TESTING
+if not dead    
+    if findtype 'bag' backpack as bagid
+        overhead 'We are recycling'
+        //ID HERE
+        dclick idwand
+        wft 500
+        target bagid
+        pause minimumwait
+        ## Begin recycle // save
+        
+        @setvar! lootbag bagid
+        
+        ################## WEAPONS ##################
+        if listexists weaponlist
+            clearlist weaponlist
+        else
+            createlist weaponlist
+        endif
+        if findtypelist weaponlist '5042|3920|5117|9917|3922|5121|5125|3719|5123|3938|5044|5181|3932|5179|5040|5127|3713|3568|5112|3721|5177|3934|5185|5119|3937|5046|5049|3913|3911|3915|3909|5115|5187|3917|5182|22187' bagid
+            foreach item in weaponlist
+                @getlabel! item itemlabel
+                ##sysmsg '> {{itemlabel}}' 55
+                    pause minimumwait
+                ## Do not recycle your weapon
+                if 'aspect' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                ## Do not recycle crafted stuff
+                elseif 'exceptional' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                elseif 'supremely' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                elseif 'exceedingly' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                elseif 'slaying' in itemlabel and 'greater' in itemlabel
+                    sysmsg '> Saving: {{itemlabel}} <' 55
+                    @ignore item
+                elseif 'vanquishing' in itemlabel 
+                    sysmsg '> found Vanquishing > {{itemlabel}} <' 55
+                    @ignore item
+                else
+                    ## RECYCLE
+                    sysmsg '>>> recycling {{itemlabel}} <<<' 73
+                    if not targetexists 
+                        if not gumpexists 949095101
+                            dclick recycle
+                            waitforgump 949095101 1000
+                        else
+                            gumpresponse 3 949095101
+                            wft 500
+                            waitforgump 949095101 1000
+                        endif
+                    else
+                        while targetexists 
+                        endwhile
+                        if not gumpexists 949095101
+                            dclick recycle
+                            waitforgump 949095101 1000
+                            pause 150
+                        else
+                            gumpresponse 3 949095101
+                            wft 500
+                            waitforgump 949095101 1000
+                            pause 150
+                        endif
+                    endif
+                    target item
+                    pause 150
+                    waitforgump 949095101 1000
+                endif
+                unsetvar itemlabel
+            endfor
+        else
+            sysmsg '> No weapons' 333
+        endif
+        ################## ARMOR ##################
+        if listexists armorlist
+            clearlist armorlist
+        else
+            createlist armorlist
+        endif
+        if findtypelist armorlist '5132|5075|5074|5061|5070|7175|7179|7169|5090|5089|5076|7610|5085|7170|7181|5204|5207|5203|5201|5205|5101|5105|5131|5078|7947|5060|5059|5103|5056|5106|5142|5146|5143|5138|5144|5139|7173|7177|7034|7033|7027|7035|7026|7029|7031|7107|7109' bagid
+            foreach item in armorlist
+                @getlabel! item itemlabel
+                pause minimumwait
+                ## Do not recycle crafted items
+                if 'exceptional' in itemlabel
+                    sysmsg '> found crafted item > {{itemlabel}} <' 55
+                    @ignore item
+                elseif 'invulnerability' in itemlabel
+                    sysmsg '> Saving > {{itemlabel}} <' 55
+                    @ignore item
+                else
+                    ## RECYCLE
+                    sysmsg '>>> recycling {{itemlabel}} <<<' 73
+                     if not targetexists 
+                        if not gumpexists 949095101
+                            dclick recycle
+                            waitforgump 949095101 1000
+                        else
+                            gumpresponse 3 949095101
+                            wft 500
+                            waitforgump 949095101 1000
+                        endif
+                    endif
+                    target item
+                endif
+            endfor
+        else
+            sysmsg '> No armor' 333
+        endif
+        ################## INSTRUMENTS ##################
+        if listexists instrumentlist
+            clearlist instrumentlist
+        else
+            createlist instrumentlist
+        endif
+        if findtypelist instrumentlist '10245|3740|3762|3763|3742' bagid
+            foreach item in instrumentlist
+                @getlabel! item itemlabel
+                pause minimumwait
+                ## Do not recycle crafted items
+                if 'supremely' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                elseif 'greater' in itemlabel and 'slaying' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                else
+                    ## RECYCLE
+                    sysmsg '>>> recycling {{itemlabel}} <<<' 73
+                     if not targetexists 
+                        if not gumpexists 949095101
+                            dclick recycle
+                            waitforgump 949095101 1000
+                        else
+                            gumpresponse 3 949095101
+                            wft 500
+                            waitforgump 949095101 1000
+                        endif
+                    endif
+                    target item
+                endif
+            endfor
+        else
+            sysmsg '> No iunstruments' 333
+        endif
+        ################## SPELLBOOKS ##################
+        if listexists booklist
+            clearlist booklist
+        else
+            createlist booklist
+        endif
+        if findtypelist booklist '3834' bagid
+            foreach item in booklist
+                @getlabel! item itemlabel
+                pause minimumwait
+                ## Do not recycle crafted
+                if 'aspect' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                ## Do not recycle aspect book
+                elseif 'supremely' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                elseif 'exceedingly' in itemlabel    
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                elseif 'eminently' in itemlabel and 'ruin' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                elseif 'eminently' in itemlabel and 'might' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                   @ignore item
+                elseif 'eminently' in itemlabel and 'power' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                elseif 'eminently' in itemlabel and 'vanquishing' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                elseif 'eminently' in itemlabel and 'slaying' in itemlabel
+                    sysmsg '> Saving: > {{itemlabel}} <' 55
+                    @ignore item
+                else
+                    ## RECYCLE
+                    sysmsg '>>> recycling {{itemlabel}} <<<' 73
+                     if not targetexists 
+                        if not gumpexists 949095101
+                            dclick recycle
+                            waitforgump 949095101 1000
+                        else
+                            gumpresponse 3 949095101
+                            wft 500
+                            waitforgump 949095101 1000
+                        endif
+                    endif
+                    target item
+                endif
+            endfor
+        else
+            sysmsg '> No books' 333
+        endif
+        
+    endif
+else
+    sysmsg '> Does not meet trigger criteria' 44
+endif
+## Adding essence
+if eatessence = 1
+    if findtype '12686' backpack as essence
+        if not gumpexists 2424293173
+            say '[aspect'   
+            waitforgump 2424293173 1000
+        endif
+        gumpresponse 100 2424293173
+        wft 1000
+        target essence
+    endif
+else
+    //Move it to boombox if not eating essence.
+    sysmsg 'REMEMBER TO MOVE YOUR ESSENCE TO SAFE CONTAINER' 2643
+    overhead 'REMEMBER TO MOVE YOUR ESSENCE TO SAFE CONTAINER' 2643
+endif
+# Call your main script here
+# Use the same trigger in your main script as in this: if weight > 400 and weight < 423
+# script 'vetDexerScript'

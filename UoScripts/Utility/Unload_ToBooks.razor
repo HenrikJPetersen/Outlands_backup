@@ -1,0 +1,42 @@
+if not varexist tomechest
+    setvar tomechest
+endif
+if listexists tomelist
+    clearlist tomelist
+else
+    createlist tomelist
+endif
+dclick tomechest
+pause 250
+
+if findtypelist tomelist '29104' tomechest
+    
+    foreach tome in tomelist
+        getlabel tome tname
+        pause 25
+        if "scroll" in tname
+            sysmsg '>> Checking for skill scrolls' 33
+        elseif "aspect" in tname
+            sysmsg '>> Checking for aspect items' 33
+        elseif "treasure" in tname
+            sysmsg '>> Checking for treasure maps' 33
+        elseif "lumber" in tname
+            sysmsg '>> Checking for lumber maps' 33
+        elseif "ore" in tname
+            sysmsg '>> Checking for ore maps' 33
+        elseif "skinning" in tname
+            sysmsg '>> Checking for skinning maps' 33
+        elseif "fishing" in tname
+            sysmsg '>> Checking for fishing maps' 33
+        elseif "dyes" in tname
+            sysmsg '>> Checking for dyes' 33
+        elseif "cloth" in tname
+            sysmsg '>> Checking for cloth' 33
+        elseif "ship" in tname
+            sysmsg '>> Checking for ship upgrades' 33
+        endif
+        pause 50
+        @menu tome 0
+        pause 300
+    endfor
+endif

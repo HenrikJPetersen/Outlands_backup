@@ -1,0 +1,17 @@
+#@setvar! _hp_bar_to_open
+#@menu _hp_bar_to_open 0
+if not listexists bars
+    createlist bars
+else
+    clearlist bars
+endif
+
+if findtypelist bars 401 ground -1 -1 10
+    
+endif
+foreach item in bars
+    @menu item 0
+    pause 250
+endfor
+
+

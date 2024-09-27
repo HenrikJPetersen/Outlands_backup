@@ -1,0 +1,59 @@
+if findtype 'bank deposit safe' ground -1 -1 3 as bankbox
+    if findtype '3821' backpack as gold
+        sysmsg '> Unloading gold' 44
+        organizer 9
+        wait 250
+        while queued
+        endwhile
+    endif
+    pause 250
+    if findtype '3891' backpack as dubs
+        sysmsg '> Unloading dubs'
+        organizer 9
+        while queued
+        endwhile
+    endif
+else
+    overhead '> No bank deposit found. Unable to drop loot <' 33
+endif
+pause 200
+if findtype '5362' backpack 
+    @menu shiptome 0
+endif
+pause 200
+hotkey 'Organizer Agent-02'
+pause 200
+if findtype 'resource container' ground -1 -1 2 as spile
+    @menu spile 0
+    wft 500
+    target self
+endif
+pause 200
+if findtype 'ornate elven chest' ground -1 -1 2 as recycler
+    @menu recycler 0
+    wft 500
+    target self
+endif
+pause 200
+if findtype 'storage shelf' ground -1 -1 2 shelf
+    @menu shelf 1
+endif
+if findtype '45315' backpack as pbody
+    sysmsg '> Found pirate booty' 44
+    lift pbody 6000
+    pause 250
+    drop 0x520149A8 -1 -1 0
+endif
+if not findtype '7864' backpack
+    sysmsg '>> MISSING RECYCLER TOOL <<' 33
+endif
+if findtype '20495' backpack as idwandcontainer and findtype '20496' backpack as singleidwand
+    getlabel singleidwand mytinkertool 
+    sysmsg  '>> Check charges {{mytinkertool}}' 2263
+    getlabel idwandcontainer mytinkertool
+    sysmsg  '>> Check charges {{mytinkertool}}' 2263
+else
+    sysmsg '>> MISSING ID WANDs <<' 22
+endif    
+
+    

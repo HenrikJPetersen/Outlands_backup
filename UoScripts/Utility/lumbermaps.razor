@@ -1,0 +1,62 @@
+@setvar! lumber_at_max 0
+
+if not timerexists choptimer
+    createtimer choptimer
+endif
+if findtype 'map' backpack as lmap
+    clearsysmsg 
+    sysmsg 'We be chopping' 44
+    getlabel lmap mylmap
+    overhead mylmap
+    if lhandempty ?? 0 
+        if findtype "hatchet" backpack
+            dclicktype 'hatchet' backpack
+            wait 200
+        endif
+    endif
+    if lhandempty ?? 0 
+        overhead "No more hatchets!" 34
+        replay
+    endif
+    pause 250
+    while 'remaining' in mylmap
+        clearsysmsg 
+        sysmsg 'Map not done yet:' 44
+        pause 25
+        
+        hotkey 'Use item in hand'
+        wft 1000
+        hotkey 'Target Self'
+        pause 100
+        //Captcha check for people doing it for skillgain
+        if lumber_at_max = 0
+            while not insysmsg 'lumberjacking skillgain'
+                pause 100
+                if insysmsg 'You have completely exhausted'
+                    script 'lumberrecall'
+                endif
+                while insysmsg 'now tracking'
+                    sysmsg 'PK PK PK!!' 33
+                    script 'lumberrecall'
+                endwhile
+            endwhile
+        endif
+        settimer choptimer 0
+        while timer choptimer < 2000
+            pause 100
+            if insysmsg 'You have completely exhausted'
+                script 'lumberrecall'
+            endif
+            while insysmsg 'now tracking'
+                sysmsg 'PK PK PK!!' 33
+                script 'lumberrecall'
+            endwhile
+        endwhile
+        pause 25
+        getlabel lmap mylmap
+        while insysmsg 'now tracking'
+                script 'lumberrecall'
+        endwhile
+    endwhile
+    script 'lumberrecall'
+endif

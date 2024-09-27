@@ -1,0 +1,28 @@
+if not listexists todolist
+    createlist todolist
+endif
+hotkey 'Next friendly player target'
+pause 100
+@setvar! myplayernametarget lasttarget 
+pause 100
+pushlist todolist myplayernametarget front
+pause 100
+foreach x in todolist
+    overhead '{{x}}'
+endif
+getlabel lasttarget mytargetlabel
+
+
+
+
+
+
+#hotkey 'Next friendly player target'
+#if insysmsg 'New target set.'
+#    @setvar! mytarget lasttarget
+#    if mytarget == 0x8A594
+#        overhead '☻☻ Donald Grump ☻☻' 44 mytarget
+#    elseif mytarget == 0x39BB8B
+#        overhead '☻☻ Læder Lone ☻☻' 44 mytarget
+#    endif   
+#endif

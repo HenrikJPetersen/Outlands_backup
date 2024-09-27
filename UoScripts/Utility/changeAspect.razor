@@ -1,0 +1,54 @@
+clearsysmsg 
+pause 50
+if findlayer self head as ch
+    getlabel ch myheadlabel
+    if 'fortune' in myheadlabel
+        overhead 'Changing to poison' 2263
+        say '[Aspect'
+        waitforgump 2424293173 600
+        pause 250
+        waitforgump 2424293173
+        gumpresponse 608 2424293173
+        pause 250
+        waitforgump 2424293173
+        
+        gumpresponse 608 2424293173
+        pause 250
+        waitforgump 2424293173
+        gumpresponse 508 2424293173
+        pause 250
+        waitforgump 2424293173
+        gumpresponse 508 2424293173
+        waitforgump 2424293173
+        pause 250
+        if insysmsg 'You must wait a moment before activating another'
+            overhead 'FAILED TO CHANGE ASPECT' 33
+            sysmsg 'FAILED TO CHANGE ASPECT' 33
+            stop
+        endif
+    elseif 'poison' in myheadlabel
+        overhead 'Changing to fortune' 2263
+        say '[Aspect'
+        pause 250
+        waitforgump 2424293173
+        gumpresponse 606 2424293173
+        pause 250
+        
+        waitforgump 2424293173
+        gumpresponse 606 2424293173
+        pause 250
+        waitforgump 2424293173
+        gumpresponse 506 2424293173
+        pause 250
+        waitforgump 2424293173
+        gumpresponse 506 2424293173
+        waitforgump 2424293173
+        pause 250
+        if insysmsg 'You must wait a moment before activating another'
+            overhead 'FAILED TO CHANGE ASPECT' 33
+            sysmsg 'FAILED TO CHANGE ASPECT' 33
+            stop    
+        endif
+    endif
+endif
+gumpclose 2424293173

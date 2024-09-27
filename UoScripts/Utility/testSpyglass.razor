@@ -1,0 +1,35 @@
+if not gumpexists 622436516
+    say '[necromancyhotbar'
+endif
+if ingump 'Search for ships'
+    gumpclose 2890020940
+endif
+pause 250
+if not cooldown spyglass
+    //agapite
+    if findtype 'spyglass' backpack 2425
+        dclicktype "spyglass"
+        wft 500
+        hotkey 'target self'
+    elseif findtype 'spyglass' backpack
+        dclicktype "spyglass"
+        wft 500
+        hotkey 'target self'
+    else
+        for 3
+            overhead 'No more spyglass in backpack'
+            pause 1000
+        endfor
+        break
+    endif
+    waitforgump 2890020940 500
+    if ingump 'Search for ships'
+        gumpresponse 4 2890020940
+        cooldown spyglass 7000
+    endif 
+else
+    pause 250
+    replay
+endif
+pause 250
+replay

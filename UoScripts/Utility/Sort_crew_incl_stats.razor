@@ -1,0 +1,144 @@
+#if not varexist veteranchest
+#    setvar veteranchest
+#endif
+#if not varexist expertchest
+#    setvar expertchest
+#endif
+#if not varexist masterchest
+#    setvar masterchest
+#endif
+#if not listexists crewlist
+#    createlist crewlist
+#else 
+#    clearlist crewlist
+#endif
+#if not varexist bigcrew
+#    setvar bigcrew
+#endif
+if not varexist speedcrewchest
+    setvar speedcrewchest
+endif
+pause 250
+if not varexist pilgrimchest
+    setvar pilgrimchest
+endif
+pause 250
+if not varexist engichest
+    setvar engichest
+endif
+
+
+
+@setvar! chesttosort
+
+
+if findtypelist crewlist 8455|8454 chesttosort
+    foreach crew in crewlist
+        clearsysmsg 
+        dclick crew
+        while not gumpexists 189348675
+            pause 250
+        endwhile
+        // NAvi and sailors = movementspeed.
+        if ingump 'Navigator' 189348675 or ingump 'Sailor' 189348675
+            pause 250 
+            if ingump '2.50% Movement speed' 18934867
+                sysmsg '>> Found 2.50% movementspeed navigator' 55
+                    //drop loc: 44 64 0 - top left
+                    lift crew 
+                    pause 250
+                    drop speedcrewchest 44 64 0
+                    
+            elseif ingump '2.00% Movement speed' 189348675
+                sysmsg '>> Found 2.00% movementspeed navigator' 55
+                    //drop loc: 148 64 0 - top right
+                    lift crew 
+                    pause 250
+                    drop speedcrewchest 148 64 0
+                
+            elseif ingump '1.50% Movement speed' 189348675
+                sysmsg '>> Found 1.50% movementspeed navigator' 55
+                    //drop loc: 44 107 0 - btm left
+                    lift crew 
+                    pause 250
+                    drop speedcrewchest 44 107 0
+            else
+                sysmsg '>> Trash crew, no point saving' 33
+            
+            endif
+        endif
+        
+        if ingump 'Pilgrim' 189348675
+            pause 250
+            if ingump 'Master'
+                //drop loc: 44 64 0 - top left
+                lift crew
+                pause 250
+                drop pilgrimchest 44 64 0
+                
+        
+            elseif ingump 'Expert'
+                //drop loc: 148 64 0 - top right
+                lift crew 
+                pause 250
+                drop pilgrimchest 148 64 0
+                
+                    
+            endif
+        endif
+        
+        if ingump 'Engineer' 189348675
+            pause 250
+            if ingump 'Master' 189348675
+                //drop loc: 44 64 0 - top left
+                lift crew
+                pause 250
+                drop engichest 44 64 0
+            elseif ingump 'Expert' 189348675
+                //drop loc: 148 64 0 - top right
+                lift crew
+                pause 250
+                drop engichest 148 64 0 
+            elseif ingump 'Veteran' 189348675
+                //drop loc: 148 64 0 - btm right
+                lift crew
+                pause 250
+                drop engichest 148 106 0 
+                
+            else
+                
+            endif
+            
+            
+        endif
+            
+            
+            
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        // Close crew gump before doing next
+        pause 250
+        gumpclose 189348675
+        pause 250
+       
+    endfor
+endif

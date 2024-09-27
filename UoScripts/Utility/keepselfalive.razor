@@ -1,0 +1,17 @@
+if hp < 50 and not bandaging
+    if findtype '25750' backpack as vets
+        dclick vets
+    elseif findtype '3617' backpack as aids
+        dclick aids 
+        wft 500
+        target self
+    else
+        if findtype 'storage shelf' ground 0 0 2 as shelf
+            @menu shelf 1
+            pause 250
+        endif
+            
+    endif    
+endif
+pause 2000
+replay

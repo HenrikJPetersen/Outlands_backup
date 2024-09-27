@@ -1,0 +1,9 @@
+clearsysmsg 
+if findtype '3530' backpack as fnet
+    dclick fnet
+    wft 750
+    target self
+endif
+while not insysmsg 'fishing'
+    pause 500
+endwhile

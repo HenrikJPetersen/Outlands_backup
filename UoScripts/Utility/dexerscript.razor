@@ -1,0 +1,92 @@
+if warmode 
+    # Set weapon variable
+    if lhandempty and find weapon backpack
+        dclick weapon
+    elseif lhandempty and not find weapon backpack
+        setvar weapon
+    endif
+    
+    # Equip weapon if not.
+    if lhandempty    
+        sysmsg 'Equipping weapon'
+        dclick weapon
+    endif
+    
+    
+    if not bandaging 
+        if findtype '3617' backpack as baids
+            dclick baids
+            while not targetexists 
+            endwhile
+            while targetexists 
+                if targetexists 'beneficial'
+                    target self
+                endif
+            endwhile
+            pause 500
+        else
+            sysmsg 'No more bandaids' 33
+        endif
+    endif
+    
+    if poisoned 
+        if findtype '3847' backpack
+            dclicktype '3847'
+            pause 250
+        else
+            sysmsg 'Out of cure pots' 33
+            ## Cleanse by fire
+            yell "[CleanseByFire"
+            pause 250
+        endif
+    endif
+    
+    # Close wounds
+    if findbuff 'bleed' or findbuff "disease"
+        yell "[CloseWounds"
+        pause 250
+    endif
+
+    if diffhits > 50
+        if findtype '3852' backpack
+            dclicktype '3852'
+        endif
+    endif
+    ## holylight
+    if diffhits > 60 
+        yell "[HolyLight"
+        pause 250
+    endif
+    if paralyzed 
+        if findtype "pouch" backpack 38 
+            yell "[pouch"
+            wait minimumWaitForPing
+        else
+            overhead "Out of Pouches!" 34
+        endif
+    endif
+    
+    
+    if not findbuff 'food sat'
+        if findtype 'tray' backpack as foood
+            dclick foood
+        endif
+    endif
+
+    if not findbuff 'Strength'
+        if findtype '3849' backpack as spot
+            dclick spot
+        endif
+    endif
+    
+    
+    
+
+    replay
+else
+    if not bandaging 
+        hotkey 'Bandage self'
+        pause 500
+    endif
+    
+endif

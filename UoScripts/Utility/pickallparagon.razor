@@ -1,0 +1,50 @@
+if listexists chests
+    clearlist chests
+else
+    createlist chests
+endif
+clearignore 
+if findtypelist chests 3712 'backpack'
+    if not findtype 'drill' backpack
+        stop
+    endif
+    if not findtype 'lockpicks' backpack
+        stop
+    endif
+    foreach chest in chests
+        getlabel chest mychestlabel
+        sysmsg '{{mychestlabel}}'
+        pause 25
+        if "sealed" in mychestlabel
+            sysmsg 'Lets pick it'
+            dclick chest
+            waitforgump 736038070
+        else
+            @ignore chest
+        endif
+        while not insysmsg 'you will now automatically continue lockpicking attempts'
+            gumpresponse 10 736038070
+            pause 250
+        endwhile
+        clearsysmsg 
+        pause 300
+        while not insysmsg 'you will now automatically continue remove trap attempts'
+            gumpresponse 11 736038070
+        pause 250
+        endwhile
+        pause 300
+        if not ingump 'Cleared of traps'
+            gumpresponse 7 736038070
+            while not ingump 'Cleared of traps'
+            endwhile
+        endif
+        if ingump 'Pick lock'
+            gumpresponse 4 736038070
+            waitforgump 736038070
+            while ingump 'pick lock' 736038070
+                
+            endwhile
+        endif
+        ignore x
+    endfor
+endif

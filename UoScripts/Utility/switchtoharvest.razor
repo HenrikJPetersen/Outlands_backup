@@ -1,0 +1,30 @@
+clearsysmsg 
+if findlayer self head as ch
+    getlabel ch myheadlabel
+    if 'poison' in myheadlabel
+        overhead 'Switching to harvest'
+        say '[aspect'
+        waitforgump 2424293173
+        gumpresponse 607
+        waitforgump 2424293173
+        gumpresponse 607
+        waitforgump 2424293173
+    elseif 'harvest' in myheadlabel
+        overhead 'Switching to poison'
+        say '[aspect'
+        waitforgump 2424293173
+        gumpresponse 608
+        waitforgump 2424293173
+        gumpresponse 608
+        waitforgump 2424293173
+    endif
+endif
+pause 250
+if gumpexists 2424293173
+    gumpclose 2424293173
+endif
+if insysmsg 'You must wait a moment before activating another'
+    overhead 'FAILED TO CHANGE ASPECT' 33
+    sysmsg 'FAILED TO CHANGE ASPECT' 33
+    stop
+endif

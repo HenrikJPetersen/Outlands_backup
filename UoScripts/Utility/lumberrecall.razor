@@ -1,0 +1,15 @@
+if not position 922 3021
+    if not gumpexists 1551740969
+        if findtype '8901' backpack as rbook
+            dclick rbook
+        endif
+        waitforgump 1551740969
+        //pause 300
+        if gumpexists 1551740969
+            gumpresponse 2
+        endif
+    else
+        gumpresponse 2 1551740969
+    endif
+else
+endif

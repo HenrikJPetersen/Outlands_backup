@@ -1,0 +1,51 @@
+#hotkey 'Next friend target'
+#@setvar! mytarget lasttarget 
+#@menu mytarget gumpresponse 1
+clearsysmsg 
+
+if not listexists friendies
+    createlist friendies
+else
+    clearlist friendies
+    pause 150
+    pushlist friendies 0x39BB8B     
+    pushlist friendies 0x1F9667 
+endif
+
+foreach friend in friendies
+    clearsysmsg 
+    pause 50
+    @setvar! friendling friend
+    pause 50
+    if friendling = 0x39BB8B
+        sysmsg '>> Searching for: Læder Lone' 44
+        
+    elseif friendling = 0x1F9667
+        sysmsg '>> Searching for: Whatzaaa' 44
+        
+    endif
+    clearsysmsg 
+    hotkey 'Set last target'
+    
+    if targetexists 
+        target friendling
+    endif
+    pause 150
+    if insysmsg 'Last target set'
+        overhead 'Found a friend' 2263 friendling
+        @menu friendling 1
+    else
+        sysmsg 'Not found... next' 33
+    endif
+    hotkey 'Cancel current target'
+    wait 250
+    if insysmsg 'You have invited them to join the party' 
+        sysmsg 'Party invite successfull' 2263
+    endif
+   
+endfor
+
+
+
+
+

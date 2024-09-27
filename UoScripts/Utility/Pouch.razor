@@ -1,0 +1,16 @@
+if not timerexists spamtimer
+    @createtimer! spamtimer
+endif   
+if timer spamtimer > 5000
+    sysmsg 'Running: Pouch' 2603
+    @settimer! spamtimer 0
+endif
+if paralyzed  
+    say '[pouch'
+    if hp < maxhp
+        potion 'yellow'
+    endif
+endif
+//add re-equip shield
+pause 500
+replay

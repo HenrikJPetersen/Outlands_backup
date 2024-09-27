@@ -1,0 +1,30 @@
+## Change 922 3021 to the location 
+## of your default rune in your book
+if findtype '29103' backpack as runetome
+elseif findtype '8901' backpack as runebook
+else    
+    overhead 'no runebook found'
+endif
+    
+if not position 920 3019 and not dead 
+    cast 'Recall'
+    while not targetexists 
+        if insysmsg 'disturbed'
+            if dead 
+                break
+            endif
+            replay
+        endif
+    endwhile
+    while targetexists 
+        if findtype '29103' backpack as rbook
+            sysmsg 'found runetome'
+            target rbook
+        elseif findtype '8901' backpack as rbook
+            sysmsg 'found runebook'
+            target rbook
+        else    
+            overhead 'no runebook found'
+        endif
+    endwhile
+endif

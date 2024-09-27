@@ -1,0 +1,17 @@
+if skill 'magery' > 79
+    if findtype '29012' backpack as shroom
+        if cooldown mushroom = 0 and mana < 78
+            dclick shroom
+            cooldown mushroom 60000
+        else
+            overhead 'COOLDOWN ON SHROOM' 2263
+            if cooldown mushroom as shroom
+                overhead 'Cooldown Remaining: {{shroom}}'
+            endif
+        endif
+    elseif not findtype '29012' backpack
+        overhead 'NO SHROOMS' 2263
+    endif
+elseif skill 'tactics' > 79
+    say '[disarm'
+endif

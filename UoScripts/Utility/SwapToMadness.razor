@@ -1,0 +1,120 @@
+## air 1
+## arcane 2
+## artisan 3
+## blood 5
+## command 6
+## death 7
+## discipline 8
+## earth 9
+## eldritch 10
+## fire 11
+## fortune 12
+## frost 13
+## gadget 14
+## harvest 15
+## holy 16
+## lightning 17
+## lyric 18
+## madness 19
+## poison 20
+## shadow 21
+## void 22
+## war 23
+## water 24
+
+## Set main aspect according to numbers above
+@setvar! mainaspect 1
+
+
+## DO NOT EDIT BELOW! DO NOT EDIT BELOW! DO NOT EDIT BELOW! ##
+
+## Change page to 1/2 from aspect number: 1-13 
+## Change page to 2/2 from aspect number: 14-24
+
+
+if findlayer self head as aspectlabel
+    getlabel aspectlabel myactiveaspect
+    pause 25
+    sysmsg 'Head label: {{myactiveaspect}}'
+    if gumpexists 2424293173
+        sysmsg 'already opened'
+    else
+        say '[aspect'
+        pause 500
+    endif
+    
+    ## Set correct page
+    if mainaspect < 14
+        while not ingump '1/2' 2424293173
+            gumpresponse 10 2424293173
+        endwhile
+    elseif mainaspect > 13
+        while not ingump '2/2' 2424293173
+            gumpresponse 11 2424293173
+        endwhile
+    endif
+    
+    if mainaspect = 19
+        if 'madness' in myactiveaspect
+            sysmsg '<< Madness active >>' 55
+        else
+            if cooldown aspectchange
+                sysmsg 'Cooldown on aspect change' 33
+                stop
+            endif
+            sysmsg '>> Must change to madness' 33
+            if ingump '1/2' 2424293173
+                gumpresponse 11 2424293173
+                waitforgump 2424293173
+            endif
+            gumpresponse 605 2424293173
+            waitforgump 2424293173
+            gumpresponse 605 2424293173
+            waitforgump 2424293173
+        endif
+    endif
+    if mainaspect = 20
+        if 'poison' in myactiveaspect
+        sysmsg '<< Poison active >>' 55
+        else
+            if cooldown aspectchange
+                sysmsg 'Cooldown on aspect change' 33
+                stop
+            endif
+            sysmsg '>> Must change to poison' 33
+            pause 250
+            if ingump '1/2' 2424293173
+                gumpresponse 11 2424293173
+                waitforgump 2424293173
+            endif
+            gumpresponse 606 2424293173
+            waitforgump 2424293173
+            pause 500
+            gumpresponse 606 2424293173
+            waitforgump 2424293173
+        endif
+    endif
+endif
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,119 @@
+@setvar casttwocl 0
+sysmsg '>> Casting first CL' 44
+cast 'chain lightning'
+pause 250
+say '[strangle'
+cooldown Strangle 29500
+pause 500
+say '[EvilOmen'
+cooldown EvilOmen 29500
+pause 500
+while not targetexists 
+    if insysmsg 'Your concentration is disturbed'
+        sysmsg '>>> DISTURBED <<<' 33
+        clearsysmsg 
+        if diffhits > 30
+            dclicktype 3852
+        endif
+        continue
+    endif
+    if diffhits > 30
+        dclicktype 3852
+    endif
+endwhile
+while targetexists
+    //target lasttarget
+    hotkey 'Target Closest grey monster' 
+endwhile
+pause 150
+if mana > 40
+    sysmsg '>> Casting second chain' 44
+    cast 'chain lightning'
+    if mana < 60
+            if not cooldown mushroom
+                dclicktype 29012
+            endif
+        endif
+    pause 500
+    while not targetexists 
+        if insysmsg 'Your concentration is disturbed'
+            sysmsg '>>> DISTURBED <<<' 33
+            clearsysmsg 
+            if diffhits > 30
+                dclicktype 3852
+            endif
+            continue
+        endif
+        if diffhits > 30
+            dclicktype 3852
+        endif
+    endwhile
+    while targetexists
+        //target lasttarget
+        hotkey 'Target Closest grey monster' 
+    endwhile
+else
+    sysmsg '>> less than 60 mana skipping second' 33
+endif
+pause 150
+if casttwocl = 1
+    if mana > 40 
+    sysmsg '>> casting thrid CL' 44
+        cast 'chain lightning'
+        if mana < 60
+                if not cooldown mushroom
+                    dclicktype 29012
+                endif
+            endif
+        pause 500
+        while not targetexists
+           pause 500 
+            
+            
+            if insysmsg 'Your concentration is disturbed'
+                sysmsg '>>> DISTURBED <<<' 33
+                clearsysmsg 
+                if diffhits > 30
+                    dclicktype 3852
+                endif
+                continue
+            endif
+            if diffhits > 30
+                dclicktype 3852
+            endif
+        endwhile
+        while targetexists
+            //target lasttarget
+            hotkey 'Target Closest grey monster' 
+        endwhile
+    else
+        if not cooldown mushroom
+            dclicktype 29012
+        endif
+        sysmsg '>> less than 40 mana skipping third' 33
+    endif
+endif
+sysmsg '>> Boarding ' 65
+pause 100
+say '[boarding party'
+pause 150
+gumpresponse 5 0xABBB24FA
+pause 150
+target lasttarget
+if diffhits > 30
+    dclicktype 3852
+endif
+if mana < 45 and not cooldown mushroom
+    dclicktype 29012
+endif
+#if findtype '3853' backpack as boom
+#    sysmsg 'CASTING EXPLO POT'
+#    dclick boom
+#    wft 1000
+#    hotkey 'Target Closest grey monster'
+#endif
+//Insert name of your spyglass script...
+//script ''
+
+    
+    

@@ -1,0 +1,33 @@
+clearsysmsg 
+if counttype '3972' < 50
+    if findtype 'storage shelf' ground -1 -1 2 as shelf
+        @menu shelf 1
+    endif
+    pause 500
+endif
+
+if mana < 50
+    if not cooldown mushroom
+        dclicktype '29012'
+        cooldown mushroom 60000
+    endif
+    
+    while cooldown mushroom and mana < 30
+        if not findbuff 'actively meditating'
+            skill 'meditation'
+        endif
+        
+    endwhile
+endif
+if mana > 80
+    cast 'Create food'
+    pause 1350
+endif
+if counttype '29012' backpack > 49
+    @menu shelf 0
+    wft 500
+    target self
+endif
+replay
+
+    

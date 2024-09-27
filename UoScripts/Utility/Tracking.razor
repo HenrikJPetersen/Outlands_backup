@@ -1,0 +1,12 @@
+sysmsg '>>> running tracking'
+if not gumpexists 4267467659
+    skill 'tracking'
+    waitforgump 4267467659 1000
+    replay
+else
+    gumpresponse 3 4267467659
+    waitforgump 4267467659 1000
+endif
+pause 7000
+
+replay

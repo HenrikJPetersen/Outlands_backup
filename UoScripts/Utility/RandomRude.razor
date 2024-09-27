@@ -1,0 +1,38 @@
+if not timerexists emotetimer
+    createtimer emotetimer
+    settimer emotetimer 0
+endif
+if find 'commoner' ground 0 0 20
+    overhead 'true'
+endif
+if timer emotetimer > 30000
+    random 5
+    pause 200
+    if insysmsg 'Random: 1'
+        sysmsg 'its 1'
+        say '[Spit'
+    elseif insysmsg 'Random: 2'
+        sysmsg 'its 2'
+        say '[Anger'
+    elseif insysmsg  'Random: 3'
+        sysmsg 'its 3'
+        say '[Fart'
+    elseif insysmsg  'Random: 4'
+        sysmsg 'its 4'
+        say '[Puke'
+    elseif insysmsg  'Random: 5'
+        sysmsg 'its 5'
+        say '[belch'
+    endif
+    settimer emotetimer 0
+else
+    pause 5000
+    sysmsg '{{emotetimer}}'
+    if timer emotetimer > 29000
+        say 'Join me in purging this villain from our halls'
+    endif
+endif
+#say 'The villain has been purged of theese halls - its time to celebrate!'
+#say '[laugh'
+#pause 30500
+replay

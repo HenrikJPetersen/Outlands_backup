@@ -1,0 +1,40 @@
+clearsysmsg 
+if gumpexists 4267467659
+    gumpclose 4267467659
+endif
+pause 50
+skill 'tracking'
+pause 50
+waitforgump 4267467659 250
+pause 50
+gumpresponse 5 4267467659
+pause 200
+if insysmsg 'Unable'
+    sysmsg 'Failed tracking' 33
+    stop
+endif
+if insysmsg 'You must wait a few'
+    sysmsg 'Chill dude' 33
+    stop
+endif
+waitforgump 4267467659 200
+if gumpexists 4267467659
+    while ingump 'Next'
+        if ingump 'NC' 4267467659
+            sysmsg '◙◙ Found NC ◙◙' 33
+            overhead '◙◙ Found NC ◙◙' 33
+        endif
+        if ingump 'NKB' 4267467659
+            sysmsg '◙◙ Found NKB ◙◙' 33
+            overhead '◙◙ Found NKB ◙◙' 33
+        endif
+        if ingump 'Path' 4267467659
+            sysmsg '◙◙ Found Path ◙◙' 33
+            overhead '◙◙ Found Path ◙◙' 33
+        endif
+        sysmsg 'Checking next page' 
+        gumpresponse 3 4267467659
+        pause 250
+        waitforgump 4267467659
+    endwhile
+endif

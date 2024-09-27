@@ -1,0 +1,38 @@
+if findtype 'bank deposit safe' ground 2 as deposit
+    hotkey 'Set Grab Item HotBag'
+    wft 250
+    target deposit
+endif
+if findtype 'crate' ground 0 0 2 as lootcrate
+    dclick lootcrate
+    pause 250
+    while findtype 'muffins' lootcrate as mufs
+        hotkey 'Grab Item'
+        wft 250
+        target mufs
+    endif
+endif
+pause 500
+if findtype 'crate' ground 0 0 2 as lootcrate
+    overhead 'Found gold'
+    dclick lootcrate
+    pause 250
+    while findtype 'gold coin' lootcrate as coins
+        hotkey 'Grab Item'
+        wft 250
+        target coins
+    endif
+endif
+pause 250
+hotkey 'Set Grab Item HotBag'
+wft 500
+targettype 'bag' backpack
+pause 250
+if findtype 'crate' ground 0 0 2 as lootcrate
+    hotkey 'Grab Item'
+    wft 500
+    target lootcrate
+endif
+     
+
+

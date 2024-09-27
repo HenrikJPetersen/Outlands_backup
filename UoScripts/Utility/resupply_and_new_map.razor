@@ -1,0 +1,51 @@
+if findtype '7133' backpack as logs
+    dclick logs
+    pause 150
+endif
+pause 100
+if findtype '23034' ground -1 -1 2 as rpile
+    @menu rpile 0
+    wft 500
+    target self
+endif
+pause 100
+if findtype '44997' ground -1 -1 2 as shelf
+    @menu shelf 1
+endif
+pause 100
+if findtype 'bag of seeds' backpack as seeds
+    lift seeds
+    pause 25
+    drop 0x44CE634B
+endif
+pause 100
+if findtype 'seed of renewal' backpack as nseeds
+    lift nseeds
+    pause 25
+    drop 0x44CE634B
+endif
+pause 100
+if findtype 'map' backpack as map
+    getlabel map mymaplabel
+    pause 50
+    if 'completed' in mymaplabel
+        overhead 'DONE
+        lift map
+        pause 25
+        droprelloc 1 1
+    else
+        dclick map
+    endif
+else
+    dclick 0x440149E6
+    pause 100
+    dclick 0x4B5820AB
+    waitforgump 3576069391
+    gumpresponse 21
+    pause 110
+    gumpclose 3576069391
+    if findtype 'map' backpack as mapz
+        dclick mapz
+    endif
+        
+endif

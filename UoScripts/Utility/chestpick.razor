@@ -1,0 +1,24 @@
+#
+#if gumpexists 736038070
+#    gumpresponse 7
+#endif    
+#if insysmsg  'You make some progress towards'
+#    overhead 'there'
+#endif
+#if insysmsg  'You have successfully cleared it of traps'
+#    overhead 'there'
+#endif
+#
+clearsysmsg 
+if gumpexists 736038070
+    gumpresponse 4
+endif
+pause 50
+if insysmsg 'You attempt to pick the lock'
+    while not insysmsg  'You fail to make any progress on the lock.' or not insysmsg 'You make some progress on the lock'
+        pause 50
+    endwhile
+endif
+replay
+
+

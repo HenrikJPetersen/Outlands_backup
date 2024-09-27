@@ -1,0 +1,89 @@
+
+if skill 'magery' > 60
+    if name = 'RobotTurtle'
+        @setvar! ttome 0x417422A2
+        if not position 4210 3157 and not dead 
+            cast 'Recall'
+            while not targetexists 
+                if insysmsg 'disturbed'
+                    if dead 
+                        break
+                    endif
+                    replay
+                endif
+            endwhile
+            while targetexists 
+                target ttome
+            endwhile
+        endif
+    elseif name = 'Lumber Leif'
+        overhead 'True'
+        @setvar! lumbertome 0x56F02F63
+        cast 'Recall'
+        while not targetexists 
+            if insysmsg 'disturbed'
+                if dead 
+                    break
+                endif
+                replay
+            endif
+        endwhile
+        while targetexists 
+            target lumbertome
+        endwhile
+    elseif findtype 'runetome' backpack as ttome
+        overhead 'Found runetome'
+        if not position 4210 3157 and not dead 
+            cast 'Recall'
+            while not targetexists 
+                if insysmsg 'disturbed'
+                    if dead 
+                        break
+                    endif
+                    replay
+                endif
+            endwhile
+            while targetexists 
+                target ttome
+            endwhile
+        endif
+    elseif findtype '8901' backpack as runebook
+        overhead 'Found runebook'
+        if not position 4210 3157 and not dead 
+            cast 'Recall'
+            while not targetexists 
+                if insysmsg 'disturbed'
+                    if dead 
+                        break
+                    endif
+                    replay
+                endif
+            endwhile
+            while targetexists 
+                target runebook
+            endwhile
+        endif
+    else
+        overhead 'No runebook/tome found'
+    endif
+else 
+    overhead 'Using recall scroll'
+    if name = 'RobotTurtle'
+        @setvar! ttome 0x417422A2
+        dclick ttome
+        waitforgump 167090027
+        gumpresponse 102
+        
+    endif
+    
+    if findtype 'runetome' backpack
+        dclick ttome
+        waitforgump 167090027
+        gumpresponse 102
+    elseif findtype '8901' backpack as runebook
+        dclick runebook
+        waitforgump 1551740969
+        gumpresponse 8
+    endif
+endif 
+

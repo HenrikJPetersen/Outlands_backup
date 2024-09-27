@@ -1,0 +1,103 @@
+if not listexists crewlist
+    createlist crewlist
+else
+    clearlist crewlist
+endif
+
+//Containers//chests
+if not varexist powdermonkeys
+    @setvar! powdermonkeys
+endif
+if not varexist pilgrims
+    @setvar! pilgrims
+endif
+if not varexist engineers
+    @setvar! engineers
+endif
+if not varexist hedgemages
+    @setvar! hedgemages
+endif
+if not varexist carpenters
+    @setvar! carpenters
+endif
+if not varexist veterans
+    @setvar! veterans
+endif
+if not varexist others
+    @setvar! others
+endif
+if not varexist speedcrew
+    @setvar! speedcrew
+endif
+if not varexist reavers
+    @setvar! reavers
+endif
+if not varexist merchants
+    @setvar! merchants
+endif
+
+overhead 'Container to sort' 33
+overhead '◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙◙' 33 
+
+@setvar! chesttosort
+clearignore 
+
+if findtypelist crewlist 8455|8454 chesttosort
+    foreach crew in crewlist
+        getlabel crew mycrewlabel
+        overhead mycrewlabel 66
+        pause 150
+        if "merchant" in mycrewlabel
+            lift crew
+            drop merchants
+            while queued
+            endwhile
+        elseif "veteran" in mycrewlabel
+            lift crew
+            drop veterans
+            while queued
+            endwhile
+        elseif "orc reaver" in mycrewlabel
+            lift crew
+            drop reavers
+            while queued
+            endwhile
+        elseif "navigator" in mycrewlabel or "sailor" in mycrewlabel or "sea dog" in mycrewlabel
+            lift crew
+            drop speedcrew
+            while queued
+            endwhile
+        elseif "powder monkey" in mycrewlabel
+            lift crew
+            drop powdermonkeys
+            while queued
+            endwhile
+        elseif "pilgrim" in mycrewlabel
+            lift crew
+            drop pilgrims
+            while queued
+            endwhile
+        elseif "engineer" in mycrewlabel
+            lift crew
+            drop engineers
+            while queued
+            endwhile
+        elseif "hedge mage" in mycrewlabel
+            lift crew
+            drop hedgemages
+            while queued
+            endwhile
+        elseif "spy" in mycrewlabel or "medic" in mycrewlabel or "cook" in mycrewlabel or "pirate" in mycrewlabel or "paviseman" in mycrewlabel or "marksman" in mycrewlabel or "fisherman" in mycrewlabel or "gunner" in mycrewlabel or "marine" in mycrewlabel or "raider" in mycrewlabel
+            lift crew
+            drop others
+            while queued
+            endwhile
+        elseif "carpenter" in mycrewlabel
+            lift crew
+            drop carpenters
+            while queued
+            endwhile
+        endif
+    endfor
+endif    
+    

@@ -1,0 +1,417 @@
+# Auto recycler v. 1.0.0 - By RobotTurtle
+# It will automatically choose to either use container id wand or single id wand - depending on what you have in inventory.
+# If you have both - it will auto choose container wand.
+# If you have a container id wand - set minimum amount of unidentified items to ID
+
+@setvar! minimum_id_number 10
+# Consume arcane essence?
+#if name = 'RobotTurtle'
+#    @setvar! consume_essence 1
+#else
+    @setvar! consume_essence 0
+#endif
+# Should this script call another script if: 
+# 1. not enough items to recycle. 
+# 2. When done recycling
+@setvar! call_script 1
+@setvar print_ignore_list 1
+@setvar! minimumwait 150
+
+###########################
+##   SAVE WHAT OPTIONS   ##
+###########################
+# Random stuff
+@setvar! keep_crafted 1
+@setvar! always_save_dungeon_bonus 1 
+# Weapon dmg modifiers
+@setvar! weapon_ruin 0
+@setvar! weapon_might 0
+@setvar! weapon_force 0
+@setvar! weapon_power 1
+@setvar! weapon_vanquishing 1
+@setvar! weapon_slayer 1
+# Weapong dmg accuracy
+@setvar! weapon_eminently 0
+@setvar! weapon_exceedingly 1
+@setvar! weapon_supremely 1
+# Armor modifiers
+@setvar! armor_invulnerbility 1
+@setvar! armor_fortification 0
+# Spellboks
+# Save EMINENTLY spellbooks with dmg modifiers (Ruin, might, force, power, vanq, slayer)
+# 1 = yes | 0 = no
+@setvar! spellbook_modiers 1
+# Instruments
+@setvar! instrument_supremely 1
+@setvar! instrument_exceedingly 1
+
+
+@setvar! start_recycling 0
+
+if not listexists itemlist
+    createlist itemlist
+else
+    clearlist itemlist
+endif
+
+if not listexists recyclelist
+    createlist recyclelist
+else
+    clearlist recyclelist
+endif
+if not listexists ignorelist
+    createlist ignorelist
+else
+    clearlist ignorelist
+endif
+
+# Use container ID wand
+if findtype '20495' backpack as container_wand
+    @setvar! id_tool container_wand
+    @setvar! use_container_wand 1
+    sysmsg '> Will use container wand to recycle' 66
+# Use ID wand
+elseif findtype '20496' backpack as id_wand
+    @setvar! id_tool id_wand
+    @setvar! use_container_wand 0
+    @setvar! start_recycling 1
+    sysmsg '> Will use ID wand to recycle' 66
+elseif not findtype '20495' backpack or not findtype '20496' backpack
+    sysmsg '> did not find any id tool < ' 33
+    if call_script = 1 
+        # Call your main script here - insert name and remove the # in next line
+        script 'vetDexerScript'
+    else    
+        stop
+    endif 
+endif   
+    
+
+if findtype 'bag' backpack as lbag
+    sysmsg '>> Setting lootbag' 44
+    @setvar! lootbag lbag
+elseif not find lootbag backpack
+    overhead 'cannot find lootbag'
+endif
+
+if use_container_wand = 1
+    if findtypelist itemlist 5042|3920|5117|9917|3922|5121|5125|3719|5123|3938|5044|5181|3932|5179|5040|5127|3713|3568|5112|3721|5177|3934|5185|5119|3937|5046|5049|3913|3911|3915|3909|5115|5187|3917|5182|22187|5063|5129|5132|5075|5074|5061|5070|7175|7179|7169|5090|5089|5076|7610|5085|7170|7181|5204|5207|5203|5201|5205|5101|5105|5131|5078|7947|5060|5059|5103|5056|5106|5142|5146|5143|5138|5144|5139|7173|7177|7034|7033|7027|7035|7026|7029|7031|7107|7109|10245|3740|3762|3763|3742|3834 lootbag
+        if list itemlist >= minimum_id_number 
+            sysmsg '>> Recycling' 66
+            @setvar! start_recycling 1
+        else
+            sysmsg '>> Skipping recycle due to not enough unidentified items' 66
+            @setvar! start_recycling 0
+            
+            if call_script = 1 
+                # Call your main script here - insert name and remove the # in next line
+                script 'vetDexerScript'
+            else    
+                stop
+            endif
+        endif
+    else
+        sysmsg '> Did not find any item from list'
+        @setvar! start_recycling 0
+        
+        if call_script = 1 
+            # Call your main script here - insert name and remove the # in next line
+        script 'vetDexerScript'
+        else    
+            stop
+        endif
+    endif
+endif
+
+if start_recycling = 1
+    # Use container ID wand
+    if use_container_wand = 1
+        dclick id_tool
+        wft 500
+        target lootbag
+        pause 50
+        
+    endif
+    if listexists weaponlist
+        clearlist weaponlist
+    else
+        createlist weaponlist
+    endif
+    # Weapons
+    sysmsg '>>> Running weapon recycling' 88
+    if findtypelist weaponlist 5042|3920|5117|9917|3922|5121|5125|3719|5123|3938|5044|5181|3932|5179|5040|5127|3713|3568|5112|3721|5177|3934|5185|5119|3937|5046|5049|3913|3911|3915|3909|5115|5187|3917|5182|22187 lootbag
+        foreach item in weaponlist
+            getlabel item itemlabel
+            pause 50
+            if 'unidentified' in itemlabel
+                dclick id_tool
+                wft 500
+                target item
+                pause 250
+                getlabel item itemlabel
+            endif
+            pause 50
+            if keep_crafted = 1 and 'exceptional' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif always_save_dungeon_bonus = 1 and 'slaying' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_supremely = 1 and 'supremely' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_exceedingly = 1 and 'exceedingly' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_eminently = 1 and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_vanquishing = 1 and 'vanquishing' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_power = 1 and 'power' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_force = 1 and 'force' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_might = 1 and 'might' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif weapon_ruin = 1 and 'ruin' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            else                    
+                sysmsg '>> RECYCLING: {{item}} - {{itemlabel}}'  66
+                @pushlist recyclelist item 'front'
+            endif
+        endfor
+    else
+        sysmsg '> No weapons' 333
+    endif
+    # Armor
+    if listexists armorlist
+        clearlist armorlist
+    else
+        createlist armorlist
+    endif
+    sysmsg '>>> Running armor recycling' 88
+    if findtypelist armorlist 5063|5129|5132|5075|5074|5061|5070|7175|7179|7169|5090|5089|5076|7610|5085|7170|7181|5204|5207|5203|5201|5205|5101|5105|5131|5078|7947|5060|5059|5103|5056|5106|5142|5146|5143|5138|5144|5139|7173|7177|7034|7033|7027|7035|7026|7029|7031|7107|7109 lootbag
+        foreach item in armorlist
+            getlabel item itemlabel
+            pause 50
+            if 'unidentified' in itemlabel
+                dclick id_tool
+                wft 500
+                target item
+                pause 250
+                getlabel item itemlabel
+                pause 50
+            endif
+            if keep_crafted = 1 and 'exceptional' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif armor_invulnerbility = 1 and 'invulnerability' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+                
+            elseif armor_fortification = 1 and 'fortification' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+                
+            else
+                sysmsg '>> Recycling: {{itemlabel}}' 66
+                @pushlist recyclelist item 'front'
+            endif
+        endfor
+    else
+        sysmsg '> No armor' 333
+    endif
+    # Spellbooks
+    if listexists booklist
+        clearlist booklist
+    else
+        createlist booklist
+    endif
+    sysmsg '>>> Running spellbook recycling' 88
+    if findtypelist booklist 3834 lootbag
+        foreach item in booklist
+            getlabel item itemlabel
+            pause 50
+            if 'unidentified' in itemlabel
+                dclick id_tool
+                wft 500
+                target item
+                pause 250
+                getlabel item itemlabel
+                pause 50
+            endif
+            if keep_crafted = 1 and 'exceptional' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif 'supremely' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif 'exceedingly' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif spellbook_modiers = 1 and 'ruin' in itemlabel and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif spellbook_modiers = 1 and 'might' in itemlabel and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif spellbook_modiers = 1 and 'force' in itemlabel and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif spellbook_modiers = 1 and 'power' in itemlabel and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif spellbook_modiers = 1 and 'vanquishing' in itemlabel and 'eminently' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            else
+                sysmsg '>> Recycling: {{itemlabel}}' 66
+                @pushlist recyclelist item 'front'
+            endif
+        endfor
+    else
+        sysmsg '> No books' 333
+    endif
+    # Instruments
+     if listexists instrumentlist
+        clearlist instrumentlist
+    else
+        createlist instrumentlist
+    endif
+    sysmsg '>>> Running instrument recycling' 88
+    if findtypelist instrumentlist 10245|3740|3762|3763|3742 lootbag
+        foreach item in instrumentlist
+            getlabel item itemlabel
+            pause 50
+            if 'unidentified' in itemlabel
+                dclick id_tool
+                wft 500
+                target item
+                pause 250
+                getlabel item itemlabel
+                pause 50
+            endif
+            if instrument_supremely = 1 and 'supremely' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+                
+            elseif instrument_exceedingly = 1 and 'exceedingly' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            elseif 'greater' in itemlabel and 'deamonic' in itemlabel
+                ignore item
+                pause 25
+                pushlist ignorelist item 'front'
+            else
+                sysmsg '>> Recycling: {{itemlabel}}' 66
+                @pushlist recyclelist item 'front'
+            endif    
+        endfor
+    endif
+endif
+
+if not bandaging
+    say '[Vetsupplies'
+    pause 500
+endif
+
+sysmsg '>> RECYCLING' 33
+if list recyclelist > 0
+    foreach item in recyclelist
+        getlabel item desc
+        sysmsg 'Recycling: {{desc}}' 33
+        # RECYCLE HERE
+        if not gumpexists 949095101
+            if findtype 4032|4032|3997|7864|4148|4136 backpack as recyclerItemKit
+                dclick recyclerItemKit
+                waitforgump 949095101 5000
+            else
+                overhead "No crafting tool found. Stopping." 22
+            endif
+        endif
+        if gumpexists 949095101
+            while not ingump "Recycle Single Item"
+                gumpresponse 2 949095101
+                waitforgump 949095101 1000
+            endwhile
+            gumpresponse 3 949095101
+            wft 1000
+            target item
+        endif
+    endfor
+    clearlist recyclelist
+endif
+if gumpexists 949095101
+    gumpclose 949095101
+endif
+# Show whats added to ignore list...
+if print_ignore_list = 1
+    sysmsg '>> PRINTING IGNORE LIST' 33
+    if list ignorelist > 0
+        foreach x in ignorelist
+            getlabel x ignorelabel
+            sysmsg 'Ignored: {{ignorelabel}}' 2263
+        endfor
+    else
+        sysmsg '>> IGNORE LIST EMPTY <<' 33
+    endif
+endif
+# Nom nom essence
+pause 250
+if consume_essence = 1 
+    if findtype '12686' backpack as nomnom
+        dclick nomnom
+        wft 500
+        target self
+    endif
+else
+    # Do whatever you want with your essence! Im not buying it! 
+    if findtype '12686' backpack 
+        sysmsg '> Adding essence to boombox.' 44
+          hotkey 'Organizer Agent-01'
+    endif
+endif
+# copy/paste this to your unload script - change cordinates to where you stand when unloading.
+if position 920 3019 
+    # or position 920 3020 or position 921 3020 or position 921 3019
+    sysmsg '> Home: clearing ignore list' 2263
+    clearignore
+    clearlist ignorelist
+endif
+
+if gumpexists 949095101
+    gumpclose 949095101
+endif
+
+#Call main script here.
+
+script 'vetDexerScript'

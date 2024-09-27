@@ -1,0 +1,49 @@
+#if ingump '5388/5388' 1227367621
+#    
+#else
+#    if not gumpexists 3287496917
+#        menu 0xB83FF 1
+#        waitforgump 3287496917
+#        gumpresponse 7 3287496917
+#    else
+#        gumpresponse 7 3287496917
+#    endif
+#endif
+if not timerexists fishtimer
+    createtimer fishtimer
+    settimer fishtimer 0
+endif
+    
+if lhandempty
+    if findtype 'fishing pole' backpack as pole
+    dress fishing
+    else
+        overhead 'out of poles'
+        break
+    endif
+    pause 250
+endif
+if name == 'RobotTurtle'
+    if ingump 'Ready' 1774462345
+        sysmsg '>> Using mariners fortune' 2263
+        gumpresponse 7 1774462345
+        cooldown mariners 269000
+    endif
+endif
+
+if timer fishtimer > 9350
+    clearsysmsg
+    hotkey 'Use item in hand'
+    sysmsg  '>> Fishing' 44
+    
+    settimer fishtimer 0
+endif
+if insysmsg 'You do not see any harvestable resources nearb'
+    overhead 'YOU NEED TO MOVE' 33
+    pause 2000
+    overhead 'YOU NEED TO MOVE' 33
+    stop
+endif
+
+
+replay 

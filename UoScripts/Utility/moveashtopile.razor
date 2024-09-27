@@ -1,0 +1,18 @@
+
+    if not findtype '3853' backpack
+        if findtype '44997' ground as shelf
+            @menu shelf 1
+        endif
+    else
+        if findtype 'resource container' ground 0 0 2 as pile
+            @menu pile 0
+            wft 1000
+            target self
+        endif
+    endif
+
+    
+    
+pause 1000
+replay
+    

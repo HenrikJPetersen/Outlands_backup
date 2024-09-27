@@ -1,0 +1,107 @@
+## Settings
+## Set the grab bag
+## 1 = you use a roundbag as grab bag, script will re-set if you have one in inventory.
+## 0 = Skip this.
+@setvar! use_round_bag 1
+
+## If you're using an organizer to drop off loot like paints/mcd/rm - remember to modify which organizer number you are using.
+## Change it in line: 92
+## 1 = active
+## 0 = skip this    
+@setvar! use_organizer_to_drop 1
+
+
+## Setup DO NOT EDIT
+if listexists listoftomes
+    clearlist listoftomes
+else
+    createlist listoftomes
+endif
+if not varexist tomechest
+    overhead 'Variable for tomechest not found'
+    setvar tomechest
+endif
+
+if find tomechest 'ground' -1 -1 2
+else
+    sysmsg 'Please target container/chest where your tomes are located'
+    setvar tomechest
+endif
+## SETUP DONE
+
+
+## Dropping off gold and dubs 3891(dubs) 3821(gold)
+if findtype 'gold coin|doubloon' backpack
+    ## Setting bank deposit as grab item bag
+    if findtype '41519' ground -1 -1 2 as deposit
+        hotkey 'Set Grab Item HotBag'
+        wft 500
+        target deposit
+        pause 500
+    else
+        sysmsg 'Not found'
+    endif
+    
+    ## Dropping gold
+    while findtype 3891|3821 backpack as money
+        sysmsg 'Dropping money'
+        hotkey 'Grab item'
+        wft 100
+        target money
+        while queued 
+            wait 75
+        endwhile
+    endwhile
+    
+    if use_round_bag = 1
+        ## Setting round bag to grab item bag
+        if findtype '3702' backpack as hotbag
+            hotkey 'Set Grab Item HotBag'
+            wft 500
+            target hotbag
+        endif
+    endif
+else
+    sysmsg 'No gold/dubs in backpack - stop being poor(like deathroll)' 2263
+endif
+## Gold dropoff end
+
+## Adding magic items to recycler
+if findtype 'ornate elven chest' ground -1 -1 2 as mrecycle
+    sysmsg '>> Adding to magic recycler' 44
+    pause 250
+    menu mrecycle 1
+    pause 250
+endif
+## Adding to tomes.
+dclick tomechest
+pause 150
+if findtypelist listoftomes 'book' tomechest
+    foreach tome in listoftomes
+        getlabel tome mytome
+        sysmsg '>> Adding to: {{mytome}}' 44
+        @menu tome 0
+        pause 150
+    endfor
+endif
+pause 150
+if findtype 'resource container' ground -1 -1 2 as spile
+    @menu spile 0
+    wft
+    target self
+endif
+pause 150
+if use_organizer_to_drop = 1
+    hotkey 'Organizer Agent-02'
+else
+    sysmsg '>> Organizer NOT activated - USE AT OWN RISK' 33
+    ## MCD/RM/BOOTY check...
+    if findtype 24434|17087|45315 backpack
+        sysmsg '■■■ FOUND VALUEABLE ITEMS IN INVENTORY ■■■' 2263
+        pause 25
+        sysmsg '■■■ FOUND VALUEABLE ITEMS IN INVENTORY ■■■' 33
+        pause 25
+        sysmsg '■■■ FOUND VALUEABLE ITEMS IN INVENTORY ■■■' 2263
+    endif
+    
+endif
