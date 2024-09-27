@@ -1,0 +1,75 @@
+setvar good_bag
+setvar bad_bag
+
+
+
+clearignore 
+pause 250
+if not listexists id_weapon_items
+    
+    createlist id_weapon_items
+    pushlist id_weapon_items "martial arts scroll"
+    pushlist id_weapon_items "halberd"
+    pushlist id_weapon_items "bardiche"
+    pushlist id_weapon_items "battle axe"
+    pushlist id_weapon_items "double axe"
+    pushlist id_weapon_items "two handed axe"
+    pushlist id_weapon_items "executioner's axe"
+    pushlist id_weapon_items "large battle axe"
+    pushlist id_weapon_items "axe"
+    pushlist id_weapon_items "scimitar"
+    pushlist id_weapon_items "longsword"
+    pushlist id_weapon_items "viking sword"
+    pushlist id_weapon_items "katana"
+    pushlist id_weapon_items "cutlass"
+    pushlist id_weapon_items "broadsword"
+    pushlist id_weapon_items "war hammer"
+    pushlist id_weapon_items "war axe"
+    pushlist id_weapon_items "maul"
+    pushlist id_weapon_items "quarter staff"
+    pushlist id_weapon_items "gnarled staff"
+    pushlist id_weapon_items "black staff"
+    pushlist id_weapon_items "hammer pick"
+    pushlist id_weapon_items "club"
+    pushlist id_weapon_items "shepherd's crook"
+    pushlist id_weapon_items "mace"
+    pushlist id_weapon_items "war mace"
+    
+    pushlist id_weapon_items "Long Spear"
+    pushlist id_weapon_items "pitchfork"
+    pushlist id_weapon_items "war fork"
+    pushlist id_weapon_items "kryss"
+    pushlist id_weapon_items "short spear"
+    pushlist id_weapon_items "bow"
+    pushlist id_weapon_items "crossbow"
+    pushlist id_weapon_items "heavy crossbow"
+    pushlist id_weapon_items "bladed staff"
+endif
+foreach id in id_weapon_items
+    sysmsg id 2263
+    while findtype id backpack as item
+        getlabel item description
+        if club in description or axe in description or staff in description or mace in description or hammer in description
+            pause 259
+            if supremely in description or exceedingly in description or extremely in description or eminently in description or slaying in description
+                lift item
+                pause 250
+                drop good_bag -1 -1 -1
+                ignore item
+                pause 250
+            else
+                lift item 
+                pause 250
+                drop bad_bag -1 -1 -1
+                ignore item
+                pause 250
+            endif
+        else
+            lift item 
+            pause 250
+            drop bad_bag -1 -1 -1
+            ignore item
+            pause 250
+        endif
+    endwhile
+endfor

@@ -1,0 +1,7 @@
+if rhandempty and skill 'fencing' > 79
+    if findtype 'war fork' backpack as wfork
+        dclick wfork
+    endif
+elseif not rhandempty
+    clearhands 'right'
+endif

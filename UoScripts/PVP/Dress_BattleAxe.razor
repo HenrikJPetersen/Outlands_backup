@@ -1,0 +1,46 @@
+if skill 'swords' > 79
+    if findtype 'double axe' backpack as item and not targetexists 
+        if targetexists 
+            lift item
+            drop self righthand
+            pause 25
+            attack lasttarget 
+        else
+            sysmsg 'dclicking'
+            dclick item
+        endif
+        pause 25
+        attack lasttarget 
+        
+    elseif findtype 'double axe' backpack as item and targetexists 
+            clearhands 'both'
+            pause 25
+            lift item   
+            drop self righthand
+            pause 25
+            attack lasttarget 
+    else
+            clearhands 'both'
+            hotkey 'Toggle Peace Only'
+        
+    else        
+        clearhands 'both'
+        hotkey 'Toggle Peace Only'
+    endif
+    
+    
+    
+    
+else
+    if findtype '7034' backpack as item and not targetexists 
+        dclick item
+    elseif findtype '7034' backpack as item and targetexists 
+        clearhands 'both'
+        pause 25
+        lift item   
+        drop self righthand
+        pause 25
+    else
+        clearhands 'both'
+    endif
+endif

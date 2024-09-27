@@ -1,0 +1,21 @@
+cast 'telekinesis'
+wft 1500
+hotkey 'Last target'
+if findtype '3853' backpack as boompotion
+    dclick boompotion
+    settimer 'explpotion' 0
+    wft 500
+    hotkey 'Last target' 
+else
+    overhead 'Restock required :)' 35
+    overhead 'Use another script that makes sense'
+    stop
+endif
+while timer 'explpotion' < 3200
+    overhead 'waiting'
+    pause 250
+endwhile
+cast 'energy bolt'
+wft
+lasttarget
+removetimer 'explpotion'

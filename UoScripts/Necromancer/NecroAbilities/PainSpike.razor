@@ -1,0 +1,27 @@
+if skill 'Mace Fighting' > 79
+    if findtype 'club'backpack as weap
+    @setvar weapon weap
+    endif
+    dclick weapon
+    pause 150
+
+elseif skill 'archery' > 79
+    if findtype 'bow'backpack as weap
+        @setvar weapon weap
+    endif
+    dclick weapon
+    pause 150
+endif
+if cooldown 'Pain spike' = 0
+    @setvar! globalcooldown 2
+    say '[painspike'
+else
+    say '[painspike'
+    pause 150
+    if insysmsg 'You must wait'
+        @setvar! globalcooldown 0
+        stop
+    endif    
+    @setvar! globalcooldown 2
+endif
+clearsysmsg 

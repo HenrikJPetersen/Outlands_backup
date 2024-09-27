@@ -1,0 +1,13 @@
+
+say '[wither'
+pause 550
+if skill "spirit speak" <= 79
+    say '[vengefulspirit'
+endif
+pause 250
+cast 'earth elemental'
+pause 50
+if followers = 4
+    @setvar! pettodismiss
+    @menu pettodismiss 9
+endif

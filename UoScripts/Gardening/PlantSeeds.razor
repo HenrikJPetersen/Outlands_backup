@@ -1,0 +1,112 @@
+if not listexists flowerpots
+    createlist flowerpots
+endif
+
+@setvar! addbonusstuff 0
+
+if findtypelist flowerpots 'planter|flower pot' ground 0 0 1
+    foreach pot in flowerpots
+        if gumpexists 3224608375 
+            gumpclose 3224608375
+        endif
+        dclick pot
+        getlabel pot mypotlabel 
+        overhead '{{mypotlabel}}'
+        pause 250
+        waitforgump 3224608375
+        //plant stuff
+        if ingump 'No seed currently' 3224608375
+            overhead 'Need to plant stuff'
+            
+            if findtype '22326' backpack as seed
+                gumpresponse 2 3224608375
+                wft 500
+                target seed
+            
+            else
+                sysmsg 'no more seeds' 33
+                
+            endif
+        else
+            if ingump 'Harvest' 3224608375
+                overhead 'Its time to harvest!'
+                gumpresponse 2 3224608375
+            else
+                overhead 'Already planted a seed' 
+            endif
+            pause 250
+        
+        endif
+        // Estimate water lvl
+        if findtype '29868' backpack
+            gumpresponse 4 3224608375
+            pause 250
+        endif
+        
+        //Add water
+        if findtype 'watering can' backpack as can
+            if gumpexists 3929333591
+                gumpclose 3929333591
+                PAUSE 250
+            endif
+            dclick can
+            pause 250
+            gumpresponse 2 3224608375
+            wft 500
+            target can
+            pause 150
+            
+            gumpresponse 2 3929333591
+            waitforgump 3929333591
+            gumpclose 3929333591
+        endif
+                
+        if addbonusstuff != 0
+        //Add bonus stuff if in inventory
+        if findtype 'grate' backpack as heatsystem
+            gumpresponse 2 3224608375
+            wft 500
+            target heatsystem
+            pause 150
+        endif
+        pause 500
+        if findtype '4154' backpack as fertilizer
+            gumpresponse 2 3224608375
+            wft 500
+            target fertilizer
+            pause 150
+        endif
+        pause 500
+        if findtype '20501' backpack as watersolution
+            gumpresponse 2 3224608375
+            wft 500
+            target watersolution
+            pause 150
+        else
+            overhead 'false'
+        endif
+        if findtype '20498' backpack as growthserum
+            gumpresponse 2 3224608375
+            wft 500
+            target growthserum
+            pause 150
+        else
+            overhead 'false'
+        endif
+        endif
+        
+        
+        
+        pause 250    
+        gumpclose 3224608375
+        pause 500
+        
+    endfor
+endif
+
+
+
+
+
+    
+    

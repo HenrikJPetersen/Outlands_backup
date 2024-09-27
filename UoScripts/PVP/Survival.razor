@@ -1,0 +1,48 @@
+if warmode 
+    
+else
+    if paralyzed 
+        say '[pouch'
+    endif
+    stop
+endif
+sysmsg '>> Bandage check' 44
+if hp > maxhp and not bandaging
+    if skill 'veterinary' > 50
+        say '[VetSupplies'
+    elseif skill 'healing' > 50
+        hotkey 'Bandage self'
+    endif
+    pause 250
+endif
+pause 250
+sysmsg '>> Diffhit check' 44
+if diffhits > 30 and not cooldown "heal potion"
+    potion 'heal'
+endif
+pause 250
+sysmsg '>> Para check' 44
+if paralyzed 
+    say '[pouch'
+    pause 50
+endif
+pause 250
+sysmsg '>> Poison check' 44
+if poisoned 
+    potion 'cure'
+endif
+pause 250
+sysmsg '>> Disarm check' 44
+if lhandempty and skill 'parry' > 50
+    overhead '>>> DISARMED <<<'
+    if findtype 'wooden shield' backpack as item
+        if targetexists 
+            lift item
+            drop self
+        else
+            dclick item
+        endif
+    endif
+endif
+pause 150
+replay

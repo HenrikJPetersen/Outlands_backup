@@ -1,0 +1,20 @@
+if findtype 10408 ground 293 -1 10 as jield
+    while not targetexists 
+        cast 'Dispel Field'
+        wft 200
+    endwhile
+    if targetexists 
+        target jield
+    endif
+endif
+# Wall of Stone
+if findtype 19739 ground 0 -1 10 as jield
+    while not targetexists 
+        cast 'Dispel Field'
+        wft 200
+    endwhile
+    if targetexists 
+        target jield
+    endif
+endif
+sysmsg 'No fields found' 44

@@ -1,0 +1,46 @@
+if not lhandempty or not rhandempty
+    warmode 'off'
+    pause 50
+    clearhands 'right'
+    warmode 'off'
+    pause 50
+    warmode 'off'
+else
+    if skill 'swords' >= 80
+        if findtype 'halberd' backpack as item
+            if targetexists 
+                lift item
+                drop self
+            else
+                dclick item
+            endif
+        endif
+    elseif skill 'archery' >= 80
+        if findtype 'crossbow' backpack as item
+            if targetexists 
+                lift item
+                drop self
+            else
+                dclick item
+            endif
+        endif
+    elseif skill 'macing' >= 80
+        if findtype 'war hammer' backpack as item
+            if targetexists 
+                lift item
+                drop self
+            else
+                dclick item
+            endif
+        endif
+    elseif skill 'fencing' >= 80 
+        if findtype 'spear' backpack as item
+            if targetexists 
+                lift item
+                drop self
+            else
+                dclick item
+            endif
+        endif
+    endif
+endif

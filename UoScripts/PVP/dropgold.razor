@@ -1,0 +1,9 @@
+if findtype '3821' backpack
+    if weight > maxweight 
+        lifttype '3821' 5000
+        pause 250
+        droprelloc 0 0
+    endif
+else
+    overhead 'NO GOLD' 33
+endif

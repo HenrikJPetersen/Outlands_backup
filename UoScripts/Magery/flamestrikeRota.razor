@@ -1,0 +1,136 @@
+
+if mana > 40
+    if skill 'necromancy' >= 65
+        if not cooldown corpseskin
+            say '[Corpseskin'
+            getlabel backpack clientsync
+            if insysmsg '/15' or insysmsg '/12'
+                cooldown corpseskin 29000
+            endif
+        endif
+        cast 'Flamestrike'
+    else
+        cast 'Flamestrike'
+    endif
+    if not cooldown evilomen
+        say '[evilomen'
+        cooldown evilomen 30000
+    endif
+    if not cooldown strangle
+        say '[strangle'
+    endif
+    while not targetexists 
+        if skill 'arcane' > 90 and gumpexists 3954121934
+            if mana < 90
+                if not cooldown leyline
+                    yell '[weaponability2'
+                    getlabel backpack clientsync
+                    cooldown leyline 3000
+                endif
+                if insysmsg 'You cannot perform that ability yet'
+                    if not cooldown mushroom and mana < 70
+                        ##Eat a shroom
+                        if not targetexists 
+                            hotkey 'Eat magic mushroom'
+                        else
+                            overhead 'Please eat a mushroom manually'
+                        endif
+                    endif
+                endif
+                        
+            endif
+        endif
+    endwhile
+    while targetexists 
+         if not cooldown evilomen
+            say '[evilomen'
+            cooldown evilomen 30000
+        endif
+        if not cooldown strangle
+            say '[strangle'
+        endif
+        if targetexists 'harmful'
+            lasttarget
+        elseif targetexists 'beneficial'
+            target self
+        endif
+    endwhile
+    if skill 'arcane' > 79 and gumpexists 3954121934
+        if mana < 90
+            yell '[weaponability2'
+            getlabel backpack mylabel
+            if insysmsg 'You cannot perform that ability yet'
+                if not cooldown mushroom and mana < 70
+                    ##Eat a shroom
+                    if not targetexists 
+                        if findtype '29012' backpack
+                            hotkey 'Eat magic mushroom'
+                        endif
+                    else
+                        overhead 'Please eat a mushroom manually'
+                    endif
+                endif
+            endif
+                    
+        endif
+    endif
+elseif mana > 5 and mana < 40
+    if not cooldown harm and mana > 5
+        cast 'harm'
+        while not targetexists 
+        endwhile
+        while targetexists 
+            if targetexists 'harmful'
+                lasttarget
+            elseif targetexists 'beneficial'
+                target self
+            endif
+        endwhile
+    elseif not cooldown 'magic arrow' and mana > 5
+        cast 'Magic arrow'
+        while not targetexists 
+        endwhile
+        while targetexists 
+            if targetexists 'harmful'
+                lasttarget
+            elseif targetexists 'beneficial'
+                target self
+            endif
+        endwhile
+    elseif not cooldown 'lightning' and mana > 11
+        cast 'lightning'
+        while not targetexists 
+        endwhile
+        while targetexists 
+            if targetexists 'harmful'
+                lasttarget
+            elseif targetexists 'beneficial'
+                target self
+            endif
+        endwhile
+    elseif mana > 14
+        cast 'Mind Blast'
+        while not targetexists 
+        endwhile
+        while targetexists 
+            if targetexists 'harmful'
+                lasttarget
+            elseif targetexists 'beneficial'
+                target self
+            endif
+        endwhile
+        overhead 'Everything on cooldown - get gud'
+    endif
+    if not cooldown mushroom
+        if findtype '29012' backpack
+            hotkey 'Eat magic mushroom'
+        elseif not findtype '29012' backpack and mana > 10
+            for 2
+                cast 'Create food'
+                wait 550
+            endfor
+        endif
+    endif
+endif
+pause 300
+loop

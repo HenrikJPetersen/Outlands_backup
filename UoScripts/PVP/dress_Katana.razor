@@ -1,0 +1,22 @@
+if findlayer self lefthand as item ##or findlayer self righthand as item
+    getlabel item mylabel
+    if 'helberb' in mylabel
+        clearhands 'both'
+        hotkey 'Toggle Peace Only'
+    else
+        clearhands 'both'
+        pause 25
+        replay
+    endif
+else
+    if findtype 'katana' backpack as item
+        if targetexists 
+            lift item
+            drop self lefthand
+        else
+            dclick item
+        endif
+    endif
+    pause 25
+    attack lasttarget 
+endif

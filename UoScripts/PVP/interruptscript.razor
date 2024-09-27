@@ -1,0 +1,38 @@
+if cooldown harmpvp < 750
+    cast 'Harm'
+    while not targetexists 
+    endwhile
+    while targetexists 
+        target lasttarget 
+    endwhile
+    cooldown harmpvp 5000
+elseif cooldown magicarrowpvp < 500
+    cast 'magic arrow'
+    while not targetexists 
+    endwhile
+    while targetexists 
+        target lasttarget 
+    endwhile
+    cooldown magicarrowpvp 5000
+elseif cooldown fireballpvp < 1000
+    cast 'fireball'
+    while not targetexists 
+    endwhile
+    while targetexists 
+       target lasttarget 
+    endwhile
+    cooldown fireballpvp 5000
+elseif cooldown lightningpvp < 1250
+    cast 'lightning'
+  while not targetexists 
+    endwhile
+    while targetexists 
+        target lasttarget 
+    endwhile
+    cooldown lightningpvp 5000
+else
+    overhead 'EVERYTHING ON COOLDOWN'
+endif
+
+
+

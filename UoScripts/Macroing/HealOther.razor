@@ -1,0 +1,14 @@
+if not varexist skipper
+    @setvar skipper 
+endif
+if not findtype '3617' backpack
+    if findtype 'storage shelf' ground 0 0 2 as shelf
+        @menu shelf 1
+    pause 250
+    endif
+endif
+dclicktype '3617' 
+pause 500
+target skipper 
+pause 10000
+replay

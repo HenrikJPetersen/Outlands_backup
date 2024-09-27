@@ -1,0 +1,25 @@
+if findtype 'katana' backpack as item and not targetexists 
+    if targetexists 
+        lift item
+        drop self righthand
+    else
+        sysmsg 'dclicking'
+        dclick item
+    endif
+    pause 25
+    attack lasttarget 
+elseif findtype 'katana' backpack as item and targetexists 
+        clearhands 'both'
+        pause 25
+        lift item   
+        drop self righthand
+        pause 25
+        attack lasttarget 
+    else
+        clearhands 'both'
+        hotkey 'Toggle Peace Only'
+    endif
+else        
+    clearhands 'both'
+    hotkey 'Toggle Peace Only'
+endif

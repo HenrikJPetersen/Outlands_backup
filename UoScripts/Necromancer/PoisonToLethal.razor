@@ -1,0 +1,82 @@
+if not timerexists preventspam
+    createtimer preventspam
+endif
+if timer preventspam > 5000
+    overhead myKillTarget
+    overhead myPrevTarget
+endif
+if not varexist bossmode 
+    @setvar bossmode 1
+else 
+    @setvar! bossmode 1
+endif
+
+
+overhead 'bossmode: {{bossmode}}'
+@setvar! myKillTarget lasttarget 
+@setvar myPrevTarget myKillTarget
+clearsysmsg
+
+if not findtype '3850' backpack
+    overhead 'OUT OF LETHAL POISON' 2263 
+    break
+endif
+
+if myKillTarget = myPrevTarget and dead myKillTarget
+    //Target is dead - set a new one
+    if timer preventspam > 5000
+        overhead '■■ Target DEAD ■■' 33
+        overhead '■ Find a new one ■' 33
+        settimer preventspam 0
+        stop
+    endif
+elseif find myKillTarget ground -1 -1 12
+    if timer preventspam > 5000
+        overhead '■■ KILL TARGET ■■' 33
+        settimer preventspam 0
+    endif
+    if cooldown mindrot = 0
+        say '[mindrot'
+        cooldown mindrot 30000
+    endif
+    cast 'poison'
+    while not targetexists and not insysmsg 'Disturbed'
+        if insysmsg 'disturbed'
+            replay
+        endif
+    endwhile
+    while targetexists 
+        target myKillTarget
+    endwhile
+    pause 250
+    getlabel myKillTarget theLabel 
+    overhead 'My target' 2263 myKillTarget
+    if "Greater" in theLabel
+        pause 250
+        replay
+    endif
+    if "Deadly" in theLabel
+        pause 250
+        if bossmode = 0
+            stop
+        endif
+        replay
+    endif
+    if "10 Lethal" in theLabel
+        overhead 'yay'
+        stop
+    endif        
+elseif find myKillTarget ground -1 -1 20
+   
+    if timer preventspam > 5000
+        overhead '■■ OoR ■■' 2263 myKillTarget
+        settimer preventspam 0
+        stop
+    endif
+endif
+if dead myKillTarget    
+    @setvar myKillTarget 0
+    @setvar firstPoison 1         
+endif
+clearsysmsg 
+replay

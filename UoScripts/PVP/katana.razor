@@ -1,0 +1,15 @@
+if findlayer self lefthand or findlayer self righthand
+    clearhands 'both'
+    hotkey 'Toggle Peace Only'
+else
+    if findtype 'katana' backpack as item
+        if targetexists 
+            lift item
+            drop self righthand
+        else
+            dclick item
+        endif
+    endif
+    pause 25
+    attack lasttarget 
+endif

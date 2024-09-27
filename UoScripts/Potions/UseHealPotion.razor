@@ -1,0 +1,30 @@
+//clearsysmsg 
+if paralyzed 
+    say '[pouch'
+endif
+pause 50
+if findtype 'Yellow Potion' backpack as healpot
+    if not cooldown "heal potion" and diffhits > 15
+        dclick healpot
+        cooldown "heal potion" 11000
+        pause 250
+    endif
+    pause 300
+    if insysmsg 'You are already at full health.'
+        sysmsg 'full hp'
+        cooldown "heal potion" 0
+        break
+    endif
+    if 'You must wait' in overhead 
+        overhead '■■ CD ON HEALPOT ■■' 2263
+        sysmsg 
+        break
+        endif
+    if skill 'parry' > 79 and lhandempty
+        if findtype 'wooden shield' backpack 
+            dclick shield
+        else
+            overhead 'You are missing a shield'
+        endif
+    endif
+endif      
