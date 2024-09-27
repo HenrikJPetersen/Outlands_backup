@@ -1,0 +1,9 @@
+if ingump 'Swift reload' 1774462345
+    yell '[reload'
+    pause 500
+    gumpresponse 10 1774462345
+elseif not gumpexists 1774462345
+    sysmsg 'No ability gump present'
+else
+    sysmsg 'Not running swift reload'
+endif

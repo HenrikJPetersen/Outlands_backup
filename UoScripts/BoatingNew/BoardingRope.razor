@@ -1,0 +1,23 @@
+if not gumpexists 2881168634
+    if findtype '5370' backpack as brope
+        dclick brope
+        pause globalwait
+        if insysmsg 'You must be onboard a ship'
+            sysmsg '◄► NO SHIP ◄►' 33
+            stop
+        endif
+        replay
+    else
+        overhead '◄► No more boarding ropes ◄►' 33
+    endif
+endif
+if gumpexists 2881168634
+    sysmsg '▲▲ Select boarding options ▲▲' 3343
+endif
+gumpresponse 5 2881168634
+while not targetexists 
+endwhile
+while targetexists 
+    hotkey 'Target Closest grey monster'
+    pause 250
+endwhile

@@ -1,0 +1,57 @@
+
+clearsysmsg 
+if findtype 'bank deposit safe' ground any any 2 as deposit 
+    hotkey 'Set Grab Item HotBag'
+    wft 500
+    target deposit
+    pause 500
+    
+elseif findtype '41518' ground any any 2 as deposit
+    hotkey 'Set Grab Item HotBag'
+    wft 500
+    target deposit
+    pause 500
+endif
+if findtype 3645|3644 ground -1 -1 1 as crate 
+    overhead 'CRATE'
+    dclick crate
+    pause 150
+    if findtype '3891' crate
+        overhead 'muffs'
+        while findtype '3891' crate as dobdob
+            hotkey 'Grab item'
+            wft 250
+            target dobdob
+            pause 560
+        endwhile
+    else
+        overhead 'No muffins'
+    endif
+    pause 150
+    if findtype '3821' crate
+        overhead 'coins'
+        while findtype '3821' crate as coins
+            hotkey 'Grab item'
+            wft 250
+            target coins
+            pause 560
+        endwhile
+    else
+        overhead 'No coins'
+    endif
+    pause 150
+    if findtype '3702' backpack as hotbag
+        hotkey 'Set Grab Item HotBag'
+        wft 500
+        target hotbag
+    endif
+    hotkey 'Grab item'
+    wft
+    target crate
+    pause 159
+    if insysmsg 'that container cannot hold more items'
+        overhead 'FAILURE TO PICKUP CRATE' 33
+    endif
+endif
+pause 350
+cooldown spyglass 0

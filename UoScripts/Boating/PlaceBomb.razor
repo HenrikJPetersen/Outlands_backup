@@ -1,0 +1,24 @@
+clearsysmsg 
+if findtype '5370' backpack as boardingrope
+    dclick boardingrope
+endif
+waitforgump 2881168634
+pause 150
+gumpresponse 1
+waitforgump 2881168634 500
+pause 150
+gumpresponse 3
+waitforgump 2881168634 500
+pause 150
+gumpresponse 5
+waitfortarget 150
+while targetexists 
+    pause 100
+endwhile
+if findtype '5188' backpack as sbomb
+    dclick sbomb
+else
+    overhead 'No more bombs'
+endif
+pause 150
+say 'embark'

@@ -1,0 +1,21 @@
+if findtype "reagent satchel" self as satchel
+    @menu satchel 0
+endif
+if findtype 'hatch' ground any any 2 as fhatch
+    dclick fhatch
+    pause 250
+    if findtype '3705' fhatch 0 as ppouch
+        hotkey 'Set Organizer HotBag-04'
+        wft 500
+        target ppouch
+        pause 250
+        organizer 04
+        while queued
+            pause 50
+        endwhile
+    else
+        overhead 'Could not find pouch in the hath'
+    endif
+else
+    overhead 'Could not find hatch within 2 tiles'
+endif

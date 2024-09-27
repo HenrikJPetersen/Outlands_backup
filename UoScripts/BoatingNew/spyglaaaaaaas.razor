@@ -1,0 +1,48 @@
+#############################################
+## Change to 1 to search for fishing spots ##
+            @setvar fish 0
+#############################################
+while targetexists 
+endwhile
+
+@setvar! globalwait 150
+gumpclose 2890020940
+pause 150
+if not timerexists spyglass
+    createtimer spyglass
+endif    
+if timer spyglass > 7000
+    settimer spyglass 0
+else
+    while timer spyglass < 7000
+        pause 100
+    endwhile
+    replay
+endif
+if findtype '5365' backpack as glass
+    dclick glass
+    wft 500
+    target self
+else
+    overhead 'Out of spyglasses' 33
+    stop
+endif
+waitforgump 2890020940 500
+if fish = 0
+    if gumpexists 2890020940
+    sysmsg '▲▲ Searching ships ▲▲' 33
+        gumpresponse 4 2890020940
+        settimer spyglass 0
+        cooldown spyglass 7000
+        replay
+    endif
+else 
+    if gumpexists 2890020940
+        sysmsg '▲▲ Searching fish ▲▲' 33
+        gumpresponse 11
+        pause 250
+        gumpresponse 4 2890020940
+        settimer spyglass 0
+    endif
+endif
+replay

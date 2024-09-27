@@ -1,0 +1,16 @@
+if findtype 'spyglass' backpack as sglass
+    dclick sglass
+    wft 500
+    target self
+    waitforgump 2890020940
+    pause 250
+    if gumpexists 2890020940
+        gumpresponse 11
+        pause 100
+        waitforgump 2890020940
+        gumpresponse 4
+        pause 100
+    endif
+else
+    overhead 'Out of spyglasses' 33
+endif

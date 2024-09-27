@@ -1,0 +1,9 @@
+if not varexist pouch
+    setvar pouch
+endif
+while findtype 'scroll' backpack as ss
+    lift ss
+    pause 250
+    drop pouch
+    pause 250
+endwhile

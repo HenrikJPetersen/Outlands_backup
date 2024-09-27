@@ -1,0 +1,25 @@
+say '[firecannons'
+wft 1000
+    //Small ossuarian ship
+if findtype 16385 ground 2840 -1 15 as shiptarget
+    target shiptarget
+    //Small vile ship
+elseif findtype 16385 ground 2841 -1 15 as shiptarget
+    target shiptarget
+    //small lizardmen ship
+elseif findtype 16394 ground 2363 -1 15 as shiptarget
+    target shiptarget    
+    //small lizardmen ship
+elseif findtype 16395 ground 2363 -1 15 as shiptarget
+    target shiptarget    
+elseif findtype 16387 ground -1 -1 15 as shiptarget
+    target shiptarget
+elseif findtype 16384 ground -1 -1 15 as shiptarget
+    target shiptarget
+elseif findtype 16386 ground -1 -1 15 as shiptarget
+    target shiptarget
+else
+    overhead 'not found'
+endif
+pause 1200
+script 'spyglass'

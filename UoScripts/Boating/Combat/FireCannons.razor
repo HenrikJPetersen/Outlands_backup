@@ -1,0 +1,10 @@
+say '[firecannons'
+cooldown cannons 14000
+while not targetexists 
+endwhile
+while targetexists 
+    hotkey 'target closest grey monster'
+    pause 250
+endwhile
+pause 1500
+script 'spyglass'

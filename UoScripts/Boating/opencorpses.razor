@@ -1,0 +1,13 @@
+@clearignore
+while findtype 0x2006 'ground' 'any' 1 2 as 'found'
+    overhead '[CORPSE] ...  ' 2102
+    dclick 'found'
+    pause   200
+    if insysmsg 'must wait'
+        pause   100
+    else
+    pause   400
+    @ignore 'found'
+    endif
+endwhile
+overhead '[CORPSE] Done' 93

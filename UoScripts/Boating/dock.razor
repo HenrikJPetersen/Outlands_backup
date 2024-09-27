@@ -1,0 +1,62 @@
+if not listexists dockmasters
+    createlist dockmasters
+else
+    clearlist dockmasters
+endif
+clearsysmsg 
+ 
+//Add names for the dockmasters you use.. 
+## Should add the most frequent you use at the end - as its search top down in the list of dockmasters
+//ShelterDocks
+pushlist dockmasters 'Uriah' 2
+pushlist dockmasters 'Kira' front
+//AWN
+pushlist dockmasters 'Ferdek' front
+pushlist dockmasters 'TUTAJMOZNADOK' front
+pushlist dockmasters 'Janet' front
+pushlist dockmasters 'Semele' front
+pushlist dockmasters 'Alysa' front
+//BOS
+pushlist dockmasters 'Zerlinda' front
+pushlist dockmasters 'BoS' front
+pushlist dockmasters 'Kuba' front
+
+
+
+//MyHouse
+pushlist dockmasters 'Barnabas' front
+
+pause 150
+
+if gumpexists 3287496917
+    gumpresponse 8 3287496917
+    pause 150
+    if insysmsg 'stationary'
+        replay
+    endif
+    pause 150
+    gumpresponse 7 3287496917
+else
+    overhead 'findind dm'
+    foreach x in dockmasters
+        if findtype x ground 0 0 20 as dm
+            overhead '>> HERE <<' 2263 dm
+            @setvar! mydm dm 
+            break
+        endif
+    endfor
+    while not gumpexists 3287496917
+        @menu mydm 1
+        pause 300
+    endwhile
+    if ingump 'crate' 3287496917
+        gumpresponse 8 3287496917
+        pause 250
+    endif
+    if insysmsg 'stationary'
+        replay
+    endif
+    if ingump 'crate' 3287496917
+        gumpresponse 7 3287496917
+    endif
+endif

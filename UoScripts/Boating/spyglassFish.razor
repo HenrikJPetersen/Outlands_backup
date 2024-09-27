@@ -1,0 +1,77 @@
+if gumpexists 2890020940
+    gumpclose 2890020940
+endif
+if gumpexists 0xAC42384C
+    gumpclose 0xAC42384C
+endif
+overhead 'The smell of fish.. makes me miss my wifey.' 2263
+if findtype 'spyglass' backpack 0
+    dclicktype "spyglass"
+    wft 500
+    hotkey 'target self'
+elseif findtype 'spyglass' backpack 2213
+    dclicktype "spyglass"
+    wft 500
+    hotkey 'target self'
+else 
+    for 3
+        overhead 'No more spyglass in backpack'
+        pause 1000
+    endfor
+    break
+endif
+waitforgump 2890020940 1000
+if ingump 'Search for ships'
+    gumpresponse 11 2890020940
+    cooldown spyglass 7000
+endif
+waitforgump 2890020940 1000
+if ingump 'Search for ships'
+    gumpresponse 4 2890020940
+    cooldown spyglass 7000
+endif
+pause 250
+if insysmsg 'another 1 second before'
+    cooldown spyglass 1000
+    sysmsg 'You need to wait 1 second'
+    overhead 'You need to wait 1 second'   
+endif
+if insysmsg 'another 2 seconds before'
+    cooldown spyglass 2000
+    sysmsg 'You need to wait 2 seconds'
+    overhead 'You need to wait 2 seconds'   
+endif
+if insysmsg 'another 3 seconds before'
+    cooldown spyglass 3000
+    sysmsg 'You need to wait 3 seconds'
+    overhead 'You need to wait 3 seconds'   
+endif
+if insysmsg 'another 4 seconds before'
+    cooldown spyglass 4000
+    sysmsg 'You need to wait 4 seconds'
+    overhead 'You need to wait 4 seconds'  
+endif
+if insysmsg 'another 5 seconds before'
+    cooldown spyglass 5000
+    sysmsg 'You need to wait 5 seconds'
+    overhead 'You need to wait 5 seconds'   
+endif
+if insysmsg 'another 6 seconds before'
+    cooldown spyglass 6000
+    sysmsg 'You need to wait 6 seconds'
+    overhead 'You need to wait 6 seconds'
+endif
+pause 250
+waitforgump 0xAC42384C
+if ingump "a small ship" 2890020940 or ingump "a small dragonship" 2890020940 or ingump "a medium ship" 2890020940 or ingump "a medium dragonship" 2890020940 or ingump "a large ship" 2890020940 or ingump "a large dragonship" 2890020940 or ingump "a carrack" 2890020940 or ingump "a galleon" 2890020940
+    overhead 'AHMAGAD PC SHIP' 33
+endif
+while ingump "a small ship" 2890020940 or ingump "a small dragonship" 2890020940 or ingump "a medium ship" 2890020940 or ingump "a medium dragonship" 2890020940 or ingump "a large ship" 2890020940 or ingump "a large dragonship" 2890020940 or ingump "a carrack" 2890020940 or ingump "a galleon" 2890020940
+    overhead 'RETREAT WE ARE NO JACK SPARROW' 33
+    pause 2500
+endwhile
+while cooldown spyglass != 0
+endwhile
+pause 2800
+script spyglass
+    

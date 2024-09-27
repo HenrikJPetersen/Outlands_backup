@@ -1,0 +1,41 @@
+clearignore 
+if not varexist globalwait
+    @setvar globalwait 150
+endif
+## Check if ship gump is open
+if gumpexists 4216593270 and ingump 'Zeans' 4216593270 
+    gumpresponse 201 4216593270
+    pause globalwait
+    stop
+elseif gumpexists 4216593270 and ingump 'RobotTurtle' 4216593270 
+    overhead 'Found your gump!'
+    gumpresponse 201 4216593270
+    pause globalwait
+    stop
+elseif gumpexists 4216593270  and ingump 'Lumber Leif' 4216593270    
+    gumpresponse 201 4216593270
+    pause globalwait
+    stop
+else
+    if listexists tiller_list
+        clearlist tiller_list
+    else
+        createlist tiller_list
+    endif
+    
+    if findtypelist tiller_list 'tiller man' 'ground'
+        foreach tiller in tiller_list
+            sysmsg 'clicking tiller' 55
+            dclick tiller
+            overhead '{{tiller}}'
+            waitforgump 4216593270
+            if ingump 'Zeans' 4216593270 or ingump 'RobotTurtle' 4216593270 or ingump 'Lumber Leif' 4216593270
+                    replay
+                endif
+            sysmsg 'neeeeeext' 55
+            @ignore tiller
+        endfor
+        sysmsg 'Could not find your boat - retrying' 44
+        replay
+    endif
+endif

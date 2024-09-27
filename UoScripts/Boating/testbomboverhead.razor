@@ -1,0 +1,116 @@
+# Glass while running this script
+@setvar! keepglassing 1
+# Continue to loop script? This can inteferre with lots of other stuff
+@setvar! loopscript 1
+# Color for overhead text on bombs
+@setvar! bombcolor 2263
+# Potion config: 1 = active.
+@setvar! poisonpots 1
+@setvar! strpots 1
+@setvar! healpot 1
+## DO NOT EDIT BELOW
+if not timerexists preventspamtimer
+    createtimer preventspamtimer 
+    settimer preventspamtimer 8000
+endif
+## Bomb check
+if findtype '5188' ground -1 -1 2 as sbomb
+    dclick sbomb
+    pause 250
+elseif findtype '5188' ground -1 1 10 as sbomb
+    for 2
+        overhead "↓↓↓↓" bombcolor sbomb 
+        overhead "BOMB" bombcolor sbomb
+        pause 100
+    endfor
+    pause 250
+endif   
+## Poison check
+if poisonpots = 1 and findtype '3847' backpack
+    if poisoned 
+        if targetexists 
+        endif
+        if not targetexists 
+            potion 'cure'
+        endif
+        pause 250
+    endif
+endif
+## Str pot check
+if strpots = 1
+    if not findbuff 'Strength' and findtype '3849' backpack
+        if targetexists 
+        endif
+        if not targetexists 
+            potion 'Strength'
+            pause 250
+        endif
+    endif
+endif
+## Diffhit check
+if healpot = 1
+    if diffhits > 25
+    if not cooldown "heal potion" and findtype '3852' backpack
+            potion 'heal'
+            pause 250
+        else
+            if timer preventspamtimer > 8000
+                settimer preventspamtimer 0
+                overhead 'setting timer'
+                overhead '■■ Heal pot on CD ■■' 33
+            endif
+        endif
+    endif
+endif
+## Spyglass
+if findtype 'spyglass' backpack
+    @setvar! spyglassinbackpack 1
+else
+    @setvar! spyglassinbackpack 0
+endif
+
+if keepglassing = 1 and spyglassinbackpack != 0
+    if not cooldown spyglass
+       sysmsg '> Running spyglass' 44
+        while targetexists 
+        endwhile
+        # Closegump for more smooth spyglass
+        if gumpexists 2890020940
+            gumpclose 2890020940
+            pause 25
+        endif
+        //Valorite
+        if findtype 'spyglass' backpack 1763 as glass
+            
+            dclick glass
+            wft 500
+            target 'self'
+            waitforgump 2890020940
+        //Agapite
+        elseif findtype 'spyglass' backpack 2425 as glass
+            
+            dclick glass
+            wft 500
+            target 'self'
+            waitforgump 2890020940
+        elseif findtype 'spyglass' backpack as glass
+            
+            dclick glass
+            wft 500
+            target 'self'
+            waitforgump 2890020940
+        else
+            sysmsg ' ■■ No more spyglass in backpack  ■■' 33
+             @setvar! spyglassinbackpack 0
+        endif
+        if ingump 'Search for ships' 2890020940
+            gumpresponse 4 2890020940
+            cooldown spyglass 8000
+        endif 
+    endif
+
+endif
+## Keep looping script..
+if loopscript = 1
+    replay
+endif

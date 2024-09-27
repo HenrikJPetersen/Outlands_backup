@@ -1,0 +1,28 @@
+##EQuip and attack
+if findtype '9917' backpack as hppoon
+    dclick hppoon
+    pause 250
+    if findlayer self lefthand as myLefty
+        @setvar! weap myLefty
+    endif
+    getlabel! weap desc
+    if harpoon in desc
+        overhead 'Ay vile pirate - away with thee'
+        attack lasttarget 
+    endif
+    break
+endif    
+if findlayer self lefthand as myLefty
+    @setvar! weap myLefty
+    getlabel! weap desc
+    if harpoon in desc
+        clearhands both
+    endif
+    break
+endif
+
+    
+    
+
+
+    

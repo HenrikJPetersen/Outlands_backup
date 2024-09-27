@@ -1,0 +1,23 @@
+@setvar globalwait 250
+## Check if ship gump is open
+if gumpexists 4216593270
+    ## Check if we are ont the correct tab in ship gump.
+    if ingump 'Open ship' 4216593270
+        gumpresponse 21 4216593270
+        pause globalwait
+        while not targetexists 
+        endwhile
+        while targetexists 
+        endwhile
+    else
+        ## Open the correct tab in the ship gump and embark
+        gumpresponse 2 4216593270
+        pause globalwait
+        gumpresponse 21 4216593270
+    endif
+else
+    say '[Ship'
+    pause globalwait
+    replay
+endif
+   

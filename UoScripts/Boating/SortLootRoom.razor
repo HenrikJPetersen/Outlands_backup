@@ -1,0 +1,31 @@
+#Check for a ship hold
+if findtype '16019' ground any any 1 true as found
+    setvar myShipHold found
+elseif findtype '16046' ground any any 1 true as found
+      setvar myShipHold found
+elseif findtype '15973' ground any any 1 true as found
+     setvar myShipHold found
+elseif findtype '16057' ground any any 1 true as found
+     setvar myShipHold found
+endif    
+
+## Set the amount to drop into hold.
+@setvar! amountToDrop 5000
+
+while counttype '3821' backpack >= amountToDrop
+    overhead 'Dumping gold'
+    lifttype '3821' amountToDrop
+    pause 150
+    drop myShipHold
+endwhile
+while counttype '2539' backpack >= amountToDrop
+    overhead 'Dumping dubs'
+    lifttype '2539' amountToDrop
+    pause 150
+    drop myShipHold
+endwhile
+
+
+
+
+

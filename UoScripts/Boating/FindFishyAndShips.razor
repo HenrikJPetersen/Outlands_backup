@@ -1,0 +1,77 @@
+if not varexist fishspyglass
+    @setvar fishspyglass
+endif
+if not varexist shipspyglass
+    @setvar shipspyglass
+endif
+if gumpexists 2890020940
+    gumpclose 2890020940
+endif
+if gumpexists 0xAC42384C
+    gumpclose 0xAC42384C
+endif
+overhead 'SEARCHING FOR SHIPS'
+if gumpexists 2890020940
+    if ingump 'Search for ships'
+        gumpresponse 10 2890020940
+        pause 250
+        gumpresponse 4 2890020940
+    endif
+elseif find shipspyglass backpack
+    dclick shipspyglass
+    while not targetexists 
+    endwhile
+    while targetexists 
+        target self
+    endwhile
+    pause 250
+    waitforgump 2890020940 1000
+    if ingump 'Search for ships'
+        gumpresponse 10 2890020940
+        pause 250
+        gumpresponse 4 2890020940
+    endif
+    pause 250
+    waitforgump 2890020940 1000
+    if ingump "a small ship" 2890020940 or ingump "a small dragonship" 2890020940 or ingump "a medium ship" 2890020940 or ingump "a medium dragonship" 2890020940 or ingump "a large ship" 2890020940 or ingump "a large dragonship" 2890020940 or ingump "a carrack" 2890020940 or ingump "a galleon" 2890020940
+        overhead 'AHMAGAD PC SHIP' 33
+    endif
+    while ingump "a small ship" 2890020940 or ingump "a small dragonship" 2890020940 or ingump "a medium ship" 2890020940 or ingump "a medium dragonship" 2890020940 or ingump "a large ship" 2890020940 or ingump "a large dragonship" 2890020940 or ingump "a carrack" 2890020940 or ingump "a galleon" 2890020940
+        overhead 'RETREAT WE ARE NO JACK SPARROW' 33
+        pause 2500
+    endwhile
+    
+endif
+pause 4000
+
+if gumpexists 2890020940
+    gumpclose 2890020940
+endif
+if gumpexists 0xAC42384C
+    gumpclose 0xAC42384C
+endif
+//Search for fish
+overhead 'SEARCHING FOR FISH'
+if gumpexists 2890020940
+    if ingump 'Search for ships'
+        gumpresponse 11 2890020940
+        pause 250
+        gumpresponse 4 2890020940
+    endif
+elseif find fishspyglass backpack
+    dclick fishspyglass
+    while not targetexists 
+    endwhile
+    while targetexists 
+        target self
+    endwhile
+    pause 250
+    waitforgump 2890020940 1000
+    if ingump 'Search for ships'
+        gumpresponse 11 2890020940
+        pause 250
+        gumpresponse 4 2890020940
+    endif
+endif
+pause 4000
+replay
